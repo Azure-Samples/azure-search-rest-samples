@@ -1,57 +1,11 @@
-# Project Name
+# Postman collections for Azure Search
 
-(short, 1-3 sentenced, description of the project)
+This repository provides Postman collections used in Azure Search walkthroughs. All collections are saved in JSON, in the V2 collection format.
 
-## Features
+To use these collections, import them in **Postman**.
 
-This project framework provides the following features:
+## Caselaw collection
 
-* Feature 1
-* Feature 2
-* ...
+Includes 4 requests used to create an index, data source, skillset, and indexer using [Caselaw demo data](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/caselaw) from Azure Search Sample Data.
 
-## Getting Started
-
-### Prerequisites
-
-(ideally very short, if any)
-
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
-
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [respository name]
-3. ...
-
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
-
-## Resources
-
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
+This collection is used in [How to get started with Knowledge Store](https://docs.microsoft.com/azure/search/knowledge-store-howto).
