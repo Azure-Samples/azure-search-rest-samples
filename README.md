@@ -2,7 +2,7 @@
 
 This repository provides Postman collections used in Azure Search walkthroughs. All collections are saved in JSON, in the V2 collection format.
 
-To use these collections, import them in **Postman**.
+To use these collections, import them into **Postman**.
 
 ## Caselaw collection
 
