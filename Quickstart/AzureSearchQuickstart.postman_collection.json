@@ -1,0 +1,209 @@
+{
+	"variables": [],
+	"info": {
+		"name": "AzureSearchQuickstart",
+		"_postman_id": "972d699a-e420-0a4d-e923-79168e7dd288",
+		"description": "Create and load an index using embedded JSON documents, and then run queries to return results. This collection makes POST and GET requests using the Azure Search REST APIs.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateIndex",
+			"request": {
+				"url": {
+					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/hotels?api-version=2019-05-06",
+					"protocol": "https",
+					"host": [
+						"<YOUR-SEARCH-SERVICE-NAME>",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"hotels"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2019-05-06",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "api-key",
+						"value": "YOUR-AZURE-SEARCH-ADMIN-API-KEY",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"hotels-quickstart\",  \n    \"fields\": [\n        {\"name\": \"HotelId\", \"type\": \"Edm.String\", \"key\": true, \"filterable\": true},\n        {\"name\": \"HotelName\", \"type\": \"Edm.String\", \"searchable\": true, \"filterable\": false, \"sortable\": true, \"facetable\": false},\n        {\"name\": \"Description\", \"type\": \"Edm.String\", \"searchable\": true, \"filterable\": false, \"sortable\": false, \"facetable\": false, \"analyzer\": \"en.lucene\"},\n        {\"name\": \"Category\", \"type\": \"Edm.String\", \"searchable\": true, \"filterable\": true, \"sortable\": true, \"facetable\": true},\n        {\"name\": \"Tags\", \"type\": \"Collection(Edm.String)\", \"searchable\": true, \"filterable\": true, \"sortable\": false, \"facetable\": true},\n        {\"name\": \"ParkingIncluded\", \"type\": \"Edm.Boolean\", \"filterable\": true, \"sortable\": true, \"facetable\": true},\n        {\"name\": \"LastRenovationDate\", \"type\": \"Edm.DateTimeOffset\", \"filterable\": true, \"sortable\": true, \"facetable\": true},\n        {\"name\": \"Rating\", \"type\": \"Edm.Double\", \"filterable\": true, \"sortable\": true, \"facetable\": true},\n        {\"name\": \"Address\", \"type\": \"Edm.ComplexType\", \n        \"fields\": [\n        {\"name\": \"StreetAddress\", \"type\": \"Edm.String\", \"filterable\": false, \"sortable\": false, \"facetable\": false, \"searchable\": true},\n        {\"name\": \"City\", \"type\": \"Edm.String\", \"searchable\": true, \"filterable\": true, \"sortable\": true, \"facetable\": true},\n        {\"name\": \"StateProvince\", \"type\": \"Edm.String\", \"searchable\": true, \"filterable\": true, \"sortable\": true, \"facetable\": true},\n        {\"name\": \"PostalCode\", \"type\": \"Edm.String\", \"searchable\": true, \"filterable\": true, \"sortable\": true, \"facetable\": true},\n        {\"name\": \"Country\", \"type\": \"Edm.String\", \"searchable\": true, \"filterable\": true, \"sortable\": true, \"facetable\": true}\n        ]\n     }\n  ]\n}"
+				},
+				"description": "Create an Azure Search index that contains searchable information about 4 hotels."
+			},
+			"response": []
+		},
+		{
+			"name": "LoadDocuments",
+			"request": {
+				"url": {
+					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/hotels-quickstart/docs/index?api-version=2019-05-06",
+					"protocol": "https",
+					"host": [
+						"<YOUR-SEARCH-SERVICE-NAME>",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"hotels-quickstart",
+						"docs",
+						"index"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2019-05-06",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "api-key",
+						"value": "YOUR-AZURE-SEARCH-ADMIN-API-KEY",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"value\": [\r\n     {\r\n         \"@search.action\": \"upload\",\r\n         \"hotelId\": \"1\",\r\n         \"baseRate\": 199.0,\r\n         \"description\": \"Best hotel in town\",\r\n         \"description_fr\": \"Meilleur hôtel en ville\",\r\n         \"hotelName\": \"Fancy Stay\",\r\n         \"category\": \"Luxury\",\r\n         \"tags\": [\"pool\", \"view\", \"wifi\", \"concierge\"],\r\n         \"parkingIncluded\": false,\r\n         \"smokingAllowed\": false,\r\n         \"lastRenovationDate\": \"2010-06-27T00:00:00Z\",\r\n         \"rating\": 5,\r\n         \"location\": { \"type\": \"Point\", \"coordinates\": [-122.131577, 47.678581] }\r\n       },\r\n       {\r\n         \"@search.action\": \"upload\",\r\n         \"hotelId\": \"2\",\r\n         \"baseRate\": 79.99,\r\n         \"description\": \"Cheapest hotel in town\",\r\n         \"description_fr\": \"Hôtel le moins cher en ville\",\r\n         \"hotelName\": \"Roach Motel\",\r\n         \"category\": \"Budget\",\r\n         \"tags\": [\"motel\", \"budget\"],\r\n         \"parkingIncluded\": true,\r\n         \"smokingAllowed\": true,\r\n         \"lastRenovationDate\": \"1982-04-28T00:00:00Z\",\r\n         \"rating\": 1,\r\n         \"location\": { \"type\": \"Point\", \"coordinates\": [-122.131577, 49.678581] }\r\n       },\r\n       {\r\n         \"@search.action\": \"upload\",\r\n         \"hotelId\": \"3\",\r\n         \"baseRate\": 279.99,\r\n         \"description\": \"Surprisingly expensive\",\r\n         \"hotelName\": \"Dew Drop Inn\",\r\n         \"category\": \"Bed and Breakfast\",\r\n         \"tags\": [\"charming\", \"quaint\"],\r\n         \"parkingIncluded\": true,\r\n         \"smokingAllowed\": false,\r\n         \"lastRenovationDate\": null,\r\n         \"rating\": 4,\r\n         \"location\": { \"type\": \"Point\", \"coordinates\": [-122.33207, 47.60621] }\r\n       },\r\n       {\r\n         \"@search.action\": \"upload\",\r\n         \"hotelId\": \"4\",\r\n         \"baseRate\": 220.00,\r\n         \"description\": \"This could be the one\",\r\n         \"hotelName\": \"A Hotel for Everyone\",\r\n         \"category\": \"Basic hotel\",\r\n         \"tags\": [\"pool\", \"wifi\"],\r\n         \"parkingIncluded\": true,\r\n         \"smokingAllowed\": false,\r\n         \"lastRenovationDate\": null,\r\n         \"rating\": 4,\r\n         \"location\": { \"type\": \"Point\", \"coordinates\": [-122.12151, 47.67399] }\r\n       }\r\n    ]\r\n}"
+				},
+				"description": "Create an Azure Search index that contains searchable information about 4 hotels."
+			},
+			"response": []
+		},
+		{
+			"name": "SearchDocuments",
+			"request": {
+				"url": {
+					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/hotels-quickstart/docs?search=*&$count=true&api-version=2019-05-06",
+					"protocol": "https",
+					"host": [
+						"<YOUR-SEARCH-SERVICE-NAME>",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"hotels-quickstart",
+						"docs"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "*",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "$count",
+							"value": "true",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "api-version",
+							"value": "2019-05-06",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "api-key",
+						"value": "YOUR-AZURE-SEARCH-ADMIN-API-KEY",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Create an Azure Search index that contains searchable information about 4 hotels."
+			},
+			"response": []
+		},
+		{
+			"name": "GetIndexProperties",
+			"request": {
+				"url": {
+					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/hotels-quickstart/stats?api-version=2019-05-06",
+					"protocol": "https",
+					"host": [
+						"<YOUR-SEARCH-SERVICE-NAME>",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"hotels-quickstart",
+						"stats"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2019-05-06",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "api-key",
+						"value": "YOUR-AZURE-SEARCH-ADMIN-API-KEY",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Create an Azure Search index that contains searchable information about 4 hotels."
+			},
+			"response": []
+		}
+	]
+}
