@@ -1,3 +1,18 @@
+---
+topic: sample
+services: azure-search
+platforms: rest
+languages:
+  - rest
+name: Azure Search REST calls in Postman
+description: |
+  Postman collections containing REST API calls to Azure Search.
+products:
+  - azure
+  - azure-search
+urlFragment: rest-postman-collections
+---
+
 # Postman collections for Azure Search
 
 This repository provides Postman collections used in Azure Search walkthroughs. All collections are saved in JSON, in the V2 collection format.
@@ -7,9 +22,6 @@ To use these collections, import them into **Postman**.
 ## AzureSearchQuickstart collection
 
 Includes 4 requests used to create an index, load documents, search the index, and query system information. Request bodies include JSON documents that provides index and documents.  
-
-This collection is used in [Quickstart: Create an Azure Search index using Postman and the REST API](https://docs.microsoft.com/azure/search/search-get-started-postman).
-
 
 ## Caselaw collection
 
