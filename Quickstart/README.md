@@ -2,9 +2,9 @@
 page_type: sample
 languages:
   - rest
-name: Azure Search Quickstart Postman collection
+name: Quickstart in REST
 description: |
-  REST API calls to Azure Search using Postman, demonstrating index definition, data ingestion, and query execution.
+  Postman V2 collection containing REST API calls to Azure Search, demonstrating index definition, data ingestion, and query execution.
 products:
   - azure
   - azure-search
