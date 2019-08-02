@@ -4,14 +4,16 @@ languages:
   - rest
 name: Quickstart in REST - Postman
 description: |
-  Postman V2 collection containing REST API calls to Azure Search, demonstrating index definition, data ingestion, and query execution.
+  Learn basic steps for creating, loading, and querying an Azure Search index using Postman Desktop app and the latest-version REST APIs.
 products:
   - azure
   - azure-search
 urlFragment: rest-api-quickstart
 ---
 
-# Quickstart for Azure Search using REST APIs and Postman
+# Quickstart sample for Azure Search using REST APIs and Postman
+
+![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
 Demonstrates using Postman and the Azure Search REST APIs to send requests to Azure Search: create an index, load it with documents, and execute a few queries. Requests are provided in the V2 collection format, which you can import and then modify for connections to your Azure Search service.
 
@@ -42,3 +44,7 @@ This collection is featured in the [Quickstart: Create an Azure Search index in 
 1. For each request, update the Header to use the admin api-key of your service, which you can obtain from the portal.
 1. Next, update the URL of each request to use the name of your search service.
 1. Send each request to the service.
+
+## Next steps
+
+You can learn more about Azure Search on the [official documentation site](https://docs.microsoft.com/azure/search).
