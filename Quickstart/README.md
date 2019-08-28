@@ -2,7 +2,7 @@
 page_type: sample
 languages:
   - rest
-name: Quickstart in REST - Postman
+name: Azure Search Quickstart in REST - Postman
 description: |
   Learn basic steps for creating, loading, and querying an Azure Search index using Postman Desktop app and the latest-version REST APIs.
 products:
