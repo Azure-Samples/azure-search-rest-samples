@@ -23,7 +23,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\" : \"cog-search-demo-ds2\",\r\n  \"description\" : \"Demo files to demonstrate cognitive search capabilities.\",\r\n  \"type\" : \"azureblob\",\r\n  \"credentials\" :\r\n  { \"connectionString\" :\r\n    \"DefaultEndpointsProtocol=https;AccountName=heidicogsearchdemo;AccountKey=J56zNOCiiI4r9m1WWH4VMX5mu8hJ79dWB3RZBn5tmXDKVlRSUNRO2onisXuxcySt0IRVwckvnD/+MieF0rcUGg==;EndpointSuffix=core.windows.net;\"\r\n  },\r\n  \"container\" : { \"name\" : \"cog-search-demo\" }\r\n}"
+					"raw": "{\r\n  \"name\" : \"cog-search-demo-ds2\",\r\n  \"description\" : \"Demo files to demonstrate cognitive search capabilities.\",\r\n  \"type\" : \"azureblob\",\r\n  \"credentials\" :\r\n  { \"connectionString\" :\r\n    \"DefaultEndpointsProtocol=https;AccountName=<STORAGE-ACCOUNT-NAME>;AccountKey=<STORAGE-ACCESS-KEY>;EndpointSuffix=core.windows.net;\"\r\n  },\r\n  \"container\" : { \"name\" : \"cog-search-demo\" }\r\n}"
 				},
 				"url": {
 					"raw": "https://Y<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/datasources?api-version=2019-05-06",
