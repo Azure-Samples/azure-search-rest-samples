@@ -1,16 +1,11 @@
 ---
-topic: sample
-services: azure-search
-platforms: rest
+page_type: sample
 languages:
-  - rest
-name: Azure Search REST calls in Postman
-description: |
-  Postman collections containing REST API calls to Azure Search.
+- 
 products:
-  - azure
-  - azure-search
-urlFragment: rest-postman-collections
+- azure
+description: "This repository provides Postman collections used in Azure Search walkthroughs."
+urlFragment: azure-search-postman-samples
 ---
 
 # Postman collections for Azure Search
