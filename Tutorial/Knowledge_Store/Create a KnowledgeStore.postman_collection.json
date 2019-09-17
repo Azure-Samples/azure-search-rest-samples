@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "3befe3ee-0b4e-4c6b-b9a0-3f3dbc52cde0",
+		"name": "Create a KnowledgeStore 1590140",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Index",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{admin-key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"{{index-name}}\",\n  \"fields\": [\n    {\n      \"name\": \"address\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": false,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"categories\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": false,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"city\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": true,\n      \"sortable\": false,\n      \"analyzer\": \"standard.lucene\",\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"country\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": false,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"latitude\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": false,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"longitude\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": false,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"name\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": true,\n      \"sortable\": false,\n      \"analyzer\": \"standard.lucene\",\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"postalCode\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": false,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"province\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": false,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"reviews_date\",\n      \"type\": \"Edm.DateTimeOffset\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"retrievable\": true,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"reviews_dateAdded\",\n      \"type\": \"Edm.DateTimeOffset\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"retrievable\": true,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"reviews_rating\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": false,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"reviews_text\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": true,\n      \"sortable\": false,\n      \"analyzer\": \"standard.lucene\",\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"reviews_title\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": false,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"reviews_username\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": false,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"AzureSearch_DocumentKey\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": true,\n      \"retrievable\": true,\n      \"searchable\": false,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"metadata_storage_content_type\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": false,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"metadata_storage_size\",\n      \"type\": \"Edm.Int64\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"retrievable\": true,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"metadata_storage_last_modified\",\n      \"type\": \"Edm.DateTimeOffset\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"retrievable\": true,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"metadata_storage_name\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": false,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"metadata_storage_path\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": false,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": false,\n      \"sortable\": false,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"Keyphrases\",\n      \"type\": \"Collection(Edm.String)\",\n      \"facetable\": false,\n      \"filterable\": true,\n      \"retrievable\": true,\n      \"searchable\": true,\n      \"analyzer\": \"standard.lucene\",\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"Language\",\n      \"type\": \"Edm.String\",\n      \"facetable\": false,\n      \"filterable\": true,\n      \"key\": false,\n      \"retrievable\": true,\n      \"searchable\": true,\n      \"sortable\": false,\n      \"analyzer\": \"standard.lucene\",\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    },\n    {\n      \"name\": \"Sentiment\",\n      \"type\": \"Collection(Edm.Double)\",\n      \"facetable\": false,\n      \"filterable\": true,\n      \"retrievable\": true,\n      \"analyzer\": null,\n      \"indexAnalyzer\": null,\n      \"searchAnalyzer\": null,\n      \"synonymMaps\": [],\n      \"fields\": []\n    }\n  ],\n  \"suggesters\": [],\n  \"scoringProfiles\": [],\n  \"defaultScoringProfile\": \"\",\n  \"corsOptions\": null,\n  \"analyzers\": [],\n  \"charFilters\": [],\n  \"tokenFilters\": [],\n  \"tokenizers\": [],\n  \"@odata.etag\": \"\\\"0x8D73AD2243A18EF\\\"\"\n}"
+				},
+				"url": {
+					"raw": "https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}?api-version=2019-05-06",
+					"protocol": "https",
+					"host": [
+						"{{search-service-name}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{index-name}}"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2019-05-06"
+						}
+					]
+				},
+				"description": "Creates an Azure Search Index appropriate for hotel reviews and knowledgestore\t"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Datasource",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create the Skillset",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"description\": \"Detect language, extract key-phrases, and detect sentiment\",\n  \"skills\":\n  [\n    {\n      \"@odata.type\": \"#Microsoft.Skills.Text.LanguageDetectionSkill\",\n      \"inputs\": [\n        { \"name\": \"text\", \"source\": \"/document/reviews_text\" }\n      ],\n      \"outputs\": [\n        { \"name\": \"Language\", \"targetName\": \"Language\" }\n      ]\n    },\n    {\n      \"@odata.type\": \"#Microsoft.Skills.Text.KeyPhraseExtractionSkill\",\n      \"context\": \"/document/reviews_text/*\",\n      \"inputs\": [\n        { \"name\": \"text\", \"source\": \"/document/reviews_text/*\" },\n        { \"name\":\"Language\", \"source\": \"/document/Language\" }\n      ],\n      \"outputs\": [\n        { \"name\": \"KeyPhrases\", \"targetName\": \"KeyPhrases\" }\n      ]\n    },\n    {\n      \"@odata.type\": \"#Microsoft.Skills.Text.SentimentSkill\",\n      \"context\": \"/document/reviews_text/*\",\n      \"inputs\": [\n        { \"name\": \"text\", \"source\": \"/document/reviews_text/*\" },\n        { \"name\":\"Language\", \"source\": \"/document/Language\" }\n      ],\n      \"outputs\": [\n        { \"name\": \"Sentiment\", \"targetName\": \"Sentiment\" }\n      ]\n    },\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{search-service-name}.search.windows.net/skillsets/{{skillset-name}}?api-version=2019-05-06\n",
+					"protocol": "https",
+					"host": [
+						"{{search-service-name}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"skillsets",
+						"{{skillset-name}}"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2019-05-06\n"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create the Indexer",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{admin-key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\":\"{{indexer-name}}\",\t\n  \"dataSourceName\" : \"{{datasource-name}}\",\n  \"targetIndexName\" : \"{{index-name}}\",\n  \"skillsetName\" : \"{{skillset-name}}\",\n  \"parameters\":\n  {\n    \"maxFailedItems\":-1,\n    \"maxFailedItemsPerBatch\":-1,\n    \"configuration\":\n    {\n      \"dataToExtract\": \"contentAndMetadata\",\n      \"parsingMode\": \"delimitedText\",\n      \"firstLineContainsHeaders\": true,\n      \"delimitedTextDelimiter\": \",\"\n    }\n  },\n  \"fieldMappings\": [\n                {\n                    \"sourceFieldName\": \"AzureSearch_DocumentKey\",\n                    \"targetFieldName\": \"AzureSearch_DocumentKey\",\n                    \"mappingFunction\": {\n                        \"name\": \"base64Encode\",\n                        \"parameters\": null\n                    }\n                }\n            ],\n            \"outputFieldMappings\": [\n                {\n                    \"sourceFieldName\": \"/document/reviews_text/*/Keyphrases/*\",\n                    \"targetFieldName\": \"Keyphrases\",\n                    \"mappingFunction\": null\n                },\n                {\n                    \"sourceFieldName\": \"/document/Language\",\n                    \"targetFieldName\": \"Language\",\n                    \"mappingFunction\": null\n                },\n                {\n                    \"sourceFieldName\": \"/document/reviews_text/*/Sentiment\",\n                    \"targetFieldName\": \"Sentiment\",\n                    \"mappingFunction\": null\n                }\n            ]\n}"
+				},
+				"url": {
+					"raw": "https://{{search-service-name}}.search.windows.net/indexers/{{indexer-name}}?api-version=2019-05-06\n",
+					"protocol": "https",
+					"host": [
+						"{{search-service-name}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexers",
+						"{{indexer-name}}"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2019-05-06\n"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2b06f52a-3a66-4670-b4b5-800e36fcb8b4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "80fcfb72-0ffd-4813-a0df-8efdd31a02a5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "7159cd42-5746-474c-966f-74acc19b8f74",
+			"key": "admin-key",
+			"value": "<SEARCH_SERVICE_ADMIN_KEY>",
+			"type": "string"
+		},
+		{
+			"id": "3a0d384d-a73b-4311-97e9-6bb5d2ee19a3",
+			"key": "datasource-name",
+			"value": "hotel-reviews-ds",
+			"type": "string"
+		},
+		{
+			"id": "0a823e67-5afd-4f9b-b33a-8948932a2634",
+			"key": "indexer-name",
+			"value": "hotel-reviews-ixr",
+			"type": "string"
+		},
+		{
+			"id": "42254e08-4209-4dd4-884f-cccdc7764061",
+			"key": "index-name",
+			"value": "hotel-reviews-ix",
+			"type": "string"
+		},
+		{
+			"id": "12ca96c3-923f-459e-ab86-660be55d01d2",
+			"key": "search-service-name",
+			"value": "<SEARCH_SERVICE_NAME>",
+			"type": "string"
+		},
+		{
+			"id": "73ffdf4e-c341-406c-981b-97ab76cc55ad",
+			"key": "skillset-name",
+			"value": "hotel-reviews-ss",
+			"type": "string"
+		},
+		{
+			"id": "aa030f85-8023-4ab5-bedc-1158c648eeb3",
+			"key": "storage-account-name",
+			"value": "<STORAGE_ACCOUNT_NAME>",
+			"type": "string"
+		},
+		{
+			"id": "60bb9e5b-d891-4d59-8846-350dc3a8cb18",
+			"key": "storage-connection-string",
+			"value": "<STORAGE_ACCOUNT_CONNECTION_STRING>",
+			"type": "string"
+		},
+		{
+			"id": "8b72cd6b-6481-4cdf-9d2f-0662d38af669",
+			"key": "storage-container-name",
+			"value": "hotel-reviews",
+			"type": "string"
+		}
+	]
+}
