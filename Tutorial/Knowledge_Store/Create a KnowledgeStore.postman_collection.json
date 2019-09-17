@@ -160,55 +160,55 @@
 	],
 	"variable": [
 		{
-			"id": "7159cd42-5746-474c-966f-74acc19b8f74",
+			"id": "7d0867a9-2c1c-460a-ad6b-d6fc5b298ba4",
 			"key": "admin-key",
 			"value": "<SEARCH_SERVICE_ADMIN_KEY>",
 			"type": "string"
 		},
 		{
-			"id": "3a0d384d-a73b-4311-97e9-6bb5d2ee19a3",
+			"id": "300afadd-7346-4a67-a606-2c5a9e917665",
 			"key": "datasource-name",
 			"value": "hotel-reviews-ds",
 			"type": "string"
 		},
 		{
-			"id": "0a823e67-5afd-4f9b-b33a-8948932a2634",
+			"id": "7003d98f-e5cf-4de9-9d94-cf7541141138",
 			"key": "indexer-name",
 			"value": "hotel-reviews-ixr",
 			"type": "string"
 		},
 		{
-			"id": "42254e08-4209-4dd4-884f-cccdc7764061",
+			"id": "f2e78dc8-b8c2-40e5-aa92-50cf689de13e",
 			"key": "index-name",
 			"value": "hotel-reviews-ix",
 			"type": "string"
 		},
 		{
-			"id": "12ca96c3-923f-459e-ab86-660be55d01d2",
+			"id": "8363c202-1f03-470e-a38c-903c28d0b36e",
 			"key": "search-service-name",
 			"value": "<SEARCH_SERVICE_NAME>",
 			"type": "string"
 		},
 		{
-			"id": "73ffdf4e-c341-406c-981b-97ab76cc55ad",
+			"id": "6f0a54b0-69a2-4a02-b14e-3b8dbdae2f65",
 			"key": "skillset-name",
 			"value": "hotel-reviews-ss",
 			"type": "string"
 		},
 		{
-			"id": "aa030f85-8023-4ab5-bedc-1158c648eeb3",
+			"id": "cbd5ecc1-2668-4b6c-a2e2-cdb61f1c9249",
 			"key": "storage-account-name",
 			"value": "<STORAGE_ACCOUNT_NAME>",
 			"type": "string"
 		},
 		{
-			"id": "60bb9e5b-d891-4d59-8846-350dc3a8cb18",
+			"id": "bf6bbddd-f638-4f94-a4b6-9b96260921b6",
 			"key": "storage-connection-string",
 			"value": "<STORAGE_ACCOUNT_CONNECTION_STRING>",
 			"type": "string"
 		},
 		{
-			"id": "8b72cd6b-6481-4cdf-9d2f-0662d38af669",
+			"id": "1b334fb6-b239-499b-ab30-8a8ca9938479",
 			"key": "storage-container-name",
 			"value": "hotel-reviews",
 			"type": "string"
