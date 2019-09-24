@@ -1,13 +1,3 @@
----
-page_type: sample
-languages:
-- 
-products:
-- azure
-description: "This repository provides Postman collections used in Azure Search walkthroughs."
-urlFragment: azure-search-postman-samples
----
-
 # Postman collections for Azure Search
 
 This repository provides Postman collections used in Azure Search walkthroughs. All collections are saved in JSON, in the V2 collection format.
