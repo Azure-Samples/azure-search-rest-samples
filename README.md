@@ -1,3 +1,14 @@
+---
+page_type: sample
+languages:
+- json
+- rest
+products:
+- azure
+- azure-search
+description: "Postman collections used in Azure Search walkthroughs. All collections are saved in JSON, in the V2 collection format."
+---
+
 # Postman collections for Azure Search
 
 This repository provides Postman collections used in Azure Search walkthroughs. All collections are saved in JSON, in the V2 collection format.
