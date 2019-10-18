@@ -12,13 +12,13 @@
 				"header": [
 					{
 						"key": "api-key",
-						"value": "{{admin-key}}",
-						"type": "text"
+						"type": "text",
+						"value": "{{admin-key}}"
 					},
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
@@ -110,7 +110,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"{{skillset-name}}\",\n    \"description\": \"Skillset to detect language, extract key phrases, and detect sentiment\",\n    \"skills\": [ \n    \t{\n            \"@odata.type\": \"#Microsoft.Skills.Text.SplitSkill\", \n            \"context\": \"/document/reviews_text\", \"textSplitMode\": \"pages\", \"maximumPageLength\": 5000,\n            \"inputs\": [ \n                { \"name\": \"text\", \"source\": \"/document/reviews_text\" },\n                { \"name\": \"languageCode\", \"source\": \"/document/Language\" }\n            ],\n            \"outputs\": [\n                { \"name\": \"textItems\", \"targetName\": \"pages\" }\n            ]\n        },\n        {\n            \"@odata.type\": \"#Microsoft.Skills.Text.SentimentSkill\",\n            \"context\": \"/document/reviews_text/pages/*\",\n            \"inputs\": [\n                { \"name\": \"text\", \"source\": \"/document/reviews_text/pages/*\" },\n                { \"name\": \"languageCode\", \"source\": \"/document/Language\" }\n            ],\n            \"outputs\": [\n                { \"name\": \"score\", \"targetName\": \"Sentiment\" }\n            ]\n        },\n        {\n            \"@odata.type\": \"#Microsoft.Skills.Text.LanguageDetectionSkill\",\n            \"context\": \"/document\",\n            \"inputs\": [\n                { \"name\": \"text\", \"source\": \"/document/reviews_text\" }\n            ],\n            \"outputs\": [\n                { \"name\": \"languageCode\", \"targetName\": \"Language\" }\n            ]\n        },\n        {\n            \"@odata.type\": \"#Microsoft.Skills.Text.KeyPhraseExtractionSkill\",\n            \"context\": \"/document/reviews_text/pages/*\",\n            \"inputs\": [\n                { \"name\": \"text\",  \"source\": \"/document/reviews_text/pages/*\" },\n                { \"name\": \"languageCode\",  \"source\": \"/document/Language\" }\n            ],\n            \"outputs\": [\n                { \"name\": \"keyPhrases\" , \"targetName\": \"Keyphrases\" }\n            ]\n        },\n        {\n            \"@odata.type\": \"#Microsoft.Skills.Util.ShaperSkill\",\n            \"context\": \"/document\",\n            \"inputs\": [\n                { \"name\": \"name\",  \"source\": \"/document/name\" },\n                { \"name\": \"reviews_date\",  \"source\": \"/document/reviews_date\" },\n                { \"name\": \"reviews_rating\",  \"source\": \"/document/reviews_rating\" },\n                { \"name\": \"reviews_text\",  \"source\": \"/document/reviews_text\" },\n                { \"name\": \"reviews_title\",  \"source\": \"/document/reviews_title\" },\n                { \"name\": \"AzureSearch_DocumentKey\",  \"source\": \"/document/AzureSearch_DocumentKey\" },\n                { \n                    \"name\": \"pages\",\n                    \"sourceContext\": \"/document/reviews_text/pages/*\",\n                    \"inputs\": [\n                        { \"name\": \"SentimentScore\", \"source\": \"/document/reviews_text/pages/*/Sentiment\" },\n                        { \"name\": \"LanguageCode\", \"source\": \"/document/Language\" },\n                        { \"name\": \"Page\", \"source\": \"/document/reviews_text/pages/*\" },\n                        { \n                            \"name\": \"keyphrase\", \"sourceContext\": \"/document/reviews_text/pages/*/Keyphrases/*\",\n                            \"inputs\": [\n                                { \"name\": \"Keyphrases\", \"source\": \"/document/reviews_text/pages/*/Keyphrases/*\" }\n                            ]\n                        }\n                    ]\n                }\n            ],\n            \"outputs\": [\n                { \"name\": \"output\" , \"targetName\": \"tableprojection\" }\n            ]\n        }\n    ],\n    \"knowledgeStore\": {\n        \"storageConnectionString\": \"{{storage-connection-string}}\",\n        \"projections\": [\n            {\n                \"tables\": [\n                    { \"tableName\": \"hotelReviewsDocument\", \"generatedKeyName\": \"Documentid\", \"source\": \"/document/tableprojection\" },\n                    { \"tableName\": \"hotelReviewsPages\", \"generatedKeyName\": \"Pagesid\", \"source\": \"/document/tableprojection/pages/*\" },\n                    { \"tableName\": \"hotelReviewsKeyPhrases\", \"generatedKeyName\": \"KeyPhrasesid\", \"source\": \"/document/tableprojection/pages/*/keyphrase/*\" },\n                    { \"tableName\": \"hotelReviewsSentiment\", \"generatedKeyName\": \"Sentimentid\", \"source\": \"/document/tableprojection/pages/*/sentiment/*\" }\n                ],\n                \"objects\": []\n            },\n            {\n                \"tables\": [\n                    { \n                        \"tableName\": \"hotelReviewsInlineDocument\", \"generatedKeyName\": \"Documentid\", \"sourceContext\": \"/document\",\n                        \"inputs\": [\n                            { \"name\": \"name\", \"source\": \"/document/name\"},\n                            { \"name\": \"reviews_date\", \"source\": \"/document/reviews_date\"},\n                            { \"name\": \"reviews_rating\", \"source\": \"/document/reviews_rating\"},\n                            { \"name\": \"reviews_text\", \"source\": \"/document/reviews_text\"},\n                            { \"name\": \"reviews_title\", \"source\": \"/document/reviews_title\"},\n                            { \"name\": \"AzureSearch_DocumentKey\", \"source\": \"/document/AzureSearch_DocumentKey\" }\n                        ]\n                    },\n                    { \n                        \"tableName\": \"hotelReviewsInlinePages\", \"generatedKeyName\": \"Pagesid\", \"sourceContext\": \"/document/reviews_text/pages/*\",\n                        \"inputs\": [\n                            { \"name\": \"SentimentScore\", \"source\": \"/document/reviews_text/pages/*/Sentiment\"},\n                            { \"name\": \"LanguageCode\", \"source\": \"/document/Language\"},\n                            { \"name\": \"Page\", \"source\": \"/document/reviews_text/pages/*\" }\n                        ]\n                    },\n                    { \n                        \"tableName\": \"hotelReviewsInlineKeyPhrases\", \"generatedKeyName\": \"kpidv2\", \"sourceContext\": \"/document/reviews_text/pages/*/Keyphrases/*\",\n                        \"inputs\": [\n                            { \"name\": \"Keyphrases\", \"source\": \"/document/reviews_text/pages/*/Keyphrases/*\" }\n                        ]\n                    }\n                ],\n                \"objects\": []\n            }\n        ]\n    }\n}"
+					"raw": "{\n    \"name\": \"{{skillset-name}}\",\n    \"description\": \"Skillset to detect language, extract key phrases, and detect sentiment\",\n    \"skills\": [ \n    \t{\n            \"@odata.type\": \"#Microsoft.Skills.Text.SplitSkill\", \n            \"context\": \"/document/reviews_text\", \"textSplitMode\": \"pages\", \"maximumPageLength\": 5000,\n            \"inputs\": [ \n                { \"name\": \"text\", \"source\": \"/document/reviews_text\" },\n                { \"name\": \"languageCode\", \"source\": \"/document/Language\" }\n            ],\n            \"outputs\": [\n                { \"name\": \"textItems\", \"targetName\": \"pages\" }\n            ]\n        },\n        {\n            \"@odata.type\": \"#Microsoft.Skills.Text.SentimentSkill\",\n            \"context\": \"/document/reviews_text/pages/*\",\n            \"inputs\": [\n                { \"name\": \"text\", \"source\": \"/document/reviews_text/pages/*\" },\n                { \"name\": \"languageCode\", \"source\": \"/document/Language\" }\n            ],\n            \"outputs\": [\n                { \"name\": \"score\", \"targetName\": \"Sentiment\" }\n            ]\n        },\n        {\n            \"@odata.type\": \"#Microsoft.Skills.Text.LanguageDetectionSkill\",\n            \"context\": \"/document\",\n            \"inputs\": [\n                { \"name\": \"text\", \"source\": \"/document/reviews_text\" }\n            ],\n            \"outputs\": [\n                { \"name\": \"languageCode\", \"targetName\": \"Language\" }\n            ]\n        },\n        {\n            \"@odata.type\": \"#Microsoft.Skills.Text.KeyPhraseExtractionSkill\",\n            \"context\": \"/document/reviews_text/pages/*\",\n            \"inputs\": [\n                { \"name\": \"text\",  \"source\": \"/document/reviews_text/pages/*\" },\n                { \"name\": \"languageCode\",  \"source\": \"/document/Language\" }\n            ],\n            \"outputs\": [\n                { \"name\": \"keyPhrases\" , \"targetName\": \"Keyphrases\" }\n            ]\n        },\n        {\n            \"@odata.type\": \"#Microsoft.Skills.Util.ShaperSkill\",\n            \"context\": \"/document\",\n            \"inputs\": [\n                { \"name\": \"name\",  \"source\": \"/document/name\" },\n                { \"name\": \"reviews_date\",  \"source\": \"/document/reviews_date\" },\n                { \"name\": \"reviews_rating\",  \"source\": \"/document/reviews_rating\" },\n                { \"name\": \"reviews_text\",  \"source\": \"/document/reviews_text\" },\n                { \"name\": \"reviews_title\",  \"source\": \"/document/reviews_title\" },\n                { \"name\": \"AzureSearch_DocumentKey\",  \"source\": \"/document/AzureSearch_DocumentKey\" },\n                { \n                    \"name\": \"pages\",\n                    \"sourceContext\": \"/document/reviews_text/pages/*\",\n                    \"inputs\": [\n                        { \"name\": \"SentimentScore\", \"source\": \"/document/reviews_text/pages/*/Sentiment\" },\n                        { \"name\": \"LanguageCode\", \"source\": \"/document/Language\" },\n                        { \"name\": \"Page\", \"source\": \"/document/reviews_text/pages/*\" },\n                        { \n                            \"name\": \"keyphrase\", \"sourceContext\": \"/document/reviews_text/pages/*/Keyphrases/*\",\n                            \"inputs\": [\n                                { \"name\": \"Keyphrases\", \"source\": \"/document/reviews_text/pages/*/Keyphrases/*\" }\n                            ]\n                        }\n                    ]\n                }\n            ],\n            \"outputs\": [\n                { \"name\": \"output\" , \"targetName\": \"tableprojection\" }\n            ]\n        }\n    ],\n    \"knowledgeStore\": {\n        \"storageConnectionString\": \"{{storage-connection-string}}\",\n        \"projections\": [\n            {\n                \"tables\": [\n                    { \"tableName\": \"hotelReviewsDocument\", \"generatedKeyName\": \"Documentid\", \"source\": \"/document/tableprojection\" },\n                    { \"tableName\": \"hotelReviewsPages\", \"generatedKeyName\": \"Pagesid\", \"source\": \"/document/tableprojection/pages/*\" },\n                    { \"tableName\": \"hotelReviewsKeyPhrases\", \"generatedKeyName\": \"KeyPhrasesid\", \"source\": \"/document/tableprojection/pages/*/keyphrase/*\" }\n                ],\n                \"objects\": []\n            },\n            {\n                \"tables\": [\n                    { \n                        \"tableName\": \"hotelReviewsInlineDocument\", \"generatedKeyName\": \"Documentid\", \"sourceContext\": \"/document\",\n                        \"inputs\": [\n                            { \"name\": \"name\", \"source\": \"/document/name\"},\n                            { \"name\": \"reviews_date\", \"source\": \"/document/reviews_date\"},\n                            { \"name\": \"reviews_rating\", \"source\": \"/document/reviews_rating\"},\n                            { \"name\": \"reviews_text\", \"source\": \"/document/reviews_text\"},\n                            { \"name\": \"reviews_title\", \"source\": \"/document/reviews_title\"},\n                            { \"name\": \"AzureSearch_DocumentKey\", \"source\": \"/document/AzureSearch_DocumentKey\" }\n                        ]\n                    },\n                    { \n                        \"tableName\": \"hotelReviewsInlinePages\", \"generatedKeyName\": \"Pagesid\", \"sourceContext\": \"/document/reviews_text/pages/*\",\n                        \"inputs\": [\n                            { \"name\": \"SentimentScore\", \"source\": \"/document/reviews_text/pages/*/Sentiment\"},\n                            { \"name\": \"LanguageCode\", \"source\": \"/document/Language\"},\n                            { \"name\": \"Page\", \"source\": \"/document/reviews_text/pages/*\" }\n                        ]\n                    },\n                    { \n                        \"tableName\": \"hotelReviewsInlineKeyPhrases\", \"generatedKeyName\": \"kpidv2\", \"sourceContext\": \"/document/reviews_text/pages/*/Keyphrases/*\",\n                        \"inputs\": [\n                            { \"name\": \"Keyphrases\", \"source\": \"/document/reviews_text/pages/*/Keyphrases/*\" }\n                        ]\n                    }\n                ],\n                \"objects\": []\n            }\n        ]\n    }\n}"
 				},
 				"url": {
 					"raw": "https://{{search-service-name}}.search.windows.net/skillsets/{{skillset-name}}?api-version={{api-version}}\n",
@@ -203,61 +203,61 @@
 	],
 	"variable": [
 		{
-			"id": "46f295c2-9b7e-4c91-8819-40090e2c617e",
+			"id": "19847947-2c67-4cf0-9813-e13ade5afdc4",
 			"key": "admin-key",
 			"value": "<SEARCH_SERVICE_ADMIN_KEY>",
 			"type": "string"
 		},
 		{
-			"id": "6c906d4b-af10-4b4a-8e12-9deb7185a383",
+			"id": "c7cb9e08-6082-4961-af38-4e298fbe6999",
 			"key": "search-service-name",
 			"value": "<SEARCH_SERVICE_NAME>",
 			"type": "string"
 		},
 		{
-			"id": "f7db5b5c-bb50-4113-9ae4-7dafc7e1f535",
+			"id": "ab0d965c-fa1b-4fc9-9be1-ce5231e6eea3",
 			"key": "storage-account-name",
 			"value": "<STORAGE_ACCOUNT_NAME>",
 			"type": "string"
 		},
 		{
-			"id": "55190427-7158-4bf2-a8f2-b5778d83e4d9",
+			"id": "bac3abc1-ce7e-4c23-8807-22fe184266ce",
 			"key": "storage-connection-string",
 			"value": "<STORAGE_ACCOUNT_CONNECTION_STRING>",
 			"type": "string"
 		},
 		{
-			"id": "81d82a92-34ed-4164-a408-09bdf415a29b",
+			"id": "54b681ad-cd53-4db7-939a-1b5b1c6246b2",
 			"key": "api-version",
 			"value": "2019-05-06-Preview",
 			"type": "string"
 		},
 		{
-			"id": "df58be1c-5b9b-47f5-bcb3-cfd7e00c889e",
+			"id": "6bf4545c-845b-4c19-8671-01a9e370bdcb",
 			"key": "datasource-name",
 			"value": "hotel-reviews-ds",
 			"type": "string"
 		},
 		{
-			"id": "f03d040c-acc0-48e8-9b31-d0dd13e565a4",
+			"id": "d3cdc82d-c70f-4b44-9b7b-f518c0a18213",
 			"key": "indexer-name",
 			"value": "hotel-reviews-ixr",
 			"type": "string"
 		},
 		{
-			"id": "98dc0195-94e4-4342-9989-79c05003998c",
+			"id": "4f39ed89-077e-4c06-bd79-6d3edd415189",
 			"key": "index-name",
 			"value": "hotel-reviews-ix",
 			"type": "string"
 		},
 		{
-			"id": "b1e16eaf-5d0d-4473-bd3c-aefcea5f01ee",
+			"id": "dfeb3102-207c-453c-a015-bcb1489963e3",
 			"key": "skillset-name",
 			"value": "hotel-reviews-ss",
 			"type": "string"
 		},
 		{
-			"id": "6bb87811-d66e-41ed-85ee-28b921767cba",
+			"id": "7d88f576-b310-450a-b4b1-2c6aee51770e",
 			"key": "storage-container-name",
 			"value": "hotel-reviews",
 			"type": "string"
