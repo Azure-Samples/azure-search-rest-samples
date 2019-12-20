@@ -2,22 +2,22 @@
 page_type: sample
 languages:
   - rest
-name: Cognitive Search Tutorial in REST - Postman
+name: Skillset Tutorial in REST - Postman
 description: |
-  Learn how to create a cognitive search pipeline to extract information and structure from unstructured blobs..
+  Learn how to create an enrichment pipeline to extract information and structure from unstructured blobs.
 products:
   - azure
-  - azure-search
+  - azure-cognitive-search
 urlFragment: rest-api-tutorial
 ---
 
-#  Cognitive search sample for Azure Search using REST APIs and Postman
+#  Create a cognitive skillset in Azure Cognitive Search using REST APIs and Postman
 
 ![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
-Demonstrates using Postman and the Azure Search REST APIs to send requests to Azure Search: create a data source, a skillset, index, and indexer. Requests are provided in the V2 collection format, which you can import and then modify for connections to your Azure Search service.
+Demonstrates using Postman and the Azure Cognitive Search REST APIs to send requests: create a data source, a skillset, index, and indexer. Requests are provided in the V2 collection format, which you can import and then modify for connections to your Azure Search service.
 
-This collection is featured in the [REST Tutorial: Add structure to "unstructured content" with cognitive search](https://docs.microsoft.com/azure/search/cognitive-search-tutorial-blob). When you import the collection, modify the headers and URL to use your service name and API key. The purpose of this sample is to demonstrate how creating a cognitive search pipeline adds new information and structure to unstructured files.
+This collection is featured in the [Tutorial: Add structure to "unstructured content" using REST APIs](https://docs.microsoft.com/azure/search/cognitive-search-tutorial-blob). When you import the collection, modify the headers and URL to use your service name and API key. The purpose of this sample is to demonstrate how creating a cognitive search pipeline adds new information and structure to unstructured files.
 
 ## Contents
 
@@ -32,7 +32,7 @@ This collection is featured in the [REST Tutorial: Add structure to "unstructure
 ## Prerequisites
 
 - [Postman Desktop app](https://www.getpostman.com/)
-- [Azure Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
+- [Azure Cognitive Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
 
 ## Setup
 
@@ -47,4 +47,4 @@ This collection is featured in the [REST Tutorial: Add structure to "unstructure
 
 ## Next steps
 
-You can learn more about Azure Search on the [official documentation site](https://docs.microsoft.com/azure/search).
+You can learn more about Azure Cognitive Search on the [official documentation site](https://docs.microsoft.com/azure/search).

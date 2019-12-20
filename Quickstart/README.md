@@ -2,22 +2,22 @@
 page_type: sample
 languages:
   - rest
-name: "Azure Search Quickstart in REST - Postman"
+name: "Azure Cogitive Search Quickstart in REST - Postman"
 description: |
-  Learn basic steps for creating, loading, and querying an Azure Search index using Postman Desktop app and the latest-version REST APIs.
+  Learn basic steps for creating, loading, and querying an Azure Cognitive Search index using Postman Desktop app and the latest-version REST APIs.
 products:
   - azure
-  - azure-search
+  - azure-cognitive-search
 urlFragment: rest-api-quickstart
 ---
 
-# Quickstart sample for Azure Search using REST APIs and Postman
+# Quickstart sample for Azure Cognitive Search using REST APIs and Postman
 
 ![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
-Demonstrates using Postman and the Azure Search REST APIs to send requests to Azure Search: create an index, load it with documents, and execute a few queries. Requests are provided in the V2 collection format, which you can import and then modify for connections to your Azure Search service.
+Demonstrates using Postman and the Azure Cognitive Search REST APIs to send requests: create an index, load it with documents, and execute a few queries. Requests are provided in the V2 collection format, which you can import and then modify for connections to your search service.
 
-This collection is featured in the [Quickstart: Create an Azure Search index in Postman using REST APIs](https://docs.microsoft.com/azure/search/search-get-started-postman). When you import the collection, modify the headers and URL to use your service name and API key. The index is modeled on a subset of the Hotels dataset, reduced for readability and comprehension. Index definition and documents are included in the code.
+This collection is featured in the [Quickstart: Create a search index in Postman using REST APIs](https://docs.microsoft.com/azure/search/search-get-started-postman). When you import the collection, modify the headers and URL to use your service name and API key. The index is modeled on a subset of the Hotels dataset, reduced for readability and comprehension. Index definition and documents are included in the code.
 
 ## Contents
 
@@ -32,7 +32,7 @@ This collection is featured in the [Quickstart: Create an Azure Search index in 
 ## Prerequisites
 
 - [Postman Desktop app](https://www.getpostman.com/)
-- [Azure Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
+- [Azure Cognitive Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
 
 ## Setup
 
@@ -47,4 +47,4 @@ This collection is featured in the [Quickstart: Create an Azure Search index in 
 
 ## Next steps
 
-You can learn more about Azure Search on the [official documentation site](https://docs.microsoft.com/azure/search).
+You can learn more about Azure Cognitive Search on the [official documentation site](https://docs.microsoft.com/azure/search).
