@@ -15,7 +15,7 @@ urlFragment: rest-api-tutorial
 
 ![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
-Demonstrates using Postman and the Azure Cognitive Search REST APIs to send requests: create a data source, a skillset, index, and indexer. Requests are provided in the V2 collection format, which you can import and then modify for connections to your Azure Search service.
+Demonstrates using Postman and the Azure Cognitive Search REST APIs to send requests: create a data source, a skillset, index, and indexer. Requests are provided in the V2 collection format, which you can import and then modify for connections to your search service.
 
 This collection is featured in the [Tutorial: Add structure to "unstructured content" using REST APIs](https://docs.microsoft.com/azure/search/cognitive-search-tutorial-blob). When you import the collection, modify the headers and URL to use your service name and API key. The purpose of this sample is to demonstrate how creating a cognitive search pipeline adds new information and structure to unstructured files.
 
