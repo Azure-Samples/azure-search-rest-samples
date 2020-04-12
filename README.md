@@ -4,31 +4,21 @@ This repository provides Postman collections used in REST API walkthroughs. All 
 
 To use these collections, import them into **Postman**.
 
-## Full-syntax-examples collection
+## Query examples: Full syntax, Patterns and special characters, Simple syntax
 
-Requests in this collection create indexes using various analyzers, followed by query requests that demonstrate full Lucene syntax, used for suffix and infix wildcard search, partial term search, and other query types.
+Query requests in these collections demonstrate syntax for a broad range of scenarios described in these articles: [Full Lucene syntax examples](https://docs.microsoft.com/azure/search/search-query-lucene-examples), [Partial term and pattern matching](https://docs.microsoft.com/azure/search/search-query-partial-matching), [Simple syntax query examples](https://docs.microsoft.com/azure/search/query-simple-syntax).
 
-You must edit this collection to replace placeholder values with an endpoint and API key that is valid for your service.
+With the exception of Full Syntax, which queries the read-only NYCJobs index hosted in a sandbox service, you must edit a collection to replace placeholder values with an endpoint and API key that is valid for your service.
 
 1. After importing the collection, expand the (`...`) action list and select **Edit**.
 
-2. Enter the search service name and an admin API key. Admin access is required to create and delete objects on a search service. After saving your changes, you can run each request with no further modification.
+2. Enter the search service name and an admin API key. Admin access is required to create and delete objects on a search service. After saving your changes, you can run each query with no further modification.
+
+Most examples are self-explanatory. For the NOT query, see the Boolean operator section for either [simple](https://docs.microsoft.com/azure/search/query-simple-syntax).
 
 ## Knowledge-store collection
 
 Contains requests for creating and populating an index with hotel reviews data from Kaggle. The collection also includes an indexer and skillset that contains instructions for expressing a knowledge store in Azure Storage.
-
-## Simple-syntaxxexamples collection
-
-Requests in this collection create indexes using various analyzers, followed by query requests that demonstrate simple syntax. 
-
-You must edit this collection to replace placeholder values with an endpoint and API key that is valid for your service.
-
-1. After importing the collection, expand the (`...`) action list and select **Edit**.
-
-2. Enter the search service name and an admin API key. Admin access is required to create and delete objects on a search service. After saving your changes, you can run each request with no further modification.
-
-Most examples are self-explanatory. For the NOT query, see the Boolean operator section for either [simple](https://docs.microsoft.com/azure/search/query-simple-syntax).
 
 ## Quickstart collection
 
