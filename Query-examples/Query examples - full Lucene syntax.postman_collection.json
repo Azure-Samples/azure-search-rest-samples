@@ -22,7 +22,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://azs-playground.search.windows.net/indexes/nycjobs/docs?search=*&api-version=2019-05-06&$count=true",
+					"raw": "https://azs-playground.search.windows.net/indexes/nycjobs/docs?search=*&api-version=2019-05-06&$count=true&queryType=full",
 					"protocol": "https",
 					"host": [
 						"azs-playground",
@@ -47,6 +47,10 @@
 						{
 							"key": "$count",
 							"value": "true"
+						},
+						{
+							"key": "queryType",
+							"value": "full"
 						}
 					]
 				}
@@ -70,7 +74,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://azs-playground.search.windows.net/indexes/nycjobs/docs?search=business_title:(senior NOT junior) AND posting_type:external&$select=business_title, posting_type&api-version=2019-05-06&queryType=full&$count=true",
+					"raw": "https://azs-playground.search.windows.net/indexes/nycjobs/docs?search=business_title:(senior NOT junior) AND posting_type:external&$select=business_title, posting_type&api-version=2019-05-06&$count=true&queryType=full",
 					"protocol": "https",
 					"host": [
 						"azs-playground",
@@ -97,12 +101,12 @@
 							"value": "2019-05-06"
 						},
 						{
-							"key": "queryType",
-							"value": "full"
-						},
-						{
 							"key": "$count",
 							"value": "true"
+						},
+						{
+							"key": "queryType",
+							"value": "full"
 						}
 					]
 				}
@@ -126,7 +130,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://azs-playground.search.windows.net/indexes/nycjobs/docs?search=business_title:asosiate~&$select=business_title&searchFields=business_title&api-version=2019-05-06&queryType=full&$count=true",
+					"raw": "https://azs-playground.search.windows.net/indexes/nycjobs/docs?search=business_title:asosiate~&$select=business_title&searchFields=business_title&api-version=2019-05-06&$count=true&queryType=full",
 					"protocol": "https",
 					"host": [
 						"azs-playground",
@@ -157,12 +161,12 @@
 							"value": "2019-05-06"
 						},
 						{
-							"key": "queryType",
-							"value": "full"
-						},
-						{
 							"key": "$count",
 							"value": "true"
+						},
+						{
+							"key": "queryType",
+							"value": "full"
 						}
 					]
 				}
@@ -186,7 +190,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://azs-playground.search.windows.net/indexes/nycjobs/docs?search=business_title:asosiate~ AND comm~ &$select=business_title&searchFields=business_title&api-version=2019-05-06&queryType=full&$count=true",
+					"raw": "https://azs-playground.search.windows.net/indexes/nycjobs/docs?search=business_title:asosiate~ AND comm~ &$select=business_title&searchFields=business_title&api-version=2019-05-06&$count=true&queryType=full",
 					"protocol": "https",
 					"host": [
 						"azs-playground",
@@ -217,12 +221,12 @@
 							"value": "2019-05-06"
 						},
 						{
-							"key": "queryType",
-							"value": "full"
-						},
-						{
 							"key": "$count",
 							"value": "true"
+						},
+						{
+							"key": "queryType",
+							"value": "full"
 						}
 					]
 				}
@@ -246,7 +250,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://azs-playground.search.windows.net/indexes/nycjobs/docs?search=business_title:%22senior%20analyst%22~1&$select=business_title&searchFields=business_title&api-version=2019-05-06&queryType=full&$count=true",
+					"raw": "https://azs-playground.search.windows.net/indexes/nycjobs/docs?search=business_title:%22senior%20analyst%22~1&$select=business_title&searchFields=business_title&api-version=2019-05-06&$count=true&queryType=full",
 					"protocol": "https",
 					"host": [
 						"azs-playground",
@@ -277,12 +281,12 @@
 							"value": "2019-05-06"
 						},
 						{
-							"key": "queryType",
-							"value": "full"
-						},
-						{
 							"key": "$count",
 							"value": "true"
+						},
+						{
+							"key": "queryType",
+							"value": "full"
 						}
 					]
 				}
@@ -306,7 +310,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://azs-playground.search.windows.net/indexes/nycjobs/docs?search=business_title:computer analyst^2&$select=business_title&searchFields=business_title&api-version=2019-05-06&queryType=full&$count=true",
+					"raw": "https://azs-playground.search.windows.net/indexes/nycjobs/docs?search=business_title:computer analyst^2&$select=business_title&searchFields=business_title&api-version=2019-05-06&$count=true&queryType=full",
 					"protocol": "https",
 					"host": [
 						"azs-playground",
@@ -337,12 +341,12 @@
 							"value": "2019-05-06"
 						},
 						{
-							"key": "queryType",
-							"value": "full"
-						},
-						{
 							"key": "$count",
 							"value": "true"
+						},
+						{
+							"key": "queryType",
+							"value": "full"
 						}
 					]
 				}
@@ -366,7 +370,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://azs-playground.search.windows.net/indexes/nycjobs/docs?search=business_title:/(Sen|Jun)ior/&$select=business_title&searchFields=business_title&api-version=2019-05-06&queryType=full&$count=true",
+					"raw": "https://azs-playground.search.windows.net/indexes/nycjobs/docs?search=business_title:/(Sen|Jun)ior/&$select=business_title&searchFields=business_title&api-version=2019-05-06&$count=true&queryType=full",
 					"protocol": "https",
 					"host": [
 						"azs-playground",
@@ -397,12 +401,12 @@
 							"value": "2019-05-06"
 						},
 						{
-							"key": "queryType",
-							"value": "full"
-						},
-						{
 							"key": "$count",
 							"value": "true"
+						},
+						{
+							"key": "queryType",
+							"value": "full"
 						}
 					]
 				}

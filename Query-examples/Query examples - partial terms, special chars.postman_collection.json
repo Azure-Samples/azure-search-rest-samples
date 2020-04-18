@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "f99bc762-d0ba-464e-b18b-fe69a8cceb2d",
-		"name": "Query examples - partial terms, patterns, special chars",
+		"name": "Query examples - partial terms, special chars",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -141,19 +141,19 @@
 			"response": []
 		},
 		{
-			"name": "LoadDocuments",
+			"name": "LoadDocuments - multiple terms, special chars",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					},
 					{
 						"key": "api-key",
-						"value": "{{api-admin-key}}",
-						"type": "text"
+						"type": "text",
+						"value": "{{api-admin-key}}"
 					}
 				],
 				"body": {
@@ -298,7 +298,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://{{service-name}}.search.windows.net/indexes/patterns-dashes-idx/docs?search=980?2*&api-version=2019-05-06&queryType=full&$count=true",
+					"raw": "https://{{service-name}}.search.windows.net/indexes/patterns-dashes-idx/docs?search=980?2*&api-version=2019-05-06&$count=true&queryType=full",
 					"protocol": "https",
 					"host": [
 						"{{service-name}}",
@@ -321,12 +321,12 @@
 							"value": "2019-05-06"
 						},
 						{
-							"key": "queryType",
-							"value": "full"
-						},
-						{
 							"key": "$count",
 							"value": "true"
+						},
+						{
+							"key": "queryType",
+							"value": "full"
 						}
 					]
 				}
@@ -350,7 +350,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://{{service-name}}.search.windows.net/indexes/patterns-dashes-idx/docs?search=/.*numeric.*/&api-version=2019-05-06&queryType=full&$count=true",
+					"raw": "https://{{service-name}}.search.windows.net/indexes/patterns-dashes-idx/docs?search=/.*numeric.*/&api-version=2019-05-06&$count=true&queryType=full",
 					"protocol": "https",
 					"host": [
 						"{{service-name}}",
@@ -373,12 +373,12 @@
 							"value": "2019-05-06"
 						},
 						{
-							"key": "queryType",
-							"value": "full"
-						},
-						{
 							"key": "$count",
 							"value": "true"
+						},
+						{
+							"key": "queryType",
+							"value": "full"
 						},
 						{
 							"key": "searchFields",
@@ -576,13 +576,13 @@
 	],
 	"variable": [
 		{
-			"id": "44f2ccf7-4ca1-4bb2-9e2a-142cfc4814ad",
+			"id": "20fa3522-efa9-42e4-914a-880a434267e3",
 			"key": "service-name",
 			"value": "service-name",
 			"type": "string"
 		},
 		{
-			"id": "73a4dd42-d907-40b8-be79-a98103d975a3",
+			"id": "ea87ad9f-4946-4d56-87db-8ed1d2b3cc57",
 			"key": "api-admin-key",
 			"value": "api-admin-key",
 			"type": "string"

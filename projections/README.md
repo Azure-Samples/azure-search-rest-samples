@@ -4,7 +4,7 @@ languages:
   - rest
 name: Create projections using REST - Postman
 description: |
-  Examples on how to create table, object, file and related projections in the knowledge store
+  Azure Cognitive Search supports the creation of a knowledge store to contain AI-generated content, inferred from image and text analysis over raw content files. Projections are the physical expressions of your data. In this collection, work with examples that create table, object, and file projections.
 products:
   - azure
   - azure-cognitive-search

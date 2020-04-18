@@ -141,7 +141,7 @@
 			"response": []
 		},
 		{
-			"name": "CreateIndex - custom analyzer (Keyword_v2 tokenizer, lowercase filter)",
+			"name": "CreateIndex - custom analyzer",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -346,7 +346,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://{{service-name}}.search.windows.net/indexes/simple-syntax-idx/docs?search=alph*&api-version=2019-05-06&queryType=simple&$count=true",
+					"raw": "https://{{service-name}}.search.windows.net/indexes/simple-syntax-idx/docs?search=alph*&api-version=2019-05-06&$count=true&queryType=simple",
 					"protocol": "https",
 					"host": [
 						"{{service-name}}",
@@ -369,12 +369,12 @@
 							"value": "2019-05-06"
 						},
 						{
-							"key": "queryType",
-							"value": "simple"
-						},
-						{
 							"key": "$count",
 							"value": "true"
+						},
+						{
+							"key": "queryType",
+							"value": "simple"
 						}
 					]
 				}
@@ -398,7 +398,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://{{service-name}}.search.windows.net/indexes/simple-syntax-idx/docs?search=sql +(linux | win)&api-version=2019-05-06&queryType=simple&$count=true&searchMode=any",
+					"raw": "https://{{service-name}}.search.windows.net/indexes/simple-syntax-idx/docs?search=sql +(linux | win)&searchMode=any&api-version=2019-05-06&$count=true&queryType=simple",
 					"protocol": "https",
 					"host": [
 						"{{service-name}}",
@@ -417,20 +417,20 @@
 							"value": "sql +(linux | win)"
 						},
 						{
-							"key": "api-version",
-							"value": "2019-05-06"
+							"key": "searchMode",
+							"value": "any"
 						},
 						{
-							"key": "queryType",
-							"value": "simple"
+							"key": "api-version",
+							"value": "2019-05-06"
 						},
 						{
 							"key": "$count",
 							"value": "true"
 						},
 						{
-							"key": "searchMode",
-							"value": "any"
+							"key": "queryType",
+							"value": "simple"
 						}
 					]
 				}
@@ -454,7 +454,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://{{service-name}}.search.windows.net/indexes/simple-syntax-idx/docs?search=sql +linux &api-version=2019-05-06&queryType=simple&$count=true",
+					"raw": "https://{{service-name}}.search.windows.net/indexes/simple-syntax-idx/docs?search=sql +linux &api-version=2019-05-06&$count=true&queryType=simple",
 					"protocol": "https",
 					"host": [
 						"{{service-name}}",
@@ -477,17 +477,12 @@
 							"value": "2019-05-06"
 						},
 						{
-							"key": "queryType",
-							"value": "simple"
-						},
-						{
 							"key": "$count",
 							"value": "true"
 						},
 						{
-							"key": "searchMode",
-							"value": "any",
-							"disabled": true
+							"key": "queryType",
+							"value": "simple"
 						}
 					]
 				}
@@ -511,7 +506,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://{{service-name}}.search.windows.net/indexes/simple-syntax-idx/docs?search=SQL -java&api-version=2019-05-06&$count=true&queryType=simple&searchMode=all",
+					"raw": "https://{{service-name}}.search.windows.net/indexes/simple-syntax-idx/docs?search=SQL -java&searchMode=all&api-version=2019-05-06&$count=true&queryType=simple",
 					"protocol": "https",
 					"host": [
 						"{{service-name}}",
@@ -530,6 +525,10 @@
 							"value": "SQL -java"
 						},
 						{
+							"key": "searchMode",
+							"value": "all"
+						},
+						{
 							"key": "api-version",
 							"value": "2019-05-06"
 						},
@@ -540,10 +539,6 @@
 						{
 							"key": "queryType",
 							"value": "simple"
-						},
-						{
-							"key": "searchMode",
-							"value": "all"
 						}
 					]
 				}
@@ -783,13 +778,13 @@
 	],
 	"variable": [
 		{
-			"id": "85407496-20b3-4b0c-af93-56ad114fc83b",
+			"id": "9bce89a1-4806-42b4-9a68-bc9dcc3d8237",
 			"key": "service-name",
 			"value": "service-name",
 			"type": "string"
 		},
 		{
-			"id": "bd9e685c-0719-47e2-95ce-c5e7e3e28c6d",
+			"id": "38be1ef8-ee11-4dc6-a7fd-163afceb5abe",
 			"key": "api-admin-key",
 			"value": "api-admin-key",
 			"type": "string"
