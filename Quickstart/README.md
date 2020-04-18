@@ -2,7 +2,7 @@
 page_type: sample
 languages:
   - rest
-name: "Azure Cognitive Search Quickstart in REST - Postman"
+name: "Quickstart in REST - Postman"
 description: |
   Learn basic steps for creating, loading, and querying an Azure Cognitive Search index using Postman Desktop app and the latest-version REST APIs.
 products:

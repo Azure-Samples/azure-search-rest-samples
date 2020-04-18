@@ -4,7 +4,7 @@ languages:
   - rest
 name: Skillset Tutorial in REST - Postman
 description: |
-  Learn how to create an enrichment pipeline to extract information and structure from unstructured blobs.
+  Learn how to create an enrichment pipeline in Azure Cognitive Search to extract information and structure from unstructured blobs.
 products:
   - azure
   - azure-cognitive-search
