@@ -4,11 +4,11 @@ languages:
   - rest
 name: "Query Examples - Postman"
 description: |
-  Azure Cognitive Search queries for autocomplete, suggestions, simple queries, and advanced queries including fuzzy search, proximity search, wildcard search, and regular expression syntax.
+  Try out Azure Cognitive Search queries - autocomplete, suggestions, simple queries, fuzzy search, proximity search, wildcard search, RegEx queries, and more.
 products:
   - azure
   - azure-cognitive-search
-urlFragment: rest-api-quickstart
+urlFragment: rest-api-query-examples
 ---
 
 # Query examples for Azure Cognitive Search using REST APIs and Postman
