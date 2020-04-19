@@ -4,7 +4,7 @@ languages:
   - rest
 name: "Quickstart in REST - Postman"
 description: |
-  Learn how create, load, and query an Azure Cognitive Search index using Postman and the latest-version REST APIs.
+  Learn how to create, load, and query an Azure Cognitive Search index using Postman and the latest-version REST APIs.
 products:
   - azure
   - azure-cognitive-search
