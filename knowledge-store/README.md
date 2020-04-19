@@ -4,7 +4,7 @@ languages:
   - rest
 name: Create a Knowledge Store using REST - Postman
 description: |
-  Build a knowledge store in Azure Cognitive Search using REST APIs. A knowledge store contains AI-generated content, inferred from image and text analysis, for use in downstream processes or exploration in client applications.
+  A knowledge store in Azure Cognitive Search contains AI-generated content created by image and text analyses, for consumption by other processes or apps.
 products:
   - azure
   - azure-cognitive-search
