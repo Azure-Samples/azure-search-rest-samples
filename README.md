@@ -34,4 +34,8 @@ Includes 4 requests used to create an index, load documents, search the index, a
 
 ## Tutorial collection
 
-This collection provides the same requests as those used to build an AI enrichment pipeline in [Tutorial: Add structure to "unstructured content" using REST APIs](https://docs.microsoft.com/azure/search/cognitive-search-tutorial-blob). 
+This collection provides the same requests as those used to build an AI enrichment pipeline in [Tutorial: Add structure to "unstructured content" using REST APIs](https://docs.microsoft.com/azure/search/cognitive-search-tutorial-blob).
+
+## Custom Analyzer Tutorial
+
+This Postman collection creates a basic search index and builds an analyzer designed for searching phone numbers. The collection and corresponding tutorial walk through the process of testing sample searches, testing how those searches are analyzed, and building an analyzer to intuitively search phone number.
