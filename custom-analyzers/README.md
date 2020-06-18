@@ -15,9 +15,9 @@ urlFragment: custom-analyzer-tutorial
 
 ![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
-This Postman collection creates a basic search index and builds an analyzer designed for searching phone numbers. The collection and corresponding tutorial walk through the process of testing sample searches, testing how those searches are analyzed, and building an analyzer to intuitively search phone number.
+This Postman collection creates a basic search index and builds an analyzer designed for searching phone numbers. The collection and corresponding tutorial walk through the process of testing sample searches, testing how those searches are analyzed, and building an analyzer to intuitively search phone numbers.
 
-This collection is featured in the [Tutorial: Create a custom analyzer using REST APIs](https://docs.microsoft.com/en-us/azure/search/tutorial-create-custom-analyzer). When you import the collection, modify the headers and URL to use your service name and API key.
+This collection is featured in the [Tutorial: Create a custom analyzer using REST APIs](https://docs.microsoft.com/azure/search/tutorial-create-custom-analyzer). When you import the collection, modify the headers and URL to use your service name and API key.
 
 ## Contents
 
