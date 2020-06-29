@@ -11,7 +11,7 @@
 			"name": "CreateIndex",
 			"request": {
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/hotels-quickstart?api-version=2019-05-06",
+					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/hotels-quickstart?api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
 						"<YOUR-SEARCH-SERVICE-NAME>",
@@ -26,7 +26,7 @@
 					"query": [
 						{
 							"key": "api-version",
-							"value": "2019-05-06",
+							"value": "2020-06-30",
 							"equals": true,
 							"description": ""
 						}
@@ -58,7 +58,7 @@
 			"name": "LoadDocuments",
 			"request": {
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/hotels-quickstart/docs/index?api-version=2019-05-06",
+					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/hotels-quickstart/docs/index?api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
 						"<YOUR-SEARCH-SERVICE-NAME>",
@@ -75,7 +75,7 @@
 					"query": [
 						{
 							"key": "api-version",
-							"value": "2019-05-06",
+							"value": "2020-06-30",
 							"equals": true,
 							"description": ""
 						}
@@ -107,7 +107,7 @@
 			"name": "SearchDocuments",
 			"request": {
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/hotels-quickstart/docs?search=*&$count=true&api-version=2019-05-06",
+					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/hotels-quickstart/docs?search=*&$count=true&api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
 						"<YOUR-SEARCH-SERVICE-NAME>",
@@ -135,7 +135,7 @@
 						},
 						{
 							"key": "api-version",
-							"value": "2019-05-06",
+							"value": "2020-06-30",
 							"equals": true,
 							"description": ""
 						}
@@ -164,7 +164,7 @@
 			"name": "GetIndexProperties",
 			"request": {
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/hotels-quickstart/stats?api-version=2019-05-06",
+					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/hotels-quickstart/stats?api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
 						"<YOUR-SEARCH-SERVICE-NAME>",
@@ -180,7 +180,7 @@
 					"query": [
 						{
 							"key": "api-version",
-							"value": "2019-05-06",
+							"value": "2020-06-30",
 							"equals": true,
 							"description": ""
 						}

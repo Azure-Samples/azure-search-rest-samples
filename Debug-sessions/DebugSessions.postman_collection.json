@@ -41,7 +41,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{searchService}}.search.windows.net/datasources?api-version=2019-05-06",
+					"raw": "https://{{searchService}}.search.windows.net/datasources?api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
 						"{{searchService}}",
@@ -55,7 +55,7 @@
 					"query": [
 						{
 							"key": "api-version",
-							"value": "2019-05-06"
+							"value": "2020-06-30"
 						}
 					]
 				}
@@ -98,7 +98,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{searchService}}.search.windows.net/skillsets/clinical-trials-ss?api-version=2019-05-06",
+					"raw": "https://{{searchService}}.search.windows.net/skillsets/clinical-trials-ss?api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
 						"{{searchService}}",
@@ -113,7 +113,7 @@
 					"query": [
 						{
 							"key": "api-version",
-							"value": "2019-05-06"
+							"value": "2020-06-30"
 						}
 					]
 				}
@@ -156,7 +156,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{searchService}}.search.windows.net/indexes/clinical-trials?api-version=2019-05-06",
+					"raw": "https://{{searchService}}.search.windows.net/indexes/clinical-trials?api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
 						"{{searchService}}",
@@ -171,7 +171,7 @@
 					"query": [
 						{
 							"key": "api-version",
-							"value": "2019-05-06"
+							"value": "2020-06-30"
 						}
 					]
 				}
@@ -214,7 +214,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{searchService}}.search.windows.net/indexers/clinical-trials-idxr?api-version=2019-05-06",
+					"raw": "https://{{searchService}}.search.windows.net/indexers/clinical-trials-idxr?api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
 						"{{searchService}}",
@@ -229,7 +229,7 @@
 					"query": [
 						{
 							"key": "api-version",
-							"value": "2019-05-06"
+							"value": "2020-06-30"
 						}
 					]
 				}
