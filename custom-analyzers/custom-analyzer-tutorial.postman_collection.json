@@ -26,10 +26,10 @@
 					"raw": "{\r\n  \"fields\": [\r\n    {\r\n      \"name\": \"id\",\r\n      \"type\": \"Edm.String\",\r\n      \"key\": true,\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false,\r\n      \"sortable\": true\r\n    },\r\n    {\r\n      \"name\": \"phone_number\",\r\n      \"type\": \"Edm.String\",\r\n      \"sortable\": false,\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false\r\n    }\r\n  ]\r\n}"
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/tutorial-basic-index?api-version=2019-05-06",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-basic-index?api-version=2019-05-06",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"<YOUR-SEARCH-SERVICE>",
 						"search",
 						"windows",
 						"net"
@@ -69,10 +69,10 @@
 					"raw": "{\r\n  \"value\": [\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"1\",\r\n      \"phone_number\": \"425-555-2311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"2\",\r\n      \"phone_number\": \"(321) 555-5784\"\r\n    },\r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"3\",\r\n      \"phone_number\": \"+1 425-555-2311\"\r\n    }, \r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"4\",  \r\n      \"phone_number\": \"+1 (321) 555-5784\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"5\",\r\n      \"phone_number\": \"4255552311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"6\",\r\n      \"phone_number\": \"13215555784\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"7\",\r\n      \"phone_number\": \"425 555 2311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"8\",\r\n      \"phone_number\": \"321.555.5784\"\r\n    }\r\n  ]  \r\n}"
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/tutorial-basic-index/docs/index?api-version=2019-05-06",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-basic-index/docs/index?api-version=2019-05-06",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"<YOUR-SEARCH-SERVICE>",
 						"search",
 						"windows",
 						"net"
@@ -117,10 +117,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/tutorial-basic-index/docs?api-version=2019-05-06&search=(425) 555-2311&$select=phone_number",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-basic-index/docs?api-version=2019-05-06&search=(425) 555-2311&$select=phone_number",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"<YOUR-SEARCH-SERVICE>",
 						"search",
 						"windows",
 						"net"
@@ -169,10 +169,10 @@
 					"raw": "{\n\t\"text\": \"(425) 555-2311\",\n\t\"analyzer\": \"standard.lucene\"\n}"
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/tutorial-basic-index/analyze?api-version=2019-05-06",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-basic-index/analyze?api-version=2019-05-06",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"<YOUR-SEARCH-SERVICE>",
 						"search",
 						"windows",
 						"net"
@@ -210,13 +210,13 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"fields\": [\r\n    {\r\n      \"name\": \"id\",\r\n      \"type\": \"Edm.String\",\r\n      \"key\": true,\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false,\r\n      \"sortable\": true\r\n    },\r\n    {\r\n      \"name\": \"phone_number\",\r\n      \"type\": \"Edm.String\",\r\n      \"sortable\": false,\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false,\r\n      \"analyzer\": \"custom_phone_analyzer\"\r\n    }\r\n  ],\r\n  \"analyzers\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.CustomAnalyzer\",\r\n      \"name\": \"custom_phone_analyzer\",\r\n      \"tokenizer\": \"custom_tokenizer_phone\",\r\n      \"tokenFilters\": [\r\n        \"lowercase\",\r\n        \"custom_ascii_folding_filter\",\r\n        \"custom_ngram_filter\"\r\n      ],\r\n      \"charFilters\": [\r\n        \"phone_char_mapping\"\r\n      ]\r\n    }\r\n  ],\r\n  \"charFilters\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.MappingCharFilter\",\r\n      \"name\": \"phone_char_mapping\",\r\n      \"mappings\": [\r\n        \"-=>\",\r\n        \"(=>\",\r\n        \")=>\",\r\n        \"+=>\",\r\n        \".=>\",\r\n        \"\\\\u0020=>\"\r\n      ]\r\n    }\r\n  ],\r\n   \"tokenizers\": [\r\n\t    {\r\n\t        \"@odata.type\": \"#Microsoft.Azure.Search.StandardTokenizerV2\",\r\n\t        \"name\": \"custom_tokenizer_phone\",\r\n\t        \"maxTokenLength\": 20\r\n\t    }\r\n\t],\r\n  \"tokenFilters\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.AsciiFoldingTokenFilter\",\r\n      \"name\": \"custom_ascii_folding_filter\",\r\n      \"preserveOriginal\": true\r\n    },\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.NGramTokenFilterV2\",\r\n      \"name\": \"custom_ngram_filter\",\r\n      \"minGram\": 3,\r\n      \"maxGram\": 20\r\n    }\r\n  ]\r\n}"
+					"raw": "{\r\n  \"fields\": [\r\n    {\r\n      \"name\": \"id\",\r\n      \"type\": \"Edm.String\",\r\n      \"key\": true,\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false,\r\n      \"sortable\": true\r\n    },\r\n    {\r\n      \"name\": \"phone_number\",\r\n      \"type\": \"Edm.String\",\r\n      \"sortable\": false,\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false,\r\n      \"analyzer\": \"custom_phone_analyzer\"\r\n    }\r\n  ],\r\n  \"analyzers\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.CustomAnalyzer\",\r\n      \"name\": \"custom_phone_analyzer\",\r\n      \"tokenizer\": \"keyword_v2\",\r\n      \"tokenFilters\": [\r\n        \"custom_ngram_filter\"\r\n      ],\r\n      \"charFilters\": [\r\n        \"phone_char_mapping\"\r\n      ]\r\n    }\r\n  ],\r\n  \"charFilters\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.MappingCharFilter\",\r\n      \"name\": \"phone_char_mapping\",\r\n      \"mappings\": [\r\n        \"-=>\",\r\n        \"(=>\",\r\n        \")=>\",\r\n        \"+=>\",\r\n        \".=>\",\r\n        \"\\\\u0020=>\"\r\n      ]\r\n    }\r\n  ],\r\n  \"tokenFilters\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.NGramTokenFilterV2\",\r\n      \"name\": \"custom_ngram_filter\",\r\n      \"minGram\": 3,\r\n      \"maxGram\": 20\r\n    }\r\n  ]\r\n}"
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/tutorial-first-analyzer?api-version=2019-05-06",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-first-analyzer?api-version=2019-05-06",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"<YOUR-SEARCH-SERVICE>",
 						"search",
 						"windows",
 						"net"
@@ -256,10 +256,10 @@
 					"raw": "{\n\t\"text\": \"(425) 555-2311\",\n\t\"analyzer\": \"custom_phone_analyzer\"\n}"
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/tutorial-first-analyzer/analyze?api-version=2019-05-06",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-first-analyzer/analyze?api-version=2019-05-06",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"<YOUR-SEARCH-SERVICE>",
 						"search",
 						"windows",
 						"net"
@@ -300,10 +300,10 @@
 					"raw": "{\r\n  \"value\": [\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"1\",\r\n      \"phone_number\": \"425-555-2311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"2\",\r\n      \"phone_number\": \"(321) 555-5784\"\r\n    },\r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"3\",\r\n      \"phone_number\": \"+1 425-555-2311\"\r\n    }, \r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"4\",  \r\n      \"phone_number\": \"+1 (321) 555-5784\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"5\",\r\n      \"phone_number\": \"4255552311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"6\",\r\n      \"phone_number\": \"13215555784\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"7\",\r\n      \"phone_number\": \"425 555 2311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"8\",\r\n      \"phone_number\": \"321.555.5784\"\r\n    }\r\n  ]  \r\n}"
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/tutorial-first-analyzer/docs/index?api-version=2019-05-06",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-first-analyzer/docs/index?api-version=2019-05-06",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"<YOUR-SEARCH-SERVICE>",
 						"search",
 						"windows",
 						"net"
@@ -348,10 +348,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/tutorial-first-analyzer/docs?api-version=2019-05-06&search=(425) 555-2311&$select=phone_number",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-first-analyzer/docs?api-version=2019-05-06&search=(425) 555-2311&$select=phone_number",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"<YOUR-SEARCH-SERVICE>",
 						"search",
 						"windows",
 						"net"
@@ -397,13 +397,13 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"fields\": [\r\n    {\r\n      \"name\": \"id\",\r\n      \"type\": \"Edm.String\",\r\n      \"key\": true,\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false,\r\n      \"sortable\": true\r\n    },\r\n    {\r\n      \"name\": \"phone_number\",\r\n      \"type\": \"Edm.String\",\r\n      \"sortable\": false,\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false,\r\n      \"indexAnalyzer\": \"custom_phone_analyzer\",\r\n      \"searchAnalyzer\": \"custom_phone_analyzer_search\"\r\n    }\r\n  ],\r\n  \"analyzers\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.CustomAnalyzer\",\r\n      \"name\": \"custom_phone_analyzer\",\r\n      \"tokenizer\": \"custom_tokenizer_phone\",\r\n      \"tokenFilters\": [\r\n        \"lowercase\",\r\n        \"custom_ascii_folding_filter\",\r\n        \"custom_ngram_filter\"\r\n      ],\r\n      \"charFilters\": [\r\n        \"phone_char_mapping\"\r\n      ]\r\n    },\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.CustomAnalyzer\",\r\n      \"name\": \"custom_phone_analyzer_search\",\r\n      \"tokenizer\": \"custom_tokenizer_phone\",\r\n      \"tokenFilters\": [\r\n        \"lowercase\",\r\n        \"custom_ascii_folding_filter\"\r\n      ],\r\n      \"charFilters\": [\r\n        \"phone_char_mapping\"\r\n      ]\r\n    }\r\n  ],\r\n  \"charFilters\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.MappingCharFilter\",\r\n      \"name\": \"phone_char_mapping\",\r\n      \"mappings\": [\r\n        \"-=>\",\r\n        \"(=>\",\r\n        \")=>\",\r\n        \"+=>\",\r\n        \".=>\",\r\n        \"\\\\u0020=>\"\r\n      ]\r\n    }\r\n  ],\r\n   \"tokenizers\": [\r\n\t    {\r\n\t        \"@odata.type\": \"#Microsoft.Azure.Search.StandardTokenizerV2\",\r\n\t        \"name\": \"custom_tokenizer_phone\",\r\n\t        \"maxTokenLength\": 20\r\n\t    }\r\n\t],\r\n  \"tokenFilters\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.AsciiFoldingTokenFilter\",\r\n      \"name\": \"custom_ascii_folding_filter\",\r\n      \"preserveOriginal\": true\r\n    },\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.NGramTokenFilterV2\",\r\n      \"name\": \"custom_ngram_filter\",\r\n      \"minGram\": 3,\r\n      \"maxGram\": 20\r\n    }\r\n  ]\r\n}"
+					"raw": "{\r\n  \"fields\": [\r\n    {\r\n      \"name\": \"id\",\r\n      \"type\": \"Edm.String\",\r\n      \"key\": true,\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false,\r\n      \"sortable\": true\r\n    },\r\n    {\r\n      \"name\": \"phone_number\",\r\n      \"type\": \"Edm.String\",\r\n      \"sortable\": false,\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false,\r\n      \"indexAnalyzer\": \"custom_phone_analyzer\",\r\n      \"searchAnalyzer\": \"custom_phone_analyzer_search\"\r\n    }\r\n  ],\r\n  \"analyzers\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.CustomAnalyzer\",\r\n      \"name\": \"custom_phone_analyzer\",\r\n      \"tokenizer\": \"keyword_v2\",\r\n      \"tokenFilters\": [\r\n        \"custom_ngram_filter\"\r\n      ],\r\n      \"charFilters\": [\r\n        \"phone_char_mapping\"\r\n      ]\r\n    },\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.CustomAnalyzer\",\r\n      \"name\": \"custom_phone_analyzer_search\",\r\n      \"tokenizer\": \"keyword_v2\",\r\n      \"tokenFilters\": [],\r\n      \"charFilters\": [\r\n        \"phone_char_mapping\"\r\n      ]\r\n    }\r\n  ],\r\n  \"charFilters\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.MappingCharFilter\",\r\n      \"name\": \"phone_char_mapping\",\r\n      \"mappings\": [\r\n        \"-=>\",\r\n        \"(=>\",\r\n        \")=>\",\r\n        \"+=>\",\r\n        \".=>\",\r\n        \"\\\\u0020=>\"\r\n      ]\r\n    }\r\n  ],\r\n  \"tokenFilters\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.NGramTokenFilterV2\",\r\n      \"name\": \"custom_ngram_filter\",\r\n      \"minGram\": 3,\r\n      \"maxGram\": 20\r\n    }\r\n  ]\r\n}"
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/tutorial-second-analyzer?api-version=2019-05-06",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-second-analyzer?api-version=2019-05-06",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"<YOUR-SEARCH-SERVICE>",
 						"search",
 						"windows",
 						"net"
@@ -443,10 +443,10 @@
 					"raw": "{\n\t\"text\": \"(425) 555-2311\",\n\t\"analyzer\": \"custom_phone_analyzer_search\"\n}"
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/tutorial-second-analyzer/analyze?api-version=2019-05-06",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-second-analyzer/analyze?api-version=2019-05-06",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"<YOUR-SEARCH-SERVICE>",
 						"search",
 						"windows",
 						"net"
@@ -487,10 +487,10 @@
 					"raw": "{\r\n  \"value\": [\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"1\",\r\n      \"phone_number\": \"425-555-2311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"2\",\r\n      \"phone_number\": \"(321) 555-5784\"\r\n    },\r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"3\",\r\n      \"phone_number\": \"+1 425-555-2311\"\r\n    }, \r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"4\",  \r\n      \"phone_number\": \"+1 (321) 555-5784\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"5\",\r\n      \"phone_number\": \"4255552311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"6\",\r\n      \"phone_number\": \"13215555784\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"7\",\r\n      \"phone_number\": \"425 555 2311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"8\",\r\n      \"phone_number\": \"321.555.5784\"\r\n    }\r\n  ]  \r\n}"
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/tutorial-second-analyzer/docs/index?api-version=2019-05-06",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-second-analyzer/docs/index?api-version=2019-05-06",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"<YOUR-SEARCH-SERVICE>",
 						"search",
 						"windows",
 						"net"
@@ -535,10 +535,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/tutorial-second-analyzer/docs?api-version=2019-05-06&search=(425) 555-2311&$select=phone_number",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-second-analyzer/docs?api-version=2019-05-06&search=(425) 555-2311&$select=phone_number",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"<YOUR-SEARCH-SERVICE>",
 						"search",
 						"windows",
 						"net"
@@ -560,6 +560,49 @@
 						{
 							"key": "$select",
 							"value": "phone_number"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "13 - Create index (Alternate approach)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "api-key",
+						"type": "text",
+						"value": "<YOUR-ADMIN-API-KEY>"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fields\": [\r\n    {\r\n      \"name\": \"id\",\r\n      \"type\": \"Edm.String\",\r\n      \"key\": true,\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false,\r\n      \"sortable\": true\r\n    },\r\n    {\r\n      \"name\": \"phone_number\",\r\n      \"type\": \"Edm.String\",\r\n      \"sortable\": false,\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false,\r\n      \"analyzer\": \"custom_phone_shingles\"\r\n    }\r\n  ],\r\n  \"analyzers\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.CustomAnalyzer\",\r\n      \"name\": \"custom_phone_shingles\",\r\n      \"tokenizer\": \"custom_tokenizer_phone\",\r\n      \"tokenFilters\": [\r\n        \"custom_shingle_filter\"\r\n      ]\r\n    }\r\n  ],\r\n  \"tokenizers\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.StandardTokenizerV2\",\r\n      \"name\": \"custom_tokenizer_phone\",\r\n      \"maxTokenLength\": 4\r\n    } \r\n  ],\r\n  \"tokenFilters\": [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Azure.Search.ShingleTokenFilter\",\r\n      \"name\": \"custom_shingle_filter\",\r\n      \"minShingleSize\": 2,\r\n      \"maxShingleSize\": 6,\r\n      \"tokenSeparator\": \"\"\r\n    }\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-extra-analyzer?api-version=2019-05-06",
+					"protocol": "https",
+					"host": [
+						"<YOUR-SEARCH-SERVICE>",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"tutorial-extra-analyzer"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2019-05-06"
 						}
 					]
 				}
