@@ -66,7 +66,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"value\": [\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"1\",\r\n      \"phone_number\": \"425-555-2311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"2\",\r\n      \"phone_number\": \"(321) 555-5784\"\r\n    },\r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"3\",\r\n      \"phone_number\": \"+1 425-555-2311\"\r\n    }, \r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"4\",  \r\n      \"phone_number\": \"+1 (321) 555-5784\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"5\",\r\n      \"phone_number\": \"4255552311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"6\",\r\n      \"phone_number\": \"13215555784\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"7\",\r\n      \"phone_number\": \"425 555 2311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"8\",\r\n      \"phone_number\": \"321.555.5784\"\r\n    }\r\n  ]  \r\n}"
+					"raw": "{\r\n  \"value\": [\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"1\",\r\n      \"phone_number\": \"425-555-0100\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"2\",\r\n      \"phone_number\": \"(321) 555-0199\"\r\n    },\r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"3\",\r\n      \"phone_number\": \"+1 425-555-0100\"\r\n    }, \r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"4\",  \r\n      \"phone_number\": \"+1 (321) 555-0199\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"5\",\r\n      \"phone_number\": \"4255550100\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"6\",\r\n      \"phone_number\": \"13215550199\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"7\",\r\n      \"phone_number\": \"425 555 0100\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"8\",\r\n      \"phone_number\": \"321.555.0199\"\r\n    }\r\n  ]  \r\n}"
 				},
 				"url": {
 					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-basic-index/docs/index?api-version=2020-06-30",
@@ -117,7 +117,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-basic-index/docs?api-version=2020-06-30&search=(425) 555-2311&$select=phone_number",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-basic-index/docs?api-version=2020-06-30&search=(425) 555-0100&$select=phone_number",
 					"protocol": "https",
 					"host": [
 						"<YOUR-SEARCH-SERVICE>",
@@ -137,7 +137,7 @@
 						},
 						{
 							"key": "search",
-							"value": "(425) 555-2311"
+							"value": "(425) 555-0100"
 						},
 						{
 							"key": "$select",
@@ -166,7 +166,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"text\": \"(425) 555-2311\",\n\t\"analyzer\": \"standard.lucene\"\n}"
+					"raw": "{\n\t\"text\": \"(425) 555-0100\",\n\t\"analyzer\": \"standard.lucene\"\n}"
 				},
 				"url": {
 					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-basic-index/analyze?api-version=2020-06-30",
@@ -253,7 +253,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"text\": \"(425) 555-2311\",\n\t\"analyzer\": \"phone_analyzer\"\n}"
+					"raw": "{\n\t\"text\": \"(425) 555-0100\",\n\t\"analyzer\": \"phone_analyzer\"\n}"
 				},
 				"url": {
 					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-first-analyzer/analyze?api-version=2020-06-30",
@@ -297,7 +297,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"value\": [\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"1\",\r\n      \"phone_number\": \"425-555-2311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"2\",\r\n      \"phone_number\": \"(321) 555-5784\"\r\n    },\r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"3\",\r\n      \"phone_number\": \"+1 425-555-2311\"\r\n    }, \r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"4\",  \r\n      \"phone_number\": \"+1 (321) 555-5784\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"5\",\r\n      \"phone_number\": \"4255552311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"6\",\r\n      \"phone_number\": \"13215555784\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"7\",\r\n      \"phone_number\": \"425 555 2311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"8\",\r\n      \"phone_number\": \"321.555.5784\"\r\n    }\r\n  ]  \r\n}"
+					"raw": "{\r\n  \"value\": [\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"1\",\r\n      \"phone_number\": \"425-555-0100\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"2\",\r\n      \"phone_number\": \"(321) 555-0199\"\r\n    },\r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"3\",\r\n      \"phone_number\": \"+1 425-555-0100\"\r\n    }, \r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"4\",  \r\n      \"phone_number\": \"+1 (321) 555-0199\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"5\",\r\n      \"phone_number\": \"4255550100\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"6\",\r\n      \"phone_number\": \"13215550199\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"7\",\r\n      \"phone_number\": \"425 555 0100\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"8\",\r\n      \"phone_number\": \"321.555.0199\"\r\n    }\r\n  ]  \r\n}"
 				},
 				"url": {
 					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-first-analyzer/docs/index?api-version=2020-06-30",
@@ -348,7 +348,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-first-analyzer/docs?api-version=2020-06-30&search=(425) 555-2311&$select=phone_number",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-first-analyzer/docs?api-version=2020-06-30&search=(425) 555-0100&$select=phone_number",
 					"protocol": "https",
 					"host": [
 						"<YOUR-SEARCH-SERVICE>",
@@ -368,7 +368,7 @@
 						},
 						{
 							"key": "search",
-							"value": "(425) 555-2311"
+							"value": "(425) 555-0100"
 						},
 						{
 							"key": "$select",
@@ -440,7 +440,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"text\": \"(425) 555-2311\",\n\t\"analyzer\": \"phone_analyzer_search\"\n}"
+					"raw": "{\n\t\"text\": \"(425) 555-0100\",\n\t\"analyzer\": \"phone_analyzer_search\"\n}"
 				},
 				"url": {
 					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-second-analyzer/analyze?api-version=2020-06-30",
@@ -484,7 +484,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"value\": [\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"1\",\r\n      \"phone_number\": \"425-555-2311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"2\",\r\n      \"phone_number\": \"(321) 555-5784\"\r\n    },\r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"3\",\r\n      \"phone_number\": \"+1 425-555-2311\"\r\n    }, \r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"4\",  \r\n      \"phone_number\": \"+1 (321) 555-5784\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"5\",\r\n      \"phone_number\": \"4255552311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"6\",\r\n      \"phone_number\": \"13215555784\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"7\",\r\n      \"phone_number\": \"425 555 2311\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"8\",\r\n      \"phone_number\": \"321.555.5784\"\r\n    }\r\n  ]  \r\n}"
+					"raw": "{\r\n  \"value\": [\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"1\",\r\n      \"phone_number\": \"425-555-0100\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"2\",\r\n      \"phone_number\": \"(321) 555-0199\"\r\n    },\r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"3\",\r\n      \"phone_number\": \"+1 425-555-0100\"\r\n    }, \r\n    {  \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"4\",  \r\n      \"phone_number\": \"+1 (321) 555-0199\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"5\",\r\n      \"phone_number\": \"4255550100\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"6\",\r\n      \"phone_number\": \"13215550199\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"7\",\r\n      \"phone_number\": \"425 555 0100\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"upload\",  \r\n      \"id\": \"8\",\r\n      \"phone_number\": \"321.555.0199\"\r\n    }\r\n  ]  \r\n}"
 				},
 				"url": {
 					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-second-analyzer/docs/index?api-version=2020-06-30",
@@ -535,7 +535,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-second-analyzer/docs?api-version=2020-06-30&search=(425) 555-2311&$select=phone_number",
+					"raw": "https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/tutorial-second-analyzer/docs?api-version=2020-06-30&search=(425) 555-0100&$select=phone_number",
 					"protocol": "https",
 					"host": [
 						"<YOUR-SEARCH-SERVICE>",
@@ -555,7 +555,7 @@
 						},
 						{
 							"key": "search",
-							"value": "(425) 555-2311"
+							"value": "(425) 555-0100"
 						},
 						{
 							"key": "$select",
