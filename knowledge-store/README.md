@@ -42,7 +42,7 @@ The purpose of this sample is to demonstrate how, if you have an existing docume
 
 ### Running tutorial
 
-1. Put [HotelReviews-Free.csv](https://knowledgestoredemo.blob.core.windows.net/hotel-reviews/HotelReviews_Free.csv?st=2019-07-29T17%3A51%3A30Z&se=2021-07-30T17%3A51%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=LnWLXqFkPNeuuMgnohiz3jfW4ijePeT5m2SiQDdwDaQ%3D) in Azure Blob Storage. This is discussed in the tutorial [Create a knowledge store using REST](https://review.docs.microsoft.com/azure/search/knowledge-store-create-rest).
+1. Put [HotelReviews-Free.csv](https://knowledgestoredemo.blob.core.windows.net/hotel-reviews/HotelReviews_Free.csv) in Azure Blob Storage. This is discussed in the tutorial [Create a knowledge store using REST](https://review.docs.microsoft.com/azure/search/knowledge-store-create-rest).
 1. Start Postman and import KnowledgeStore.postman_collection.json
 1. In the collection, open the **Edit** dialog and the **Variables** tab
 1. Set `admin-key`. You'll find the value for `admin-key` in the Search Service's **Keys** tab. 
