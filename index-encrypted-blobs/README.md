@@ -32,6 +32,7 @@ The purpose of this sample is to demonstrate how, if you have an existing Azure 
 
 - [Postman Desktop app](https://www.getpostman.com/)
 - [Azure Cognitive Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
+- [DecryptBlobFile Azure Function power skill](https://github.com/Azure-Samples/azure-search-power-skills/tree/master/Utils/DecryptBlobFile)
 
 ## Setup
 

@@ -39,3 +39,7 @@ This collection provides the same requests as those used to build an AI enrichme
 ## Custom Analyzer Tutorial
 
 This Postman collection creates a basic search index and builds an analyzer designed for searching phone numbers. The collection and corresponding tutorial walk through the process of testing sample searches, testing how those searches are analyzed, and building an analyzer to intuitively search phone number.
+
+## Indexing encrypted Blob files tutorial
+
+This collection uses the Azure Cognitive Search REST APIs to create the resources necessary to be able to index files that have been encrypted in Azure Blob Storage using Azure Key Vault.
