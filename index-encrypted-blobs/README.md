@@ -41,7 +41,7 @@ The purpose of this sample is to demonstrate how, if you have an existing Azure 
 
 ### Running tutorial
 
-TODO add link to full tutorial once it is published.
+Please see the documentation [How to index encrypted blobs using blob indexers and skillsets in Azure Cognitive Search](https://docs.microsoft.com/azure/search/search-howto-index-encrypted-blobs) for instructions on how to use this Postman collection.
 
 ## Next steps
 
