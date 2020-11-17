@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "bcd06aea-a9ff-4884-aa60-552be6a7d37c",
+		"_postman_id": "23f6a73d-65bd-444e-9bbc-a303ebbf3948",
 		"name": "cog-search-demo REST tutorial",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -17,19 +17,19 @@
 					},
 					{
 						"key": "api-key",
-						"value": "<YOUR-ADMIN-API-KEY>",
+						"value": "{{admin-key}}",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\" : \"cog-search-demo-ds2\",\r\n  \"description\" : \"Demo files to demonstrate cognitive search capabilities.\",\r\n  \"type\" : \"azureblob\",\r\n  \"credentials\" :\r\n  { \"connectionString\" :\r\n    \"DefaultEndpointsProtocol=https;AccountName=<STORAGE-ACCOUNT-NAME>;AccountKey=<STORAGE-ACCESS-KEY>;EndpointSuffix=core.windows.net;\"\r\n  },\r\n  \"container\" : { \"name\" : \"cog-search-demo\" }\r\n}"
+					"raw": "{\r\n  \"name\" : \"cog-search-demo-ds\",\r\n  \"description\" : \"Demo files to demonstrate cognitive search capabilities.\",\r\n  \"type\" : \"azureblob\",\r\n  \"credentials\" :\r\n  { \"connectionString\" :\r\n    \"{{blob-connection-string}}\"\r\n  },\r\n  \"container\" : { \"name\" : \"cog-search-demo\" }\r\n}"
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/datasources?api-version=2020-06-30",
+					"raw": "https://{{service-name}}.search.windows.net/datasources?api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"{{service-name}}",
 						"search",
 						"windows",
 						"net"
@@ -60,7 +60,7 @@
 					{
 						"key": "api-key",
 						"type": "text",
-						"value": "<YOUR-ADMIN-API-KEY>"
+						"value": "{{admin-key}}"
 					}
 				],
 				"body": {
@@ -68,10 +68,10 @@
 					"raw": "{\r\n  \"description\": \"Extract entities, detect language and extract key-phrases\",\r\n  \"skills\":\r\n  [\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Skills.Text.EntityRecognitionSkill\",\r\n      \"categories\": [ \"Person\", \"Organization\", \"Location\" ],\r\n      \"defaultLanguageCode\": \"en\",\r\n      \"inputs\": [\r\n        { \"name\": \"text\", \"source\": \"/document/content\" }\r\n      ],\r\n      \"outputs\": [\r\n        { \"name\": \"persons\", \"targetName\": \"persons\" },\r\n        { \"name\": \"organizations\", \"targetName\": \"organizations\" },\r\n        { \"name\": \"locations\", \"targetName\": \"locations\" }\r\n      ]\r\n    },\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Skills.Text.LanguageDetectionSkill\",\r\n      \"inputs\": [\r\n        { \"name\": \"text\", \"source\": \"/document/content\" }\r\n      ],\r\n      \"outputs\": [\r\n        { \"name\": \"languageCode\", \"targetName\": \"languageCode\" }\r\n      ]\r\n    },\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Skills.Text.SplitSkill\",\r\n      \"textSplitMode\" : \"pages\",\r\n      \"maximumPageLength\": 4000,\r\n      \"inputs\": [\r\n        { \"name\": \"text\", \"source\": \"/document/content\" },\r\n        { \"name\": \"languageCode\", \"source\": \"/document/languageCode\" }\r\n      ],\r\n      \"outputs\": [\r\n        { \"name\": \"textItems\", \"targetName\": \"pages\" }\r\n      ]\r\n    },\r\n    {\r\n      \"@odata.type\": \"#Microsoft.Skills.Text.KeyPhraseExtractionSkill\",\r\n      \"context\": \"/document/pages/*\",\r\n      \"inputs\": [\r\n        { \"name\": \"text\", \"source\": \"/document/pages/*\" },\r\n        { \"name\":\"languageCode\", \"source\": \"/document/languageCode\" }\r\n      ],\r\n      \"outputs\": [\r\n        { \"name\": \"keyPhrases\", \"targetName\": \"keyPhrases\" }\r\n      ]\r\n    }\r\n  ]\r\n}"
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/skillsets/cog-search-demo-ss?api-version=2020-06-30",
+					"raw": "https://{{service-name}}.search.windows.net/skillsets/cog-search-demo-ss?api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"{{service-name}}",
 						"search",
 						"windows",
 						"net"
@@ -103,7 +103,7 @@
 					{
 						"key": "api-key",
 						"type": "text",
-						"value": "<YOUR-ADMIN-API-KEY>"
+						"value": "{{admin-key}}"
 					}
 				],
 				"body": {
@@ -111,10 +111,10 @@
 					"raw": "{\r\n  \"fields\": [\r\n    {\r\n      \"name\": \"id\",\r\n      \"type\": \"Edm.String\",\r\n      \"key\": true,\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false,\r\n      \"sortable\": true\r\n    },\r\n    {\r\n      \"name\": \"metadata_storage_name\",\r\n      \"type\": \"Edm.String\",\r\n      \"searchable\": false,\r\n      \"filterable\": false,\r\n      \"facetable\": false,\r\n      \"sortable\": false\r\n    },\r\n    {\r\n      \"name\": \"content\",\r\n      \"type\": \"Edm.String\",\r\n      \"sortable\": false,\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false\r\n    },\r\n    {\r\n      \"name\": \"languageCode\",\r\n      \"type\": \"Edm.String\",\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false\r\n    },\r\n    {\r\n      \"name\": \"keyPhrases\",\r\n      \"type\": \"Collection(Edm.String)\",\r\n      \"searchable\": true,\r\n      \"filterable\": false,\r\n      \"facetable\": false\r\n    },\r\n    {\r\n      \"name\": \"persons\",\r\n      \"type\": \"Collection(Edm.String)\",\r\n      \"searchable\": true,\r\n      \"sortable\": false,\r\n      \"filterable\": true,\r\n      \"facetable\": true\r\n    },\r\n    {\r\n      \"name\": \"organizations\",\r\n      \"type\": \"Collection(Edm.String)\",\r\n      \"searchable\": true,\r\n      \"sortable\": false,\r\n      \"filterable\": true,\r\n      \"facetable\": true\r\n    },\r\n    {\r\n      \"name\": \"locations\",\r\n      \"type\": \"Collection(Edm.String)\",\r\n      \"searchable\": true,\r\n      \"sortable\": false,\r\n      \"filterable\": true,\r\n      \"facetable\": true\r\n    }\r\n  ]\r\n}"
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/cog-search-demo-idx?api-version=2020-06-30",
+					"raw": "https://{{service-name}}.search.windows.net/indexes/cog-search-demo-idx?api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"{{service-name}}",
 						"search",
 						"windows",
 						"net"
@@ -146,7 +146,7 @@
 					{
 						"key": "api-key",
 						"type": "text",
-						"value": "<YOUR-ADMIN-API-KEY>"
+						"value": "{{admin-key}}"
 					}
 				],
 				"body": {
@@ -154,10 +154,10 @@
 					"raw": "{\r\n  \"name\":\"cog-search-demo-idxr\",\t\r\n  \"dataSourceName\" : \"cog-search-demo-ds\",\r\n  \"targetIndexName\" : \"cog-search-demo-idx\",\r\n  \"skillsetName\" : \"cog-search-demo-ss\",\r\n  \"fieldMappings\" : [\r\n    {\r\n      \"sourceFieldName\" : \"metadata_storage_path\",\r\n      \"targetFieldName\" : \"id\",\r\n      \"mappingFunction\" :\r\n        { \"name\" : \"base64Encode\" }\r\n    },\r\n    {\r\n      \"sourceFieldName\" : \"metadata_storage_name\",\r\n      \"targetFieldName\" : \"metadata_storage_name\",\r\n      \"mappingFunction\" :\r\n        { \"name\" : \"base64Encode\" }\r\n    },\r\n    {\r\n      \"sourceFieldName\" : \"content\",\r\n      \"targetFieldName\" : \"content\"\r\n    }\r\n  ],\r\n  \"outputFieldMappings\" :\r\n  [\r\n    {\r\n      \"sourceFieldName\" : \"/document/persons\",\r\n      \"targetFieldName\" : \"persons\"\r\n    },\r\n    {\r\n      \"sourceFieldName\" : \"/document/organizations\",\r\n      \"targetFieldName\" : \"organizations\"\r\n    },\r\n    {\r\n      \"sourceFieldName\" : \"/document/locations\",\r\n      \"targetFieldName\" : \"locations\"\r\n    },\r\n    {\r\n      \"sourceFieldName\" : \"/document/pages/*/keyPhrases/*\",\r\n      \"targetFieldName\" : \"keyPhrases\"\r\n    },\r\n    {\r\n      \"sourceFieldName\": \"/document/languageCode\",\r\n      \"targetFieldName\": \"languageCode\"\r\n    }\r\n  ],\r\n  \"parameters\":\r\n  {\r\n    \"maxFailedItems\":-1,\r\n    \"maxFailedItemsPerBatch\":-1,\r\n    \"configuration\":\r\n    {\r\n      \"dataToExtract\": \"contentAndMetadata\",\r\n      \"parsingMode\": \"default\",\r\n      \"firstLineContainsHeaders\": false,\r\n      \"delimitedTextDelimiter\": \",\"\r\n    }\r\n  }\r\n}"
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexers/cog-search-demo-idxr?api-version=2020-06-30",
+					"raw": "https://{{service-name}}.search.windows.net/indexers/cog-search-demo-idxr?api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"{{service-name}}",
 						"search",
 						"windows",
 						"net"
@@ -192,7 +192,7 @@
 					{
 						"key": "api-key",
 						"type": "text",
-						"value": "<YOUR-ADMIN-API-KEY>"
+						"value": "{{admin-key}}"
 					}
 				],
 				"body": {
@@ -200,10 +200,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexers/cog-search-demo-idxr/status?api-version=2020-06-30",
+					"raw": "https://{{service-name}}.search.windows.net/indexers/cog-search-demo-idxr/status?api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"{{service-name}}",
 						"search",
 						"windows",
 						"net"
@@ -239,7 +239,7 @@
 					{
 						"key": "api-key",
 						"type": "text",
-						"value": "<YOUR-ADMIN-API-KEY>"
+						"value": "{{admin-key}}"
 					}
 				],
 				"body": {
@@ -247,10 +247,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/cog-search-demo-idx/docs?search=*&$select=content&$count=true&api-version=2020-06-30",
+					"raw": "https://{{service-name}}.search.windows.net/indexes/cog-search-demo-idx/docs?search=*&$select=content&$count=true&api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"{{service-name}}",
 						"search",
 						"windows",
 						"net"
@@ -298,7 +298,7 @@
 					{
 						"key": "api-key",
 						"type": "text",
-						"value": "<YOUR-ADMIN-API-KEY>"
+						"value": "{{admin-key}}"
 					}
 				],
 				"body": {
@@ -306,10 +306,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/cog-search-demo-idx/docs?search=*&$filter=organizations/any(organizations: organizations eq 'NASDAQ')&$select=metadata_storage_name,organizations&$count=true&api-version=2020-06-30",
+					"raw": "https://{{service-name}}.search.windows.net/indexes/cog-search-demo-idx/docs?search=*&$filter=organizations/any(organizations: organizations eq 'NASDAQ')&$select=metadata_storage_name,organizations&$count=true&api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
-						"<YOUR-SEARCH-SERVICE-NAME>",
+						"{{service-name}}",
 						"search",
 						"windows",
 						"net"
@@ -345,5 +345,45 @@
 			},
 			"response": []
 		}
-	]
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4dd7e547-6da9-41c4-ab24-577a8ad0feae",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "196970d9-0287-4bf5-b829-2510aa9afb78",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "b3c0f60d-01f0-4086-a22f-3f85222dca94",
+			"key": "service-name",
+			"value": ""
+		},
+		{
+			"id": "f93360a8-4649-4a7b-b5ae-16a4a1d56e68",
+			"key": "admin-key",
+			"value": ""
+		},
+		{
+			"id": "ec9014e9-ccad-40ef-b008-aaf5048480ab",
+			"key": "blob-connection-string",
+			"value": ""
+		}
+	],
+	"protocolProfileBehavior": {}
 }
