@@ -23,7 +23,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"description\" : \"Ten descriptions of Spanish museums in Spanish and French\",\r\n  \"type\" : \"azureblob\",\r\n  \"credentials\" :\r\n  { \"connectionString\" :\r\n    \"DefaultEndpointsProtocol=https;AccountName=heidistblobstorage;AccountKey=dICqQJDK7Ju8ifiMaUnSVK1p3e1BIIwsh74fIlxciCXHqD8dxKmcZA7ez1v/KH97Oe02tVlSRxn1LrP8fPxWIQ==;EndpointSuffix=core.windows.net\"\r\n  },\r\n  \"container\" : { \"name\" : \"spanish-museums\" }\r\n}"
+					"raw": "{\r\n  \"description\" : \"Ten descriptions of Spanish museums in Spanish and French\",\r\n  \"type\" : \"azureblob\",\r\n  \"credentials\" :\r\n  { \"connectionString\" :\r\n    \"{{azure-storage-connection-string}}\"\r\n  },\r\n  \"container\" : { \"name\" : \"spanish-museums\" }\r\n}"
 				},
 				"url": {
 					"raw": "https://{{search-service-name}}.search.windows.net/datasources/test-lang-ds?api-version=2020-06-30",
@@ -248,7 +248,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://{{search-service-name}}.search.windows.net/indexes/test-lang-idx/docs?search=*&$select=content,languageCode,translatedText$count=true&api-version=2020-06-30",
+					"raw": "https://{{search-service-name}}.search.windows.net/indexes/test-lang-idx/docs?search=*&$count=true&api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
 						"{{search-service-name}}",
@@ -267,8 +267,8 @@
 							"value": "*"
 						},
 						{
-							"key": "$select",
-							"value": "content,languageCode,translatedText$count=true"
+							"key": "$count",
+							"value": "true"
 						},
 						{
 							"key": "api-version",
@@ -310,6 +310,7 @@
 			"value": ""
 		},
 		{
+			"key": "azure-storage-connection-string",
 			"value": ""
 		},
 		{
