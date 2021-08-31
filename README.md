@@ -1,8 +1,24 @@
 # Postman collections for Azure Cognitive Search
 
-This repository provides Postman collections used in REST API walkthroughs. All collections are saved in JSON, in the V2 collection format.
+This repository provides Postman collections used in REST API walkthroughs:
 
-To use these collections, import them into **Postman**.
++ custom-analyzers collection
++ debug-sessions collection
++ index-encrypted-blobs collection
++ knowledge-store collection
++ projections collection
++ query-examples collection
++ quickstart collection
++ skill-examples collection
++ tutorial collection
+
+All collections are saved in JSON, in the V2 collection format.
+
+To use these collections, import them into **Postman** and then update the collection variables to use your own search service and admin API key.
+
+## Custom analyzer
+
+This Postman collection creates a basic search index and builds a custom analyzer designed for indexing and querying various phone number patterns. The collection and corresponding tutorial walk through the process of testing sample searches, testing how those searches are analyzed, and building an analyzer to intuitively search phone number.
 
 ## Debug sessions
 
@@ -11,6 +27,10 @@ This Postman collection creates a faulty enrichment pipeline with problems you c
 ## Knowledge-store
 
 This Postman collection contains requests for creating and populating an index with hotel reviews data from Kaggle. The collection also includes an indexer and skillset that contains instructions for expressing a knowledge store in Azure Storage.
+
+## Indexing encrypted Blob files tutorial
+
+This collection uses the Azure Cognitive Search REST APIs to create the resources necessary to be able to index files that have been encrypted in Azure Blob Storage using Azure Key Vault.
 
 ## Projections
 
@@ -35,11 +55,3 @@ Includes 4 requests used to create an index, load documents, search the index, a
 ## Tutorial collection
 
 This collection provides the same requests as those used to build an AI enrichment pipeline in [Tutorial: Add structure to "unstructured content" using REST APIs](https://docs.microsoft.com/azure/search/cognitive-search-tutorial-blob).
-
-## Custom Analyzer Tutorial
-
-This Postman collection creates a basic search index and builds an analyzer designed for searching phone numbers. The collection and corresponding tutorial walk through the process of testing sample searches, testing how those searches are analyzed, and building an analyzer to intuitively search phone number.
-
-## Indexing encrypted Blob files tutorial
-
-This collection uses the Azure Cognitive Search REST APIs to create the resources necessary to be able to index files that have been encrypted in Azure Blob Storage using Azure Key Vault.
