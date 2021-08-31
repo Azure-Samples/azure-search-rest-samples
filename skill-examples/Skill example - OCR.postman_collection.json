@@ -23,7 +23,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"description\" : \"Ten photos (JPEGS) of various signs from unsplash.com\",\r\n  \"type\" : \"azureblob\",\r\n  \"credentials\" :\r\n  { \"connectionString\" :\r\n    \"DefaultEndpointsProtocol=https;AccountName=heidistblobstorage;AccountKey=dICqQJDK7Ju8ifiMaUnSVK1p3e1BIIwsh74fIlxciCXHqD8dxKmcZA7ez1v/KH97Oe02tVlSRxn1LrP8fPxWIQ==;EndpointSuffix=core.windows.net\"\r\n  },\r\n  \"container\" : { \"name\" : \"unsplash-signs\" }\r\n}"
+					"raw": "{\r\n  \"description\" : \"Ten photos (JPEGS) of various signs from unsplash.com\",\r\n  \"type\" : \"azureblob\",\r\n  \"credentials\" :\r\n  { \"connectionString\" :\r\n    \"{{azure-storage-connection-string}}\"\r\n  },\r\n  \"container\" : { \"name\" : \"unsplash-signs\" }\r\n}"
 				},
 				"url": {
 					"raw": "https://{{search-service-name}}.search.windows.net/datasources/test-ocr-ds?api-version=2020-06-30",
@@ -314,6 +314,7 @@
 			"value": ""
 		},
 		{
+			"key": "azure-storage-connection-string",
 			"value": ""
 		},
 		{
