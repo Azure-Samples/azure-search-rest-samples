@@ -15,9 +15,9 @@ urlFragment: rest-api-knowledge-store-projections
 
 ![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
-This [Postman](https://www.getpostman.com/) collection uses the Azure Cognitive Search REST APIs to create the resources associated with a knowledge store projection: a data source, a skillset, an index, and an indexer. Requests are provided in the V2 collection format, which you can import and then modify for connections to your search service.
+This [Postman](https://www.getpostman.com/) collection uses the Azure Cognitive Search REST APIs to create the resources associated with a knowledge store projection: a data source, a skillset, an index, and an indexer. Requests are provided in the V2.1 collection format, which you can import and then modify for connections to your search service.
 
-The knowledge store and index configuration are based on the source document being PDFs or documents with text and images. This is discussed in the tutorial [Knowledge store projections: How to shape and export enrichments to the knowledge store](https://docs.microsoft.com/azure/search/knowledge-store-projections-examples).
+The skillset, knowledge store projections, and index schema accommodate source documents that include both text and image content. See [Detailed example of shapes and projections in a knowledge store](https://docs.microsoft.com/azure/search/knowledge-store-projections-example-long) for more information about the projections and shapes in this collection.
 
 The purpose of this sample is to demonstrate how you use table, object and file projections effectively to project your enriched documents to the knowledge store. 
 
@@ -25,15 +25,18 @@ The purpose of this sample is to demonstrate how you use table, object and file 
 
 | File/folder | Description |
 |-------------|-------------|
-| `projections.postman_collection.json`       | Import into Postman |
+| `Projections Docs.postman_collection.json`       | Import into Postman |
 | `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
 | `README.md` | This README file. |
 | `LICENSE.md`   | The license for the sample. |
 
 ## Prerequisites
 
-- [Postman Desktop app](https://www.getpostman.com/)
-- [Azure Cognitive Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
++ [Postman Desktop app](https://www.getpostman.com/)
++ [Azure Cognitive Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
++ [Azure Storage](https://docs.microsoft.com/en-us/azure/storage/)
++ [Azure Cognitive Services multi-service resource](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Clinux) 
++ [Mixed content files](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/ai-enrichment-mixed-media), uploaded to a container in Azure Storage
 
 ## Setup
 
@@ -42,30 +45,41 @@ The purpose of this sample is to demonstrate how you use table, object and file 
 
 ### Set environment variables
 
-1. Create a container in Azure Storage with a few PDFs or other documents.
-1. Start Postman and import KnowledgeStore.postman_collection.json
-1. In the collection, open the **Edit** dialog and the **Variables** tab
+1. Start Postman Desktop app and import "Projections Docs.postman_collection.json'.
+1. In the collection, right-click the collection name, select **Edit**, and then select **Variables**.
+1. Set `search-service-name` and `storage-account-name`. These must be set to the name of your search service and the name of the storage account at which you've stored the source document.
 1. Set `admin-key`. You'll find the value for `admin-key` in the Search Service's **Keys** tab. 
-1. Set `search-service-name` and `storage-account-name`. These must be set to the name of your search service and the name of the storage account at which you've stored the source document .
 1. Set `storage-connection-string` to the value in the Storage Account's **Access Keys** tab. 
-1. Set `datasource-container` to the name of the container you uploaded your documents to
-1. Set `cognitive-services-key` to the Cognitive Services key
+1. Set `datasource-container` to the name of the container you uploaded your documents to.
+1. Set `cognitive-services-key` to a multi-service Cognitive Services key
 
-### Running tutorial
+### Send requests
 
-1. Execute the create datasource request
-1. Execute the create index request
-1. Execute the create skillset request
-1. Execute the create indexer request
-1. Validate your results by running the indexer
+Once you set the environment variables, you can send each request in sequence to create resources in your search service and a knowledge store in Azure Storage.
+
+The first set of requests create the data source, index, skillset, and indexer. There is no knowledge store at this point.
+
+1. Send the create data source request.
+1. Send the create index request.
+1. Send the create skillset request.
+1. Send the create indexer request.
+1. Use the Azure portal to verify each resource is created in Azure Cognitive Search. 
+
+Make sure the indexer has finished processing before continuing to the next step.
+
+Next, send a request that adds a Shaper skill and  updates the knowledgeStore section of the skillset with table projections. This request instructs the indexer to create a knowledge store table in Azure Storage.
+
 1. Execute the 01 update skillset request
-1. Run the indexer and validate that the table projections are created
-1. Execute the 02 update skillset request
-1. Run the indexer and validate that the object projections are created
-1. Execute the 03 update skillset request
-1. Run the indexer and validate that the file projections are created
-1. Execute the 04 update skillset request
-1. Run the indexer and validate that the table, object and file projections are created and related
+1. Run the indexer request to process the changes.
+1. Use the Azure portal to connect to Azure Storage, and then use Storage browser to view the tables.
+
+For each additional skillset update, send the request, run the indexer, and check the results using Storage browser.
+
++ Execute the 02 update skillset request to create json objects, one for each source document.
++ Execute the 03 update skillset request to create binary objects, one for each image file only.
++ Execute the 04 update skillset request to create a second set of projections that cross all object types (tables, objects, images).
+
+The last set of projections shows you how to create projections that use the same shapes in multiple physical expressions.
 
 ## Next steps
 
