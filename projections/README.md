@@ -33,10 +33,10 @@ The purpose of this sample is to demonstrate how you use table, object and file 
 ## Prerequisites
 
 + [Postman Desktop app](https://www.getpostman.com/)
-+ [Azure Cognitive Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
++ [Azure Cognitive Search](https://docs.microsoft.com/azure/search/search-create-service-portal)
 + [Azure Storage](https://docs.microsoft.com/en-us/azure/storage/)
 + [Azure Cognitive Services multi-service resource](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Clinux) 
-+ [Mixed content files](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/ai-enrichment-mixed-media), uploaded to a container in Azure Storage
++ [Sample data (mixed content types)](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/ai-enrichment-mixed-media), uploaded to a container in Azure Storage
 
 ## Setup
 
@@ -45,29 +45,29 @@ The purpose of this sample is to demonstrate how you use table, object and file 
 
 ### Set environment variables
 
-1. Start Postman Desktop app and import "Projections Docs.postman_collection.json'.
+1. Start Postman Desktop app and import "Projections Docs.postman_collection.json".
 1. In the collection, right-click the collection name, select **Edit**, and then select **Variables**.
-1. Set `search-service-name` and `storage-account-name`. These must be set to the name of your search service and the name of the storage account at which you've stored the source document.
+1. Set `search-service-name` and `storage-account-name` to the names of your search service, and to the storage account at which you've stored the sample data.
 1. Set `admin-key`. You'll find the value for `admin-key` in the Search Service's **Keys** tab. 
 1. Set `storage-connection-string` to the value in the Storage Account's **Access Keys** tab. 
 1. Set `datasource-container` to the name of the container you uploaded your documents to.
-1. Set `cognitive-services-key` to a multi-service Cognitive Services key
+1. Set `cognitive-services-key` to a multi-service Cognitive Services key.
 
 ### Send requests
 
-Once you set the environment variables, you can send each request in sequence to create resources in your search service and a knowledge store in Azure Storage.
+After the environment variables are set, send each request in sequence to create resources in your search service and a knowledge store in Azure Storage.
 
-The first set of requests create the data source, index, skillset, and indexer. There is no knowledge store at this point.
+The first set creates the data source, index, skillset, and indexer. There is no knowledge store at this point.
 
 1. Send the create data source request.
 1. Send the create index request.
 1. Send the create skillset request.
 1. Send the create indexer request.
-1. Use the Azure portal to verify each resource is created in Azure Cognitive Search. 
+1. Check the search service pages in the Azure portal to verify each resource is created in Azure Cognitive Search. 
 
-Make sure the indexer has finished processing before continuing to the next step.
+Wait for the indexer to finish processing before continuing to the next step.
 
-Next, send a request that adds a Shaper skill and  updates the knowledgeStore section of the skillset with table projections. This request instructs the indexer to create a knowledge store table in Azure Storage.
+Next, send a request that adds a Shaper skill and updates the "knowledgeStore" section of the skillset with table projections. Then, run the indexer to invoke skillset execution, creating a knowledge store table in Azure Storage.
 
 1. Execute the 01 update skillset request
 1. Run the indexer request to process the changes.
@@ -79,7 +79,7 @@ For each additional skillset update, send the request, run the indexer, and chec
 + Execute the 03 update skillset request to create binary objects, one for each image file only.
 + Execute the 04 update skillset request to create a second set of projections that cross all object types (tables, objects, images).
 
-The last set of projections shows you how to create projections that use the same shapes in multiple physical expressions.
+The last set of projections demonstrates projections that use the same shapes in multiple physical expressions.
 
 ## Next steps
 
