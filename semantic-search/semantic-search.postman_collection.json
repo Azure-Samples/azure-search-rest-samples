@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "95e5e2e0-7338-4b0c-b532-3750ca0d5688",
+		"name": "SemanticSearch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create or Update Index",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{admin-key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{index-name}}\",\r\n    \"fields\": [\r\n        {\r\n            \"name\": \"id\",\r\n            \"type\": \"Edm.String\",\r\n            \"searchable\": true,\r\n            \"filterable\": false,\r\n            \"retrievable\": true,\r\n            \"sortable\": true,\r\n            \"facetable\": false,\r\n            \"key\": true,\r\n            \"indexAnalyzer\": null,\r\n            \"searchAnalyzer\": null,\r\n            \"analyzer\": null,\r\n            \"synonymMaps\": []\r\n        },\r\n        {\r\n            \"name\": \"title\",\r\n            \"type\": \"Edm.String\",\r\n            \"searchable\": true,\r\n            \"filterable\": false,\r\n            \"retrievable\": true,\r\n            \"sortable\": false,\r\n            \"facetable\": false,\r\n            \"key\": false,\r\n            \"indexAnalyzer\": null,\r\n            \"searchAnalyzer\": null,\r\n            \"analyzer\": null,\r\n            \"synonymMaps\": []\r\n        },\r\n        {\r\n            \"name\": \"text\",\r\n            \"type\": \"Edm.String\",\r\n            \"searchable\": true,\r\n            \"filterable\": false,\r\n            \"retrievable\": true,\r\n            \"sortable\": false,\r\n            \"facetable\": false,\r\n            \"key\": false,\r\n            \"indexAnalyzer\": null,\r\n            \"searchAnalyzer\": null,\r\n            \"analyzer\": null,\r\n            \"synonymMaps\": []\r\n        },\r\n        {\r\n            \"name\": \"keywords\",\r\n            \"type\": \"Collection(Edm.String)\",\r\n            \"searchable\": true,\r\n            \"filterable\": false,\r\n            \"retrievable\": true,\r\n            \"sortable\": false,\r\n            \"facetable\": false,\r\n            \"key\": false,\r\n            \"indexAnalyzer\": null,\r\n            \"searchAnalyzer\": null,\r\n            \"analyzer\": null,\r\n            \"synonymMaps\": []\r\n        },\r\n        {\r\n            \"name\": \"category\",\r\n            \"type\": \"Edm.String\",\r\n            \"searchable\": true,\r\n            \"filterable\": false,\r\n            \"retrievable\": true,\r\n            \"sortable\": false,\r\n            \"facetable\": false,\r\n            \"key\": false,\r\n            \"indexAnalyzer\": null,\r\n            \"searchAnalyzer\": null,\r\n            \"analyzer\": null,\r\n            \"synonymMaps\": []\r\n        }\r\n    ],\r\n    \"semantic\": {\r\n        \"configurations\": [\r\n            {\r\n                \"name\": \"my-semantic-configuration\",\r\n                \"prioritizedFields\": {\r\n                    \"titleField\": {\r\n                        \"fieldName\": \"title\"\r\n                    },\r\n                    \"prioritizedContentFields\": [\r\n                        {\r\n                            \"fieldName\": \"text\"\r\n                        }\r\n                    ],\r\n                    \"prioritizedKeywordsFields\": [\r\n                        {\r\n                        \"fieldName\": \"keywords\"\r\n                        },\r\n                        {\r\n                        \"fieldName\": \"category\"\r\n                        }\r\n                    ]\r\n                }\r\n            }\r\n        ]\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}?api-version=2021-04-30-Preview",
+					"protocol": "https",
+					"host": [
+						"{{search-service-name}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{index-name}}"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2021-04-30-Preview"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Index",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{admin-key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}?api-version=2021-04-30-Preview",
+					"protocol": "https",
+					"host": [
+						"{{search-service-name}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{index-name}}"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2021-04-30-Preview"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{admin-key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"value\": [\r\n    {          \r\n      \"@search.action\": \"mergeOrUpload\",\r\n      \"id\": \"1\",\r\n      \"title\": \"Azure Cognitive Search Overview\",\r\n      \"text\": \"Azure Cognitive Search (formerly known as Azure Search) is a cloud search service that gives developers infrastructure, APIs, and tools for building a rich search experience over private, heterogeneous content in web, mobile, and enterprise applications.\",\r\n      \"keywords\": [\"Azure Cognitive Search\", \"Azure Search\", \"cloud\", \"search experience\"],\r\n      \"category\": \"Overview\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"mergeOrUpload\",\r\n      \"id\": \"2\",\r\n      \"title\": \"Analyzers for text processing in Azure Cognitive Search\",\r\n      \"text\": \"An analyzer is a component of the full text search engine that's responsible for processing strings during indexing and query execution. Text processing (also known as lexical analysis) is transformative, modifying a string through actions such as these: Remove non-essential words (stopwords) and punctuation, Split up phrases and hyphenated words into component parts, Lower-case any upper-case words, Reduce words into primitive root forms for storage efficiency and so that matches can be found regardless of tense\",\r\n      \"keywords\": [\"Azure Cognitive Search\", \"Azure Search\", \"lexical analysis\"],\r\n      \"category\": \"Lexical Analysis\"\r\n    },\r\n    {          \r\n      \"@search.action\": \"mergeOrUpload\",\r\n      \"id\": \"3\",\r\n      \"title\": \"Indexers in Azure Cognitive Search\",\r\n      \"text\": \"An indexer in Azure Cognitive Search is a crawler that extracts searchable text and metadata from an external Azure data source and populates a search index using field-to-field mappings between source data and your index. This approach is sometimes referred to as a 'pull model' because the service pulls data in without you having to write any code that adds data to an index. Indexers also drive the AI enrichment capabilities of Cognitive Search, integrating external processing of content en route to an index. Indexers are Azure-only, with individual indexers for Azure SQL, Azure Cosmos DB, Azure Table Storage and Blob Storage. When configuring an indexer, you'll specify a data source (origin), as well as an index (destination). Several sources, such as Blob storage, have additional configuration properties specific to that content type. You can run indexers on demand or on a recurring data refresh schedule that runs as often as every five minutes. More frequent updates require a 'push model' that simultaneously updates data in both Azure Cognitive Search and your external data source.\",\r\n      \"keywords\": [\"Azure Cognitive Search\", \"Azure Search\", \"indexing\", \"indexers\", \"data sources\"],\r\n      \"category\": \"Indexers\"\r\n    }\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/index?api-version=2021-04-30-preview",
+					"protocol": "https",
+					"host": [
+						"{{search-service-name}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{index-name}}",
+						"docs",
+						"index"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2021-04-30-preview"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Semantic Query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{admin-key}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"search\": \"what is an analyzer?\",\r\n    \"queryType\": \"semantic\",\r\n    \"queryLanguage\": \"en-us\",\r\n    \"captions\": \"extractive\",\r\n    \"answers\": \"extractive\",\r\n    \"semanticConfiguration\": \"my-semantic-configuration\"\r\n}"
+				},
+				"url": {
+					"raw": "https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2021-04-30-preview",
+					"protocol": "https",
+					"host": [
+						"{{search-service-name}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						"{{index-name}}",
+						"docs",
+						"search"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2021-04-30-preview"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "search-service-name",
+			"value": ""
+		},
+		{
+			"key": "admin-key",
+			"value": ""
+		},
+		{
+			"key": "index-name",
+			"value": ""
+		}
+	]
+}
