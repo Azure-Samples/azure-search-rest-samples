@@ -4,18 +4,18 @@ languages:
   - rest
 name: Debug skillsets in Azure Cognitive Search
 description: |
-  Learn how the portal tool Debug sessions can help you fix enrichment pipeline issues in Azure Cognitive Search. This collection creates a skillset with invalid fields and missing data, easily fixed in Debug sessions.
+  Learn how the Debug Sessions visual editor can help you fix enrichment pipeline issues in Azure Cognitive Search. This collection creates a skillset with invalid fields and missing data, easily fixed in a debug session.
 products:
   - azure
   - azure-cognitive-search
 urlFragment: rest-api-debug-sessions
 ---
 
-# Fix skillset issues using Debug sessions tool in Azure Cognitive Search 
+# Fix skillset issues using Debug Sessions in Azure Cognitive Search 
 
 ![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
-This [Postman](https://www.getpostman.com/) collection uses the Azure Cognitive Search REST APIs to create an enrichment pipeline with warnings you can fix in the Debug sessions tool in Azure portal. Requests are provided in the V2 collection format, which you can import and then modify for connections to your search service.
+This [Postman](https://www.getpostman.com/) collection uses the Azure Cognitive Search REST APIs to create an enrichment pipeline with warnings you can fix in the Debug Sessions tool in Azure portal. Requests are provided in the V2 collection format, which you can import and then modify for connections to your search service.
 
 This readme also explains how to set up the clinical trials data used in this collection.
 
@@ -57,7 +57,7 @@ Collect the connection information you'll need to provide on the requests. In a 
 
 1. Select **Keys** on the left and copy one of admin keys. Paste it into Notepad.
 
-## Setup
+## Set up the Postman collection
 
 1. Clone or download this sample repository.
 
@@ -86,7 +86,7 @@ After you have finished adding the variable, you can run each request in turn, w
 
 1. The **CreateIndexer** request executes the pipeline. Data movement occurs in this step: loading PDFs from the blob container, cracking the PDFs, formulating requests for AI processing, composing the enriched documents which include extracted and created data, and outputting the content to a search index.
 
-You have now created all of the objects necessary for using Debug sessions. This collection excludes monitoring and verification steps. You'll do that in the portal with Debug sessions. 
+You have now created all of the objects necessary for using Debug sessions. This collection excludes monitoring and verification steps. You'll do that in the portal with Debug sessions tutorial. 
 
 ## Next steps
 
