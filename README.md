@@ -5,6 +5,7 @@ This repository provides Postman collections used in REST API walkthroughs:
 + custom-analyzers collection
 + debug-sessions collection
 + index-encrypted-blobs collection
++ indexer-mysql
 + knowledge-store collection
 + projections collection
 + query-examples collection
@@ -31,6 +32,10 @@ This Postman collection contains requests for creating and populating an index w
 ## Indexing encrypted Blob files tutorial
 
 This collection uses the Azure Cognitive Search REST APIs to create the resources necessary to be able to index files that have been encrypted in Azure Blob Storage using Azure Key Vault.
+
+## Indexer MySQL
+
+This collection creates an indexer, data source, and index that pulls rows from a SQL database. You can run the SQL script in [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/hotels/sql) to create the source data used by this collection.
 
 ## Projections
 

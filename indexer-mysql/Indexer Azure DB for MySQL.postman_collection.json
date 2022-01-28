@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "05591f16-13cf-4fd7-b55b-02bce394a259",
+		"name": "Indexer Azure DB for MySQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create MySQL data  source",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{adminkey}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"name\" : \"hotels-mysql-ds\",\r\n    \"description\" : \"Data source definition for the tbl_hotels on MySQL\",\r\n    \"type\" : \"mysql\",\r\n    \"credentials\" : { \r\n        \"connectionString\" : \"{{mysql-connect}}\"\r\n    },\r\n    \"container\" : { \r\n        \"name\" : \"{{mysql-table}}\"\r\n    },\r\n    \"dataChangeDetectionPolicy\" : { \r\n        \"@odata.type\": \"#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy\",\r\n        \"highWaterMarkColumnName\": \"TimeStamp\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "https://{{searchsvc}}.search.windows.net/datasources?api-version=2020-06-30-Preview",
+					"protocol": "https",
+					"host": [
+						"{{searchsvc}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"datasources"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2020-06-30-Preview"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create MySQL index",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{adminkey}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\" : \"hotels-mysql-ix\",\r\n  \"fields\": [\r\n      { \"name\": \"ID\", \"type\": \"Edm.String\", \"key\": true, \"searchable\": false },\r\n      { \"name\": \"HotelName\", \"type\": \"Edm.String\", \"searchable\": true, \"filterable\": false },\r\n      { \"name\": \"Category\", \"type\": \"Edm.String\", \"searchable\": false, \"filterable\": true, \"sortable\": true  },\r\n      { \"name\": \"City\", \"type\": \"Edm.String\", \"searchable\": false, \"filterable\": true, \"sortable\": true },\r\n      { \"name\": \"State\", \"type\": \"Edm.String\", \"searchable\": false, \"filterable\": true, \"sortable\": true },\r\n      { \"name\": \"Description\", \"type\": \"Edm.String\", \"searchable\": false, \"filterable\": false, \"sortable\": false  }     \r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "https://{{searchsvc}}.search.windows.net/indexes/?api-version=2020-06-30-Preview",
+					"protocol": "https",
+					"host": [
+						"{{searchsvc}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexes",
+						""
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2020-06-30-Preview"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create MySQL indexer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "{{adminkey}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\" : \"hotels-mysql-idxr\",\r\n  \"dataSourceName\" : \"hotels-mysql-ds\",\r\n  \"targetIndexName\" : \"hotels-mysql-ix\",\r\n  \"parameters\": {\r\n    \"batchSize\": null,\r\n    \"maxFailedItems\": null,\r\n    \"maxFailedItemsPerBatch\": null,\r\n    \"base64EncodeKeys\": null,\r\n    \"configuration\": { }\r\n  },\r\n  \"schedule\" : { },\r\n  \"fieldMappings\" : [ ]\r\n}"
+				},
+				"url": {
+					"raw": "https://{{searchsvc}}.search.windows.net/indexers/?api-version=2020-06-30-Preview",
+					"protocol": "https",
+					"host": [
+						"{{searchsvc}}",
+						"search",
+						"windows",
+						"net"
+					],
+					"path": [
+						"indexers",
+						""
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2020-06-30-Preview"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "searchsvc",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "adminkey",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "mysql-connect",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "mysql-table",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
