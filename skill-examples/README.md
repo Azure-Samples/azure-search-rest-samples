@@ -25,6 +25,7 @@ After you import each collection into Postman, edit the collection variables to 
 
 | File        | Description |
 |-------------|-------------|
+| `Skill example - Custom Entity Lookup.postman_collection.json` | Creates a data source, skillset, index, and indexer with output field mappings. Sample data is a collection of four aspirational speeches in PDF file format. |
 | `Skill example - Entity Linking.postman_collection.json` | Creates a data source, skillset, index, and indexer with output field mappings. For data, this collection assumes a blob container holding the first 10 "text-only" PDFs of the [NASA e-book](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/nasa-e-book) sample data files. |
 | `Skill example - Entity Linking with renamed fields.postman_collection.json` | This version of the previous example includes a Shaper skill that renames skill outputs to values you might want to use in an index. |
 | `Skill example - Entity Recognition.postman_collection.json` | Creates a data source, skillset, index, and indexer with output field mappings. For data, this collection assumes a blob container holding the first 10 "text-only" PDFs of the [NASA e-book](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/nasa-e-book) sample data files. |
