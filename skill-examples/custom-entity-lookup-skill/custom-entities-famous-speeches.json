@@ -1,0 +1,38 @@
+[ 
+    { 
+        "name" : "equality",
+        "aliases" : [ 
+            { "text" : "equal", "caseSensitive" : false }
+        ]
+    }, 
+    { 
+        "name" : "founding fathers",
+        "aliases" : [ 
+            { "text" : "fathers", "caseSensitive" : false }
+        ]
+    }, 
+    { 
+        "name" : "freedom",
+        "aliases" : [ 
+            { "text" : "liberty", "caseSensitive" : false }
+        ]
+    },
+    { 
+        "name" : "god"
+    }, 
+    { 
+        "name" : "justice"
+    }, 
+    { 
+        "name" : "nation",
+        "aliases" : [ 
+            { "text" : "country", "caseSensitive" : false }
+        ]
+    },
+    { 
+        "name" : "revolution"
+    }, 
+    { 
+        "name" : "rights"
+    }
+]
