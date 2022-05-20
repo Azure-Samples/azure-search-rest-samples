@@ -8,35 +8,35 @@ In contrast with [Entity Recognition](https://docs.microsoft.com/azure/search/co
 
 In this sample, you'll learn the following techniques:
 
-+ Create a custom entity definition that defines the entities of interest
-+ Create a skillset that includes the Custom Entity Lookup skill
++ Create a [custom entity definition](https://docs.microsoft.com/azure/search/cognitive-search-skill-custom-entity-lookup#custom-entity-definition-format) that defines the entities of interest
++ Create a skillset that includes the [Custom Entity Lookup skill](https://docs.microsoft.com/azure/search/cognitive-search-skill-custom-entity-lookup)
 + Create a search index that models the complex types of Custom Entity Lookup skill output
 + Create a search indexer that specifies the output field mappings
 
 ## Content
 
-The sample data used for this example consists of famous speeches in PDF file format, uploaded to a blob container in Azure Storage. These files can be found in this repository under the "Sample-data" folder.
+The sample data used for this example consists of famous speeches in PDF file format, uploaded to a blob container in Azure Storage. These files can be found at [Azure-Samples/azure-search-sample-data/famous-speeches-pdf](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/famous-speeches-pdf). You can upload these files to a blob container in Azure Storage and then reference the container and connection string in your indexer data source.
 
 The code is a Postman collection that calls the Cognitive Search REST APIs to create and run the objects. You can import this collection and fill in its variables to create these objects on your search service.
 
-The custom entity definition is an external JSON file with entities that match the sample data. You can upload this file to Azure Storage and then reference its fully-qualified path name in your skillset.
+The custom entity definition is an external JSON file with entities that match the sample data. This file is named "custom-entities-famous-speeches.json" and is located in the same folder as this readme. You can upload this file to Azure Storage and then reference its fully-qualified path name in your skillset.
 
 ## Prerequisites
 
 + Azure Cognitive Search (free or billable version)
 + Azure Storage 
-+ Sample data and sample custom entity definition, both uploaded to blob containers
++ Sample data and sample custom entity definition, both uploaded to blob containers in Azure Storage
 + Postman desktop app
 
-To authenticate to your Azure services, you'll need the API key for Azure Cognitive Search and a full access connection string for Azure Storage. A full access connection string incudes an account key used for accessing your content.
+To authenticate to your Azure services, you'll need the API key for Azure Cognitive Search and a full access connection string for Azure Storage. A full access connection string incudes an account key used for accessing your content. If you're unfamiliar with setting up REST calls in Postman, see [Quickstart: Create an Azure Cognitive Search index using REST APIs](https://docs.microsoft.com/azure/search/search-get-started-rest) for help.
 
 ## Create a custom entity definition
 
-You'll set up the enrichment pipeline with all of the usual components: source data in a supported format, a data source object that provides the connection, a skillset that specifies enrichments, an indexer that defines the execution, and an index that receives the unchanged and enriched data for searching. The new piece in this example is the custom entity definition, which is where you set up the associations between a normalized entity and its many variants.
+You'll set up the enrichment pipeline with all of the usual components: source data in a supported format, a data source object that provides the connection, a skillset that specifies enrichments, an indexer that defines the execution, and an index that receives both unchanged and enriched data for full text search. The new piece in this example is the custom entity definition, which is where you provide the custom entities you'd like to recognize, including entity variants (aliases).
 
-You can provide an external CSV or JSON file, or an inline definition which is useful for proof-of-concept testing and small workloads. Since you're more likely to use an external file, this sample includes a JSON file with entity mappings that align to the sample data.
+You can provide the custom entity definition as an external CSV or JSON file, or as an inline definition which is useful for proof-of-concept testing and small workloads. Since you're more likely to use an external file, this sample includes a JSON file with entity mappings that align to the sample data. This custom entity definition is simple. For more advanced scenarios, see [Custom entity definition format](https://docs.microsoft.com/azure/search/cognitive-search-skill-custom-entity-lookup#custom-entity-definition-format).
 
-If you are running the sample, you should upload this JSON file to a blob container in Azure Storage.
+If you are running the sample, upload this JSON file to its own blob container in Azure Storage.
 
 1. Identify entities of interest. Because this data set consists of famous American civic speeches, the entities we'll look for will include themes and concepts that are common to this genre.
 
@@ -49,7 +49,7 @@ If you are running the sample, you should upload this JSON file to a blob contai
    + revolution
    + rights
 
-1. Save the following as a JSON file and then upload it to a blob container in Azure Storage. Under blob properties, get the URL to the file.
+1. Save the following as a JSON file and then upload it to a blob container in Azure Storage. Under blob properties, get the URL to the file. In a later step, you'll specify it in the Custom Entity Lookup skill definition.
 
   ```
   [ 
@@ -118,7 +118,7 @@ PUT https://<YOUR-SEARCH-SERVICE>.search.windows.net/datasources/famous-speeeche
 
 ## Create a skillset 
 
-This skillset specifies a combination of Custom Entity Lookup skill and Entity Recognition.
+This skillset specifies a combination of Custom Entity Lookup skill and Entity Recognition. The skill definition includes a pointer to the blob container that stores the custom entity definition.
 
 ```
 PUT https://YOUR-SEARCH-SERVICE>.search.windows.net/skillsets/famous-speeches?api-version=2020-06-30
@@ -205,7 +205,7 @@ PUT https://YOUR-SEARCH-SERVICE>.search.windows.net/skillsets/famous-speeches?ap
 
 ## Create an index
 
-This index includes bob metadata, fields for entity recognition output, and fields for custom entity lookup.
+This index includes blob metadata, fields for entity recognition output, and fields for custom entity lookup.
 
 ```
 PUT https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/famous-speeches?api-version=2020-06-30
@@ -367,13 +367,14 @@ PUT https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/famous-speeches?api
 
 ## Create and run the indexer
 
+The indexer is where you configure execution settings. By default, creating the indexer also runs it on the search service. Output field mappings are used to route enriched content, such as predefined and custom entities, to fields in a search index.
 
 ```
 PUT https://<YOUR-SEARCH-SERVICE>.windows.net/indexers/famous-speeches?api-version=2020-06-30
 {
-  "dataSourceName": "famous-speeeches-2",
-  "skillsetName": "famous-speeches-2",
-  "targetIndexName": "famous-speeches-2",
+  "dataSourceName": "famous-speeches",
+  "skillsetName": "famous-speeches",
+  "targetIndexName": "famous-speeches",
   "disabled": null,
   "schedule": null,
   "parameters": {
@@ -423,13 +424,15 @@ PUT https://<YOUR-SEARCH-SERVICE>.windows.net/indexers/famous-speeches?api-versi
 
 ## Check results
 
-You can switch to the Azure portal and use Search Explorer to query results, or run the following GET verbs to view indexer status, followed by a basic query once indexer execution is finished. Indexer and enrichment processing takes a few minutes to complete.
+You can switch to the Azure portal and use Search Explorer to query results, or run the following GET verbs to view indexer status, followed by a basic query once indexer execution is finished to view the content. Indexer and enrichment processing takes a few minutes to complete.
+
+This command gets indexer status:
 
 ```
 GET https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexers/famous-speeches/status?api-version=2020-06-30
 ```
 
-Using POST to send queries allows you to set query parameters in the body of the requst, simplifying exploration.
+You can query the search index as soon as the first document is processed. Although you can use GET, using POST allows you to set query parameters in the body of the request, which is easier to modify and re-run.
 
 ```
 POST https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/famous-speeches/docs/search?api-version=2020-06-30
@@ -444,7 +447,7 @@ POST https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/famous-speeches/do
 }
 ```
 
-The search engine does not consolidate entity instances within a document. If a document has multiples of the same entity, each occurrence will be listed in the results, along with its match details.
+Note that the custom entity lookup skill does not aggregate or consolidate entity instances within a document. If a document has multiples of the same entity, each occurrence will be listed in the results, along with its match details, which might be more verbose than what you're expecting.
 
 Here are the results for the Gettysburg Address, where the entity "nation" occurs five times in the document.
 
