@@ -23,7 +23,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{   \r\n    \"description\" : \"Demo files to demonstrate cognitive search capabilities.\",  \r\n    \"type\" : \"azureblob\",\r\n    \"credentials\" : { \r\n    \t\"connectionString\": \"{{azure-storage-connection-string}}\"\r\n    },  \r\n\t\"container\" : { \r\n\t\t\"name\" : \"{{blob-container}}\"\r\n\t}\r\n}"
+					"raw": "{   \r\n    \"description\" : \"Demo files to demonstrate cognitive search capabilities.\",  \r\n    \"type\" : \"azureblob\",\r\n    \"credentials\" : { \r\n    \t\"connectionString\": \"{{azure_storage_connection_string}}\"\r\n    },  \r\n\t\"container\" : { \r\n\t\t\"name\" : \"{{container_name}}\"\r\n\t}\r\n}"
 				},
 				"url": {
 					"raw": "https://{{search_service}}.search.windows.net/datasources/{{index_name}}-datasource?api-version=2020-06-30",
@@ -307,7 +307,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://{{search_service}}.search.windows.net/indexes/{{index_name}}/docs?search=*&$filter=organizations/any(organizations: organizations eq 'NASDAQ')&$select=metadata_storage_name,organizations&$count=true&api-version=2020-06-30",
+					"raw": "https://{{search_service}}.search.windows.net/indexes/{{index_name}}/docs?search=*&$filter=organizations/any(organizations: organizations eq 'Microsoft')&$select=metadata_storage_name,organizations&$count=true&api-version=2020-06-30",
 					"protocol": "https",
 					"host": [
 						"{{search_service}}",
