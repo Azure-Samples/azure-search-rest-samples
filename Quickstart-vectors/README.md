@@ -2,13 +2,13 @@
 page_type: sample
 languages:
   - rest
-name: "Quickstart in REST - Postman"
+name: "Vector quickstart in REST - Postman"
 description: |
-  Learn how to create, load, and query an Azure Cognitive Search index using Postman and REST APIs.
+  Learn how to create, load, and query vectors in Azure Cognitive Search using Postman and REST APIs.
 products:
   - azure
   - azure-cognitive-search
-urlFragment: rest-api-quickstart
+urlFragment: rest-api-vector-quickstart
 ---
 
 # Quickstart for vectors in Azure Cognitive Search using REST APIs and Postman
