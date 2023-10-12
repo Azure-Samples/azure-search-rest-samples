@@ -23,6 +23,8 @@ This collection is featured in the [Quickstart: Vector search indexing and queri
 
 - [Postman Desktop app](https://www.getpostman.com/)
 - [Azure Cognitive Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
+- (optional) [Semantic ranking](https://learn.microsoft.com/azure/search/semantic-how-to-enable-disable) if you want to run the hybrid query that invokes semantic ranking
+- (optional) [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource) with a deployment of **text-embedding-ada-002** if you want to generate embeddings (the sample comes with vectors, so prerequisite is only needed if you want different vectors.)
 
 ## Setup
 
@@ -31,7 +33,7 @@ This collection is featured in the [Quickstart: Vector search indexing and queri
 
 ### Running quickstart
 
-1. Start Postman and import AzureSearchQuickstartVectors.postman_collection.json
+1. Start Postman and import `AzureSearchQuickstartVectors 2023-10-01-Preview.postman_collection.json`
 1. Select the collection, open the actions menu, select **Edit**.
 1. Enter the name of your search service and an admin API key, which you can [obtain from the Azure portal](https://learn.microsoft.com/azure/search/search-get-started-vectors#copy-a-key-and-url).
 1. Select **Save**.

@@ -10,6 +10,7 @@ This repository provides Postman collections used in REST API walkthroughs:
 + projections collection
 + query-examples collection
 + quickstart collection
++ quickstart-vectors collection
 + semantic-search collection
 + skill-examples collection
 + tutorial collection
