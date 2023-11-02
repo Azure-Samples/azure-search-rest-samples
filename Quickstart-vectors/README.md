@@ -33,7 +33,7 @@ This collection is featured in the [Quickstart: Vector search indexing and queri
 
 ### Running quickstart
 
-1. Start Postman and import `AzureSearchQuickstartVectors 2023-10-01-Preview.postman_collection.json`
+1. Start Postman and import `AzureSearchQuickstartVectors 2023-11-01.postman_collection.json`
 1. Select the collection, open the actions menu, select **Edit**.
 1. Enter the name of your search service and an admin API key, which you can [obtain from the Azure portal](https://learn.microsoft.com/azure/search/search-get-started-vectors#copy-a-key-and-url).
 1. Select **Save**.
