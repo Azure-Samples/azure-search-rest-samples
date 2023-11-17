@@ -1,4 +1,4 @@
-# Postman collections for Azure Cognitive Search
+# Postman collections for Azure AI Search
 
 This repository provides Postman collections used in REST API walkthroughs:
 

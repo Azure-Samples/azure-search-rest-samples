@@ -11,7 +11,7 @@ products:
 urlFragment: rest-api-skill-example
 ---
 
-# End-to-end skill examples for Azure Cognitive Search using REST APIs and Postman
+# End-to-end skill examples for Azure AI Search using REST APIs and Postman
 
 ![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
@@ -41,7 +41,7 @@ After you import each collection into Postman, edit the collection variables to 
 ## Prerequisites
 
 - [Postman Desktop app](https://www.getpostman.com/)
-- [Azure Cognitive Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
+- [Azure AI Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
 - [Azure Blob Storage](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-portal)
 - [Sample data (uploaded to blob containers in Blob Storage)](https://github.com/Azure-Samples/azure-search-sample-data)
 
@@ -69,4 +69,4 @@ Once you have updated the variables, you can run any request in the collection.
 
 ## Next steps
 
-You can learn more about Azure Cognitive Search on the [official documentation site](https://docs.microsoft.com/azure/search).
+You can learn more about Azure AI Search on the [official documentation site](https://docs.microsoft.com/azure/search).

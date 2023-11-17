@@ -4,14 +4,14 @@ languages:
   - rest
 name: Custom Analyzer Tutorial - Postman
 description: |
-  Learn how to create a custom analyzer in Azure Cognitive Search to intuitively search across phone numbers or other content.
+  Learn how to create a custom analyzer in Azure AI Search to intuitively search across phone numbers or other content.
 products:
   - azure
   - azure-cognitive-search
 urlFragment: custom-analyzer-tutorial
 ---
 
-# Create a custom analyzer in Azure Cognitive Search using REST APIs and Postman
+# Create a custom analyzer in Azure AI Search using REST APIs and Postman
 
 ![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
@@ -31,7 +31,7 @@ This collection is featured in the [Tutorial: Create a custom analyzer using RES
 ## Prerequisites
 
 - [Postman Desktop app](https://www.getpostman.com/)
-- [Azure Cognitive Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
+- [Azure AI Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
 
 ## Setup
 
@@ -47,4 +47,4 @@ This collection is featured in the [Tutorial: Create a custom analyzer using RES
 
 ## Next steps
 
-You can learn more about Azure Cognitive Search on the [official documentation site](https://docs.microsoft.com/azure/search).
+You can learn more about Azure AI Search on the [official documentation site](https://docs.microsoft.com/azure/search).
