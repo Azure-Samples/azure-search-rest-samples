@@ -4,22 +4,22 @@ languages:
   - rest
 name: Skillset Tutorial in REST - Postman
 description: |
-  Create an AI enrichment pipeline in Azure Cognitive Search to extract information and structure from Azure blobs.
+  Create an AI enrichment pipeline in Azure AI Search to extract information and structure from Azure blobs.
 products:
   - azure
   - azure-cognitive-search
 urlFragment: rest-api-tutorial
 ---
 
-# Create a skillset in Azure Cognitive Search using REST APIs and Postman
+# Create a skillset in Azure AI Search using REST APIs and Postman
 
 ![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
-Demonstrates using Postman and the Azure Cognitive Search REST APIs to send requests that create a data source, a skillset, index, and indexer. Requests are provided in the V2.1 collection format, which you can import and then modify for connections to your search service and Azure Storage.
+Demonstrates using Postman and the Azure AI Search REST APIs to send requests that create a data source, a skillset, index, and indexer. Requests are provided in the V2.1 collection format, which you can import and then modify for connections to your search service and Azure Storage.
 
 Skillset steps include OCR, language detection, entity recognition, and key phrase extraction. The sample demo files consist of multiple content types ranging from image-only, text-only, and rich application files with embedded images and text. The end result is searchable index that you can query for new and enriched content.
 
-This collection is featured in the [Tutorial: Use REST and AI to generate searchable content from Azure blobs](https://docs.microsoft.com/azure/search/cognitive-search-tutorial-blob). If you have trouble with the steps in this readme, check the tutorial for more detailed instructions.
+This collection is featured in the [Tutorial: Use REST and AI to generate searchable content from Azure blobs](https://docs.microsoft.com/azure/search/AI-search-tutorial-blob). If you have trouble with the steps in this readme, check the tutorial for more detailed instructions.
 
 ## Contents
 
@@ -34,7 +34,7 @@ This collection is featured in the [Tutorial: Use REST and AI to generate search
 ## Prerequisites
 
 - [Postman Desktop app](https://www.getpostman.com/)
-- [Azure Cognitive Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
+- [Azure AI Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
 - [Azure Storage](https://docs.microsoft.com/azure/storage/common/storage-account-create)
 - [Sample data files](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/ai-enrichment-mixed-media)
 
@@ -58,4 +58,4 @@ This collection is featured in the [Tutorial: Use REST and AI to generate search
 
 ## Next steps
 
-You can learn more about Azure Cognitive Search on the [official documentation site](https://docs.microsoft.com/azure/search).
+You can learn more about Azure AI Search on the [official documentation site](https://docs.microsoft.com/azure/search).

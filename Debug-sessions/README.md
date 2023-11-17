@@ -2,20 +2,20 @@
 page_type: sample
 languages:
   - rest
-name: Debug skillsets in Azure Cognitive Search
+name: Debug skillsets in Azure AI Search
 description: |
-  Learn how the Debug Sessions visual editor can help you fix enrichment pipeline issues in Azure Cognitive Search. This collection creates a skillset with invalid fields and missing data, easily fixed in a debug session.
+  Learn how the Debug Sessions visual editor can help you fix enrichment pipeline issues in Azure AI Search. This collection creates a skillset with invalid fields and missing data, easily fixed in a debug session.
 products:
   - azure
   - azure-cognitive-search
 urlFragment: rest-api-debug-sessions
 ---
 
-# Fix skillset issues using Debug Sessions in Azure Cognitive Search 
+# Fix skillset issues using Debug Sessions in Azure AI Search 
 
 ![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
-This [Postman](https://www.getpostman.com/) collection uses the Azure Cognitive Search REST APIs to create an enrichment pipeline with warnings you can fix in the Debug Sessions tool in Azure portal. Requests are provided in the V2 collection format, which you can import and then modify for connections to your search service.
+This [Postman](https://www.getpostman.com/) collection uses the Azure AI Search REST APIs to create an enrichment pipeline with warnings you can fix in the Debug Sessions tool in Azure portal. Requests are provided in the V2 collection format, which you can import and then modify for connections to your search service.
 
 This readme also explains how to set up the clinical trials data used in this collection.
 
@@ -31,7 +31,7 @@ This readme also explains how to set up the clinical trials data used in this co
 ## Prerequisites
 
 - [Postman Desktop app](https://www.getpostman.com/)
-- [Azure Cognitive Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
+- [Azure AI Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
 - [Azure Storage account](https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal)
 - [Clinical Trials Data (19 documents)](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/clinical-trials-pdf-19)
 
@@ -51,7 +51,7 @@ Collect the connection information you'll need to provide on the requests. In a 
 
 1. Paste the connection string into Notepad and remove the last segment: `EndpointSuffix=core.windows.net`. When deleting part of the string, be careful to preserve the trailing semi-colon after the key.
 
-1. Back in the portal, go to the Azure Cognitive Search **Overview** page of your search service.
+1. Back in the portal, go to the Azure AI Search **Overview** page of your search service.
 
 1. Get the name of the service (for example, given an endpoint of `https://demo-svc.search.windows.net`, the service name is `demo-svc`).  Paste the search service name into Notepad.
 
@@ -78,7 +78,7 @@ Collect the connection information you'll need to provide on the requests. In a 
 
 After you have finished adding the variable, you can run each request in turn, with no further modification. 
 
-1. Start with **CreateDataSource**, click **Send** to submit the request to Azure Cognitive Search. This request creates a data source object that specifies the connection to the Blob container.
+1. Start with **CreateDataSource**, click **Send** to submit the request to Azure AI Search. This request creates a data source object that specifies the connection to the Blob container.
 
 1. Continue on to **CreateSkillset**. This request creates, but does not run, a skillset definition on the search service.
 
@@ -90,4 +90,4 @@ You have now created all of the objects necessary for using Debug sessions. This
 
 ## Next steps
 
-By design, the indexer produces warnings and omits data. To learn how to find and fix these issues in Debug sessions, go to [Tutorial: Diagnose, repair, and commit changes to your skillset](https://docs.microsoft.com/azure/search/cognitive-search-tutorial-debug-sessions) for the next steps.
+By design, the indexer produces warnings and omits data. To learn how to find and fix these issues in Debug sessions, go to [Tutorial: Diagnose, repair, and commit changes to your skillset](https://docs.microsoft.com/azure/search/AI-search-tutorial-debug-sessions) for the next steps.

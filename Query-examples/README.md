@@ -4,18 +4,18 @@ languages:
   - rest
 name: "Query Examples - Postman"
 description: |
-  Try out Azure Cognitive Search queries - autocomplete, suggestions, simple queries, fuzzy search, proximity search, wildcard search, RegEx queries, and more.
+  Try out Azure AI Search queries - autocomplete, suggestions, simple queries, fuzzy search, proximity search, wildcard search, RegEx queries, and more.
 products:
   - azure
   - azure-cognitive-search
 urlFragment: rest-api-query-examples
 ---
 
-# Query examples for Azure Cognitive Search using REST APIs and Postman
+# Query examples for Azure AI Search using REST APIs and Postman
 
 ![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
-Demonstrates using Postman and the Azure Cognitive Search REST APIs to query an index. The collections in this repository are intended for import into Postman, an API client useful for making REST calls against a service.
+Demonstrates using Postman and the Azure AI Search REST APIs to query an index. The collections in this repository are intended for import into Postman, an API client useful for making REST calls against a service.
 
 ## Contents
 
@@ -33,7 +33,7 @@ Demonstrates using Postman and the Azure Cognitive Search REST APIs to query an 
 ## Prerequisites
 
 - [Postman Desktop app](https://www.getpostman.com/)
-- [Azure Cognitive Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
+- [Azure AI Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
 
 ## Setup
 
@@ -59,4 +59,4 @@ Once you have updated the variables, you can run any request in the collection.
 
 ## Next steps
 
-You can learn more about Azure Cognitive Search on the [official documentation site](https://docs.microsoft.com/azure/search).
+You can learn more about Azure AI Search on the [official documentation site](https://docs.microsoft.com/azure/search).

@@ -1,8 +1,8 @@
-# Custom Entity Lookup skill in Azure Cognitive Search
+# Custom Entity Lookup skill in Azure AI Search
 
-Applies to: AI enrichment capabilities of Azure Cognitive Search
+Applies to: AI enrichment capabilities of Azure AI Search
 
-Azure Cognitive Search provides AI-enriched indexing that invokes skills for analyzing, transforming, and enriching raw content to make it full-text searchable in a search index. This sample demonstrates one of the entity-related built-in skills from Microsoft, [Custom Entity Lookup](https://docs.microsoft.com/azure/search/cognitive-search-skill-custom-entity-lookup).
+Azure AI Search provides AI-enriched indexing that invokes skills for analyzing, transforming, and enriching raw content to make it full-text searchable in a search index. This sample demonstrates one of the entity-related built-in skills from Microsoft, [Custom Entity Lookup](https://docs.microsoft.com/azure/search/cognitive-search-skill-custom-entity-lookup).
 
 In contrast with [Entity Recognition](https://docs.microsoft.com/azure/search/cognitive-search-skill-entity-recognition-v3), which finds whatever the model tells it find, [Custom Entity Lookup](https://docs.microsoft.com/azure/search/cognitive-search-skill-custom-entity-lookup) finds whatever YOU tell it to find. You can provide the skill with a simple list of entities, or you can further define those entities by type and subtype. You can also assign aliases for variations of an entity name. In the context of a search solution, custom entities could be useful for filters, facets, and sorting.
 
@@ -17,18 +17,18 @@ In this sample, you'll learn the following techniques:
 
 The sample data used for this example consists of famous speeches in PDF file format, uploaded to a blob container in Azure Storage. These files can be found at [Azure-Samples/azure-search-sample-data/famous-speeches-pdf](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/famous-speeches-pdf). You can upload these files to a blob container in Azure Storage and then reference the container and connection string in your indexer data source.
 
-The code is a Postman collection that calls the Cognitive Search REST APIs to create and run the objects. You can import this collection and fill in its variables to create these objects on your search service.
+The code is a Postman collection that calls the AI Search REST APIs to create and run the objects. You can import this collection and fill in its variables to create these objects on your search service.
 
 The custom entity definition is an external JSON file with entities that match the sample data. This file is named "custom-entities-famous-speeches.json" and is located in the same folder as this readme. You can upload this file to Azure Storage and then reference its fully-qualified path name in your skillset.
 
 ## Prerequisites
 
-+ Azure Cognitive Search (free or billable version)
++ Azure AI Search (free or billable version)
 + Azure Storage 
 + Sample data and sample custom entity definition, both uploaded to blob containers in Azure Storage
 + Postman desktop app
 
-To authenticate to your Azure services, you'll need the API key for Azure Cognitive Search and a full access connection string for Azure Storage. A full access connection string incudes an account key used for accessing your content. If you're unfamiliar with setting up REST calls in Postman, see [Quickstart: Create an Azure Cognitive Search index using REST APIs](https://docs.microsoft.com/azure/search/search-get-started-rest) for help.
+To authenticate to your Azure services, you'll need the API key for Azure AI Search and a full access connection string for Azure Storage. A full access connection string incudes an account key used for accessing your content. If you're unfamiliar with setting up REST calls in Postman, see [Quickstart: Create an Azure AI Search index using REST APIs](https://docs.microsoft.com/azure/search/search-get-started-rest) for help.
 
 ## Create a custom entity definition
 
