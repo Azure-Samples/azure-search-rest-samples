@@ -215,7 +215,7 @@ POST  {{baseUrl}}/indexes?api-version=2023-11-01  HTTP/1.1
     }
 }
 
-### Generate embeddings using Azure OpenAI
+### OPTIONAL: Generate embeddings using Azure OpenAI 
 @openai-endpoint = PUT-YOUR-AZURE-OPENAI-ENDPOINT-HERE
 @openai-deployment-name = text-embedding-ada-002
 @openai-api-version = 2023-05-15
@@ -577,3 +577,8 @@ POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-1
         }
     ]
 }
+
+### Delete an index
+DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2023-11-01 HTTP/1.1
+    Content-Type: application/json
+    api-key: {{apiKey}}

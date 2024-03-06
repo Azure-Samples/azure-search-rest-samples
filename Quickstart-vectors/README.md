@@ -27,7 +27,7 @@ These requests are explained in the [Quickstart: Vector search with REST](https:
 
 + (optional) [Semantic ranking](https://learn.microsoft.com/azure/search/semantic-how-to-enable-disable) if you want to run the hybrid query that invokes semantic ranking.
 
-+ (optional) [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource) with a deployment of **text-embedding-ada-002** if you want to generate embeddings (the sample comes with vectors, so prerequisite is only needed if you want different vectors.)
++ (optional) [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource) with a deployment of **text-embedding-ada-002** if you want to generate embeddings (the sample comes with vectors, so this resource is only needed if you want different vectors).
 
 ## Set up the sample
 
