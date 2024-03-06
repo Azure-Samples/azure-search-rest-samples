@@ -2,41 +2,43 @@
 page_type: sample
 languages:
   - rest
-name: "Vector quickstart in REST - Postman"
+name: "Vector quickstart in REST"
 description: |
-  Learn how to create, load, and query vectors in Azure AI Search using Postman and REST APIs.
+  Learn how to create, load, and query vectors in Azure AI Search using REST APIs.
 products:
   - azure
   - azure-cognitive-search
 urlFragment: rest-api-vector-quickstart
 ---
 
-# Quickstart for vectors in Azure AI Search using REST APIs and Postman
+# Quickstart for vectors in Azure AI Search using REST
 
 ![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
-Demonstrates using Postman and the Azure AI Search REST APIs to send vector requests: create an index with vector fields, load it with documents that contain embeddings, and execute a few vector queries. Requests are provided in the V2 collection format, which you can import and then modify for connections to your search service.
+Demonstrates the Azure AI Search REST APIs to send requests: create an index, load it with vector, and execute a few vectorqueries. Requests are provided in an `az-search-quickstart-vectors.rest` file, which you can open and then modify for connections to your search service.
 
-This collection is featured in the [Quickstart: Vector search indexing and queries](https://docs.microsoft.com/azure/search/search-get-started-vectors). When you import the collection, modify the headers and URL to use your Azure resources. The index is modeled on a subset of the Hotels dataset, reduced for readability and comprehension. Index definition and documents are included in the code.
+These requests are explained in the [Quickstart: Vector search with REST](https://learn.microsoft.com/azure/search/search-get-started-vectors) article. 
 
 ## Prerequisites
 
-- [Postman Desktop app](https://www.getpostman.com/)
-- [Azure AI Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
-- (optional) [Semantic ranking](https://learn.microsoft.com/azure/search/semantic-how-to-enable-disable) if you want to run the hybrid query that invokes semantic ranking
-- (optional) [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource) with a deployment of **text-embedding-ada-002** if you want to generate embeddings (the sample comes with vectors, so prerequisite is only needed if you want different vectors.)
++ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-## Setup
++ [Azure AI Search](search-what-is-azure-search.md). [Create](search-create-service-portal.md) or [find an existing Azure AI Search resource](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription. You can use a free service for this quickstart. 
+
++ (optional) [Semantic ranking](https://learn.microsoft.com/azure/search/semantic-how-to-enable-disable) if you want to run the hybrid query that invokes semantic ranking.
+
++ (optional) [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource) with a deployment of **text-embedding-ada-002** if you want to generate embeddings (the sample comes with vectors, so prerequisite is only needed if you want different vectors.)
+
+## Set up the sample
 
 1. Clone or download this sample repository.
 1. Extract contents if the download is a zip file. Make sure the files are read-write.
 
-### Running quickstart
+## Run the code
 
-1. Start Postman and import `AzureSearchQuickstartVectors 2023-11-01.postman_collection.json`
-1. Select the collection, open the actions menu, select **Edit**.
-1. Enter the name of your search service and an admin API key, which you can [obtain from the Azure portal](https://learn.microsoft.com/azure/search/search-get-started-vectors#copy-a-key-and-url).
-1. Select **Save**.
+1. Start Visual Studio Code and open the `az-search-quickstart.rest` file.
+1. Provide a valid search service name and API key in the variables.
+1. **Save** the file.
 1. Send each request to the service.
 
 ## Next steps
