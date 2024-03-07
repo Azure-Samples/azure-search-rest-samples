@@ -58,4 +58,4 @@ Gather connection information used on the requests. You can find this informatio
 
 1. Send each request to create a data source, indexer, skillset, and index used in this example.
 
-1. Open Azure portal, find your search service, select the skillset, and start a debug session. For next steps, continue with [Tutorial: Diagnose, repair, and commit changes to your skillset](https://docs.microsoft.com/azure/search/AI-search-tutorial-debug-sessions).
+1. Open Azure portal, find your search service, select the skillset, and start a debug session. For next steps, continue with [Tutorial:Debug a skillset using Debug Sessions](https://learn.microsoft.com/azure/search/cognitive-search-tutorial-debug-sessions).
