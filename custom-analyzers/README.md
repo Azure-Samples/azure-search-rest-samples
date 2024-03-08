@@ -27,7 +27,7 @@ This sample is featured in the [Tutorial: Create a custom analyzer using REST AP
 
 Gather connection information used on the requests. You can find this information in the Azure portal. Save it in Notepad or another temporary location.
 
-1. In Azure portal, get the search service ndpoint (for example, `https://demo-svc.search.windows.net`). 
+1. In Azure portal, get the search service endpoint (for example, `https://demo-svc.search.windows.net`). 
 
 1. Next, select **Keys** on the left and copy one of admin keys.
 
