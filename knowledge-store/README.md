@@ -2,7 +2,7 @@
 page_type: sample
 languages:
   - rest
-name: Create a Knowledge Store using REST - Postman
+name: Create a Knowledge Store using REST
 description: |
   A knowledge store in Azure AI Search contains AI-generated content created by image and text analyses, for consumption by other processes or apps.
 products:
@@ -11,54 +11,58 @@ products:
 urlFragment: rest-api-knowledge-store
 ---
 
-# Create a Knowledge Store in Azure AI Search using REST APIs and Postman
+# Create a knowledge store in Azure AI Search using REST APIs
 
-![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
+This sample applies to [knowledge stores](https://learn.microsoft.com/azure/search/knowledge-store-concept-intro) in Azure AI Search. It uses the Azure AI Search REST APIs to create an indexer, data source, index, and skillset that applies AI processing. It uses Azure Storage for durable storage of a knowledge store.
 
-This [Postman](https://www.getpostman.com/) collection uses the Azure AI Search REST APIs to create the objects associated with a knowledge store: a data source, a skillset, an index, and an indexer. Requests are provided in the V2.1 collection format, which you can import and then modify for connections to your search service.
-
-Sample data for this collection can be obtained from the [HotelReviews-Free.csv](https://knowledgestoredemo.blob.core.windows.net/hotel-reviews/HotelReviews_Free.csv?st=2019-07-29T17%3A51%3A30Z&se=2021-07-30T17%3A51%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=LnWLXqFkPNeuuMgnohiz3jfW4ijePeT5m2SiQDdwDaQ%3D) download. This file must be uploaded to Azure Blob Storage before you can send requests that create the index or knowledge store.
-
-To use this collection in tandem with a tutorial, see [Create a knowledge store using REST](https://docs.microsoft.com/azure/search/knowledge-store-create-rest).
-
-## Contents
-
-| File/folder | Description |
-|-------------|-------------|
-| `KnowledgeStore.postman_collection.json`       | Import into Postman |
-| `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
-| `README.md` | This README file. |
-| `LICENSE.md`   | The license for the sample. |
-
+This example is featured in the [Create a knowledge store using REST](hhttps://learn.microsoft.com/azure/search/knowledge-store-create-rest).
+ 
 ## Prerequisites
 
-- [Postman Desktop app](https://www.getpostman.com/)
-- [Azure AI Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
-- [Azure Blob Storage](https://docs.microsoft.com/azure/storage/blobs/)
++ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-## Setup
++ [Azure AI Search](https://learn.microsoft.com/azure/search/). [Create](https://learn.microsoft.com//azure/search/search-create-service-portal) or [find an existing Azure AI Search resource](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription.
+
++ [Azure Storage account](https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal)
+
++ [HotelReviews-Free.csv](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotelreviews) 
+
+## Set up the data
+
+1. Download the sample data files.
+
+1. In Azure portal, in Azure Storage, [create a Blob container](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-portal) and upload the sample data files.
+
+1. Make a note of the blob container name.
+
+## Get connection information
+
+Gather connection information used on the requests. You can find this information in the Azure portal. Save it in Notepad or another temporary location.
+
+1. In Azure Storage, select **Access keys** on the left. Copy one of the connection strings. It should be in this format: `DefaultEndpointsProtocol=https;AccountName=<YOUR-STORAGE-ACCOUNT>;AccountKey=<YOUR-ACCESS-KEY>;`
+
+1. In Azure AI Search, get the endpoint (for example, `https://demo-svc.search.windows.net`). Next, select **Keys** on the left and copy one of admin keys.
+
+## Set up variables
 
 1. Clone or download this sample repository.
-1. Extract contents if the download is a zip file. Make sure the files are read-write.
 
-## Run the collection
+1. Open `knowledge-store.rest` in Visual Studio Code.
 
-This section is a high-level recap of the steps needed to send the requests and assumes familiarity with Azure Storage and AI Search indexers. For a more detailed guidance, see  [Create a knowledge store using REST](https://review.docs.microsoft.com/azure/search/knowledge-store-create-rest) instead.
+1. Paste in the variables you collected earlier:
 
-1. Upload [HotelReviews-Free.csv](https://knowledgestoredemo.blob.core.windows.net/hotel-reviews/HotelReviews_Free.csv) into a blob container in Azure Storage. 
-1. Start Postman and import `KnowledgeStore.postman_collection.json`
-1. In Postman, next to the collection name, select the ellipses menu, select **Edit**, and then select **Variables**.
-1. Set `search-service-admin-key` to an `admin-key` in the search service's **Keys** page in the portal. 
-1. Set `search-service-name` and `storage-account-name` to the names of your search service and storage account.
-1. Set `storage-connection-string` to one of the connection strings listed in the Storage Account's **Access Keys** page in the portal.
+   + In `@baseUrl`, enter the search endpoint.
+   + In `@apiKey`, enter the admin API key of your search service.
+   + In `@storageConnectionString`, enter the full access connection string for your Azure Storage account.
+   + In `@blobContainer`, enter the name of the blob container that stores the clinical trials documents.
 
-After you complete the above steps, the requests are ready to send.
+## Run the code
 
-You can check the body of each request to review the object definitions. The skillset detects language, translates text (French to English, where applicable), scores sentiment, and extracts key phrases. 
+Send each request to create a data source, indexer, skillset, and index used in this example.
 
 Sentiment detection works best if inputs are provided in chunks or "pages". For this reason, the skillset includes a Text Split skill to parse each document into a "page" prior to enriching it.
 
-Knowledge store specifications are found in the skillset definition. The knowledge store created by this collection consists of six tables to demonstrate various ways of capturing and projecting the original and enriched output. Projections determine which tables are created. The source can be either output from a Shaper skill, or inline shapes defined within the projection. Both approaches are demonstrated in this collection.
+Knowledge store specifications are found in the skillset definition. The knowledge store consists of six tables to demonstrate various ways of capturing and projecting the original and enriched output. Projections determine which tables are created. The source can be either output from a Shaper skill, or inline shapes defined within the projection. Both approaches are demonstrated in this example.
 
 ## Check results
 
@@ -74,7 +78,3 @@ For verification, use Search explorer to query the index and Storage Explorer to
 - hotelreviews6InlineProjectionKeyPhrases (alternative to the third table, using inline projections instead of Shaper)
 
 Each table is generated with the IDs necessary for cross-linking the tables in queries, for table  projections that are in the same projection group.
-
-## Next steps
-
-You can learn more about Azure AI Search on the [official documentation site](https://docs.microsoft.com/azure/search).
