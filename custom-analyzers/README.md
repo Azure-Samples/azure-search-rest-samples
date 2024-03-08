@@ -2,7 +2,7 @@
 page_type: sample
 languages:
   - rest
-name: Custom Analyzer Tutorial - Postman
+name: Custom Analyzer Tutorial
 description: |
   Learn how to create a custom analyzer in Azure AI Search to intuitively search across phone numbers or other content.
 products:
@@ -11,40 +11,39 @@ products:
 urlFragment: custom-analyzer-tutorial
 ---
 
-# Create a custom analyzer in Azure AI Search using REST APIs and Postman
+# Create a custom analyzer in Azure AI Search using REST APIs
 
-![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
+This sample creates a search index and builds a custom analyzer designed for handling phone numbers. Phone numbers are a good candidate for custom analyzers due to the multiple formats and special characters that exist for this type of content. The HTTP requests step through the process of testing sample searches, testing lexical analysis, and building an analyzer to intuitively search phone numbers.
 
-This Postman collection creates a basic search index and builds an analyzer designed for searching phone numbers. The collection and corresponding tutorial walk through the process of testing sample searches, testing how those searches are analyzed, and building an analyzer to intuitively search phone numbers.
-
-This collection is featured in the [Tutorial: Create a custom analyzer using REST APIs](https://docs.microsoft.com/azure/search/tutorial-create-custom-analyzer). When you import the collection, modify the headers and URL to use your service name and API key.
-
-## Contents
-
-| File/folder | Description |
-|-------------|-------------|
-| `custom-analyzer-tutorial.postman_collection.json`       | Import into Postman |
-| `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
-| `README.md` | This README file. |
-| `LICENSE`   | The license for the sample. |
+This sample is featured in the [Tutorial: Create a custom analyzer using REST APIs](https://learn.microsoft.com/azure/search/tutorial-create-custom-analyzer).
 
 ## Prerequisites
 
-- [Postman Desktop app](https://www.getpostman.com/)
-- [Azure AI Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
++ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-## Setup
++ [Azure AI Search](https://learn.microsoft.com/azure/search/). [Create](https://learn.microsoft.com//azure/search/search-create-service-portal) or [find an existing Azure AI Search resource](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription.
+
+## Get connection information
+
+Gather connection information used on the requests. You can find this information in the Azure portal. Save it in Notepad or another temporary location.
+
+1. In Azure portal, get the search service endpoint (for example, `https://demo-svc.search.windows.net`). 
+
+1. Next, select **Keys** on the left and copy one of admin keys.
+
+## Set up variables
 
 1. Clone or download this sample repository.
-1. Extract contents if the download is a zip file. Make sure the files are read-write.
 
-### Running quickstart
+1. Open `custom-analyzers.rest` in Visual Studio Code. If you need help with Visual Studio Code setup, see [Quickstart: Text search using REST](https://learn.microsoft.com/azure/search/search-get-started-rest).
 
-1. Start Postman and import `custom-analyzer-tutorial.postman_collection.json`.
-1. For each request, update the Header to use the admin api-key of your service, which you can obtain from the portal.
-1. Next, update the URL of each request to use the name of your search service.
-1. Send each request to the service.
+1. Paste in the variables you collected earlier:
 
-## Next steps
+   + In `@baseUrl`, enter the search endpoint.
+   + In `@apiKey`, enter the admin API key of your search service.
 
-You can learn more about Azure AI Search on the [official documentation site](https://docs.microsoft.com/azure/search).
+## Run the code
+
+1. For each request, select **Send request**. 
+
+1. For an explanation of the code, see [Tutorial: Create a custom analyzer using REST APIs](https://learn.microsoft.com/azure/search/tutorial-create-custom-analyzer).

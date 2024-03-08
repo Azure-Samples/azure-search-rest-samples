@@ -45,7 +45,7 @@ Gather connection information used on the requests. You can find this informatio
 
 1. Clone or download this sample repository.
 
-1. Open `debug-sessions-tutorial.rest` in Visual Studio Code.
+1. Open `debug-sessions-tutorial.rest` in Visual Studio Code. If you need help with Visual Studio Code setup, see [Quickstart: Text search using REST](https://learn.microsoft.com/azure/search/search-get-started-rest).
 
 1. Paste in the variables you collected earlier:
 
@@ -58,4 +58,6 @@ Gather connection information used on the requests. You can find this informatio
 
 1. Send each request to create a data source, indexer, skillset, and index used in this example.
 
-1. Open Azure portal, find your search service, select the skillset, and start a debug session. For next steps, continue with [Tutorial: Debug a skillset using Debug Sessions](https://learn.microsoft.com/azure/search/cognitive-search-tutorial-debug-sessions).
+1. Open Azure portal, find your search service, select the skillset, and start a debug session. 
+
+1. For the remaining steps, continue with [Tutorial: Debug a skillset using Debug Sessions](https://learn.microsoft.com/azure/search/cognitive-search-tutorial-debug-sessions).
