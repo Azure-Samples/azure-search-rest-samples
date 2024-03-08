@@ -1,20 +1,16 @@
-# Postman collections for Azure AI Search
+# REST examples for Azure AI Search
 
-This repository provides Postman collections used in REST API walkthroughs:
+This repository provides REST API examples:
 
-+ custom-analyzers collection
-+ debug-sessions collection
-+ index-encrypted-blobs collection
-+ indexer-mysql
-+ knowledge-store collection
-+ projections collection
-+ query-examples collection
-+ quickstart collection
-+ quickstart-vectors collection
-+ semantic-search collection
-+ skill-examples collection
-+ tutorial collection
++ custom-analyzers
++ debug-sessions
++ index-encrypted-blobs
++ knowledge-store
++ projections
++ quickstart
++ quickstart-vectors
++ semantic-ranker
++ skill-examples
++ skillset-tutorial
 
-All collections are saved in JSON, in the V2 collection format.
-
-To use these collections, import them into **Postman** and then update the collection variables to use your own search service and admin API key.
+To use these samples, open a `.rest` file in Visual Studio Code with the REST client, and thenn update the  variables to use your own search service and admin API key.
