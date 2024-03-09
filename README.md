@@ -9,8 +9,7 @@ This repository provides REST API examples:
 + projections
 + quickstart
 + quickstart-vectors
-+ semantic-ranker
 + skill-examples
 + skillset-tutorial
 
-To use these samples, open a `.rest` file in Visual Studio Code with the REST client, and thenn update the  variables to use your own search service and admin API key.
+To use these samples, open a `.rest` file in Visual Studio Code with the REST client, and then update the  variables to use your own search service and admin API key.
