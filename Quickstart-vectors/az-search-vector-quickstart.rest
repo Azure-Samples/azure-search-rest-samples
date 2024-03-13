@@ -1,5 +1,5 @@
-@baseUrl = https://PUT-YOUR-SEARCH-SERVICE-NAME-HERE.search.windows.net
-@apiKey = PUT-YOUR-ADMIN-API-KEY-HERE
+@baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
+@apiKey = PUT-YOUR-SEARCH-SERVICE-ADMIN-API-KEY-HERE
 
 ### List existing indexes by name
 GET  {{baseUrl}}/indexes?api-version=2023-11-01&$select=name  HTTP/1.1
