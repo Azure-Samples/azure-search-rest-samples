@@ -13,7 +13,7 @@ urlFragment: rest-json-indexer-tutorial
 
 # Create an indexer in Azure AI Search that indexes nested JSON using REST APIs
 
-This sample uses the Azure AI Search REST APIs to create an indexer, data source, and index for nested JSON within a JSON array. This example demonstrate the `jsonArray` parsing model and `documentRoot` parameters. 
+This sample uses the Azure AI Search REST APIs to create an indexer, data source, and index for nested JSON within a JSON array. This example demonstrates the `jsonArray` parsing model and `documentRoot` parameters. 
 
 This sample is featured in the [Tutorial: Index JSON blobs from Azure Storage using REST](https://docs.microsoft.com/azure/search/AI-search-tutorial-blob). If you have trouble with the steps in this readme, check the tutorial for more detailed instructions.
 
