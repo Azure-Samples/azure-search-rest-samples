@@ -13,8 +13,6 @@ urlFragment: rest-api-quickstart
 
 # Quickstart for Azure AI Search using REST APIs
 
-![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
-
 Demonstrates the Azure AI Search REST APIs to send requests: create an index, load it with documents, and execute a few queries. Requests are provided in an `az-search-quickstart.rest` file, which you can open and then modify for connections to your search service.
 
 These requests are explained in the [Quickstart: Text search with REST](https://learn.microsoft.com/azure/search/search-get-started-rest) article. 
