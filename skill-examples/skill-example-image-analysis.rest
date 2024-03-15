@@ -1,0 +1,268 @@
+@baseUrl = https://free-demo-search-svc.search.windows.net
+@apiKey = 7LTgGbj1wNmvCQuDZNuUqvujgTD0xakFHrwcPvB1C6AzSeD0xDDs
+@storageConnectionString = DefaultEndpointsProtocol=https;AccountName=heidisteenstorage;AccountKey=KmoVKbsI1ZWVNBINFmuxjXB8sx+g2QmofDaVBHvGIGo0oE8LR+tzM6MKxupobGiZT2kwSQaJlz6Y+AStuZOJ0w==;EndpointSuffix=core.windows.net
+@blobContainer = unsplash-landmarks
+
+### Create a data source
+POST {{baseUrl}}/datasources?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name" : "unsplash-landmarks-ds",
+        "description" : "Ten photos (JPEGS) of famous landmarks from unsplash.com",
+        "type" : "azureblob",
+        "credentials" :
+            { "connectionString" :
+                "{{storageConnectionString}}"
+            },
+        "container" : { "name" : "{{blobContainer}}" }
+    }
+
+
+### Create a skillset
+POST {{baseUrl}}/skillsets?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name": "unsplash-landmarks-ss",
+        "description":"Image Analysis skill, generate a description of photos of famous landmarks.",
+        "skills":[
+                {
+                "@odata.type": "#Microsoft.Skills.Vision.ImageAnalysisSkill",
+                "context": "/document/normalized_images/*",
+                "defaultLanguageCode": null,
+                "visualFeatures": [
+                        "tags",
+                        "categories",
+                        "description"
+                    ],
+                "inputs": [
+                    {
+                    "name": "image",
+                    "source": "/document/normalized_images/*"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "categories"
+                    },
+                    {
+                        "name": "tags"
+                    },
+                    {
+                        "name": "description"
+                    }
+                ]
+            }
+        ]
+    }
+
+
+### Create an index
+POST {{baseUrl}}/indexes?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name": "unsplash-landmarks-idx",
+        "fields": [
+            {
+            "name": "id",
+            "type": "Edm.String",
+            "key": true,
+            "searchable": true,
+            "filterable": false,
+            "facetable": false,
+            "sortable": true
+            },
+            {
+            "name": "metadata_storage_name",
+            "type": "Edm.String",
+            "searchable": false,
+            "filterable": false,
+            "facetable": false,
+            "sortable": false
+            },
+            {
+            "name": "content",
+            "type": "Edm.String",
+            "facetable": false,
+            "filterable": true,
+            "searchable": true,
+            "sortable": false
+            },
+            {
+                "name": "categories",
+                "type": "Collection(Edm.ComplexType)",
+                "fields": [
+                    {
+                        "name": "name",
+                        "type": "Edm.String",
+                        "searchable": true,
+                        "filterable": false,
+                        "facetable": false
+                    },
+                    {
+                        "name": "score",
+                        "type": "Edm.Double",
+                        "searchable": false,
+                        "filterable": false,
+                        "facetable": false
+                    },
+                    {
+                        "name": "detail",
+                        "type": "Edm.ComplexType",
+                        "fields": [
+                            {
+                                "name": "landmarks",
+                                "type": "Collection(Edm.ComplexType)",
+                                "fields": [
+                                    {
+                                        "name": "name",
+                                        "type": "Edm.String",
+                                        "searchable": true,
+                                        "filterable": false,
+                                        "facetable": false
+                                    },
+                                    {
+                                        "name": "confidence",
+                                        "type": "Edm.Double",
+                                        "searchable": false,
+                                        "filterable": false,
+                                        "facetable": false
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "description",
+                "type": "Collection(Edm.ComplexType)",
+                "fields": [
+                    {
+                        "name": "tags",
+                        "type": "Collection(Edm.String)",
+                        "searchable": true,
+                        "filterable": false,
+                        "facetable": false
+                    },
+                    {
+                        "name": "captions",
+                        "type": "Collection(Edm.ComplexType)",
+                        "fields": [
+                            {
+                                "name": "text",
+                                "type": "Edm.String",
+                                "searchable": true,
+                                "filterable": false,
+                                "facetable": false
+                            },
+                            {
+                                "name": "confidence",
+                                "type": "Edm.Double",
+                                "searchable": false,
+                                "filterable": false,
+                                "facetable": false
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+            "name": "tags",
+            "type": "Collection(Edm.ComplexType)",
+            "fields": [
+                {
+                    "name": "name",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "confidence",
+                    "type": "Edm.Double",
+                    "searchable": false,
+                    "filterable": false,
+                    "facetable": false
+                }
+            ]
+        }   
+        ]
+    }
+
+### Create and run an indexer (takes a minute)
+POST {{baseUrl}}/indexers?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {	
+        "name" : "unsplash-landmarks-idxr",
+        "dataSourceName" : "unsplash-landmarks-ds",
+        "targetIndexName" : "unsplash-landmarks-idx",
+        "skillsetName" : "unsplash-landmarks-ss",
+        "fieldMappings" : [
+            {
+            "sourceFieldName" : "metadata_storage_path",
+            "targetFieldName" : "id",
+            "mappingFunction" :
+                { "name" : "base64Encode" }
+            },
+            {
+            "sourceFieldName" : "metadata_storage_name",
+            "targetFieldName" : "metadata_storage_name",
+            "mappingFunction" :
+                { "name" : "base64Encode" }
+            },
+            {
+            "sourceFieldName" : "content",
+            "targetFieldName" : "content"
+            }
+        ],
+        "outputFieldMappings": [
+            {
+                "sourceFieldName": "/document/normalized_images/*/categories/*",
+                "targetFieldName": "categories"
+            },
+            {
+                "sourceFieldName": "/document/normalized_images/*/tags/*",
+                "targetFieldName": "tags"
+            },
+            {
+                "sourceFieldName": "/document/normalized_images/*/description",
+                "targetFieldName": "description"
+            }
+        ],
+        "parameters":
+        {
+            "maxFailedItems":-1,
+            "maxFailedItemsPerBatch":-1,
+            "configuration":
+            {
+            "dataToExtract": "contentAndMetadata",
+            "imageAction": "generateNormalizedImages",
+            "parsingMode": "default",
+            "firstLineContainsHeaders": false,
+            "delimitedTextDelimiter": ","
+            }
+        }
+    }
+
+### Get indexer status (watch for items processed and errors)
+GET {{baseUrl}}/indexers/unsplash-landmarks-idxr/status?api-version=2023-11-01
+  api-key: {{apiKey}}
+
+### Run a search query
+POST {{baseUrl}}/indexes/unsplash-landmarks-idx/docs/search?api-version=2023-11-01
+  Content-Type: application/json
+  api-key: {{apiKey}}
+
+    {
+        "search": "space needle",
+        "select": "categories, tags, description",
+        "count": true
+    }

@@ -1,0 +1,178 @@
+@baseUrl = https://free-demo-search-svc.search.windows.net
+@apiKey = 7LTgGbj1wNmvCQuDZNuUqvujgTD0xakFHrwcPvB1C6AzSeD0xDDs
+@storageConnectionString = DefaultEndpointsProtocol=https;AccountName=heidisteenstorage;AccountKey=KmoVKbsI1ZWVNBINFmuxjXB8sx+g2QmofDaVBHvGIGo0oE8LR+tzM6MKxupobGiZT2kwSQaJlz6Y+AStuZOJ0w==;EndpointSuffix=core.windows.net
+@blobContainer = unsplash-signs
+
+
+### Create a data source
+POST {{baseUrl}}/datasources?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+{
+    "name" : "unsplash-signs-rename-fields-ds",
+    "description" : "Ten photos (JPEGS) of various signs from unsplash.com",
+    "type" : "azureblob",
+    "credentials" :
+        { "connectionString" :
+            "{{storageConnectionString}}"
+        },
+    "container" : { "name" : "{{blobContainer}}" }
+}
+
+### Create a skillset (same as skill-example-ocr; renaming is in the indexer output field mappings)
+POST {{baseUrl}}/skillsets?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name":"unsplash-signs-rename-fields-ss",
+        "description":"OCR skill, recognize text in photos of signs",
+        "skills":[
+                {
+                "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
+                "context": "/document/normalized_images/*",
+                "defaultLanguageCode": null,
+                "detectOrientation": true,
+                "inputs": [
+                    {
+                    "name": "image",
+                    "source": "/document/normalized_images/*"
+                    }
+                ],
+                "outputs": [
+                    {
+                    "name": "text",
+                    "targetName": "text"
+                    },
+                    {
+                    "name": "layoutText",
+                    "targetName": "layoutText"
+                    }
+                ]
+            }
+        ]
+    }
+
+### Create an index (same as skill-example-ocr, but with renamed fields)
+POST {{baseUrl}}/indexes?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name": "unsplash-signs-rename-fields-idx",
+        "fields": [
+            {
+            "name": "id",
+            "type": "Edm.String",
+            "key": true,
+            "searchable": true,
+            "filterable": false,
+            "facetable": false,
+            "sortable": true
+            },
+            {
+            "name": "metadata_storage_name",
+            "type": "Edm.String",
+            "searchable": false,
+            "filterable": false,
+            "facetable": false,
+            "sortable": false
+            },
+            {
+            "name": "content",
+            "type": "Edm.String",
+            "facetable": false,
+            "filterable": true,
+            "searchable": true,
+            "sortable": false
+            },
+            {
+            "name": "myText",
+            "type": "Collection(Edm.String)",
+            "facetable": false,
+            "filterable": true,
+            "searchable": true,
+            "sortable": false
+            },
+            {
+            "name": "myLayoutText",
+            "type": "Collection(Edm.String)",
+            "facetable": false,
+            "filterable": true,
+            "searchable": true,
+            "sortable": false
+            }
+        ]
+    }
+
+
+### Create and run an indexer (same as skill-example-ocr, but with output field mappings for renamed fields)
+POST {{baseUrl}}/indexers?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name" : "unsplash-signs-rename-fields-idxr",
+        "dataSourceName" : "unsplash-signs-rename-fields-ds",
+        "targetIndexName" : "unsplash-signs-rename-fields-idx",
+        "skillsetName" : "unsplash-signs-rename-fields-ss",
+        "fieldMappings" : [
+            {
+            "sourceFieldName" : "metadata_storage_path",
+            "targetFieldName" : "id",
+            "mappingFunction" :
+                { "name" : "base64Encode" }
+            },
+            {
+            "sourceFieldName" : "metadata_storage_name",
+            "targetFieldName" : "metadata_storage_name",
+            "mappingFunction" :
+                { "name" : "base64Encode" }
+            },
+            {
+            "sourceFieldName" : "content",
+            "targetFieldName" : "content"
+            }
+        ],
+        "outputFieldMappings" :
+        [
+            {
+            "sourceFieldName" : "/document/normalized_images/*/text",
+            "targetFieldName" : "myText"
+            },
+            {
+            "sourceFieldName" : "/document/normalized_images/*/layoutText",
+            "targetFieldName" : "myLayoutText"
+            }
+        ],
+        "parameters":
+        {
+            "maxFailedItems":-1,
+            "maxFailedItemsPerBatch":-1,
+            "configuration":
+            {
+            "dataToExtract": "contentAndMetadata",
+            "imageAction": "generateNormalizedImages",
+            "parsingMode": "default",
+            "firstLineContainsHeaders": false,
+            "delimitedTextDelimiter": ","
+            }
+        }
+    }
+
+### Get indexer status (watch for items processed and errors)
+GET {{baseUrl}}/indexers/unsplash-signs-rename-fields-idxr/status?api-version=2023-11-01
+  api-key: {{apiKey}}
+
+### Run a search query
+POST {{baseUrl}}/indexes/unsplash-signs-rename-fields-idx/docs/search?api-version=2023-11-01
+  Content-Type: application/json
+  api-key: {{apiKey}}
+
+    {
+        "search": "*",
+        "select": "id, metadata_storage_name, myText",
+        "count": true
+    }
+
