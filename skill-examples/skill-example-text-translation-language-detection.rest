@@ -1,0 +1,196 @@
+@baseUrl = https://free-demo-search-svc.search.windows.net
+@apiKey = 7LTgGbj1wNmvCQuDZNuUqvujgTD0xakFHrwcPvB1C6AzSeD0xDDs
+@storageConnectionString = DefaultEndpointsProtocol=https;AccountName=heidisteenstorage;AccountKey=KmoVKbsI1ZWVNBINFmuxjXB8sx+g2QmofDaVBHvGIGo0oE8LR+tzM6MKxupobGiZT2kwSQaJlz6Y+AStuZOJ0w==;EndpointSuffix=core.windows.net
+@blobContainer = spanish-museums
+
+
+### Create a data source
+POST {{baseUrl}}/datasources?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+{
+    "name" : "spanish-museums-ds",
+    "description" : "Ten descriptions of Spanish museums in Spanish and French",
+    "type" : "azureblob",
+    "credentials" :
+        { "connectionString" :
+            "{{storageConnectionString}}"
+        },
+    "container" : { "name" : "{{blobContainer}}" }
+}
+
+### Create a skillset
+POST {{baseUrl}}/skillsets?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name":"spanish-museums-ss",
+        "description":"Text Translation and Language Detection skills",
+        "skills":[
+                {
+                "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
+                "description": "Language Detection is not required, but adding language code could be useful for filters",
+                "context": "/document",
+                "inputs": [
+                    {
+                    "name": "text",
+                    "source": "/document/content"
+                    }
+                ],
+                "outputs": [
+                    {
+                    "name": "languageCode",
+                    "targetName": "language"
+                    }
+                ]
+                },
+                {
+                "@odata.type": "#Microsoft.Skills.Text.TranslationSkill",
+                "description": "This skill translates non-English content to English",
+                "context": "/document/content",
+                "defaultFromLanguageCode": null,
+                "defaultToLanguageCode": "en",
+                "suggestedFrom": "en",
+                "inputs": [
+                    {
+                    "name": "text",
+                    "source": "/document/content"
+                    }
+                ],
+                "outputs": [
+                    {
+                    "name": "translatedText",
+                    "targetName": "translated_text"
+                    }
+                ]
+            }
+        ]
+    }
+
+### Create an index
+POST {{baseUrl}}/indexes?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name": "spanish-museums-idx",
+        "fields": [
+            {
+            "name": "content",
+            "type": "Edm.String",
+            "facetable": false,
+            "filterable": false,
+            "retrievable": true,
+            "searchable": true,
+            "sortable": false
+            },
+            {
+            "name": "metadata_storage_name",
+            "type": "Edm.String",
+            "facetable": false,
+            "filterable": false,
+            "retrievable": false,
+            "searchable": false,
+            "sortable": false
+            },
+            {
+            "name": "id",
+            "type": "Edm.String",
+            "facetable": false,
+            "filterable": false,
+            "key": true,
+            "retrievable": true,
+            "searchable": false,
+            "sortable": false
+            },
+            {
+            "name": "language",
+            "type": "Edm.String",
+            "facetable": false,
+            "filterable": false,
+            "retrievable": true,
+            "searchable": true,
+            "sortable": false
+            },
+            {
+            "name": "translated_text",
+            "type": "Edm.String",
+            "facetable": false,
+            "filterable": false,
+            "retrievable": true,
+            "searchable": true,
+            "sortable": false
+            }
+        ]
+    }
+
+### Create and run an indexer (takes a minute)
+POST {{baseUrl}}/indexers?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name" : "spanish-museums-idxr",
+        "dataSourceName" : "spanish-museums-ds",
+        "targetIndexName" : "spanish-museums-idx",
+        "skillsetName" : "spanish-museums-ss",
+        "fieldMappings" : [
+            {
+            "sourceFieldName" : "metadata_storage_path",
+            "targetFieldName" : "id",
+            "mappingFunction" :
+                { "name" : "base64Encode" }
+            },
+            {
+            "sourceFieldName" : "metadata_storage_name",
+            "targetFieldName" : "metadata_storage_name",
+            "mappingFunction" :
+                { "name" : "base64Encode" }
+            },
+            {
+            "sourceFieldName" : "content",
+            "targetFieldName" : "content"
+            }
+        ],
+        "outputFieldMappings": [
+            {
+            "sourceFieldName": "/document/language",
+            "targetFieldName": "language"
+            },
+            {
+            "sourceFieldName": "/document/content/translated_text",
+            "targetFieldName": "translated_text"
+            }
+        ],
+        "parameters":
+        {
+            "maxFailedItems":-1,
+            "maxFailedItemsPerBatch":-1,
+            "configuration":
+            {
+            "dataToExtract": "contentAndMetadata",
+            "parsingMode": "default",
+            "firstLineContainsHeaders": false,
+            "delimitedTextDelimiter": ","
+            }
+        }
+    }
+
+
+### Get indexer status (watch for items processed and errors)
+GET {{baseUrl}}/indexers/spanish-museums-idxr/status?api-version=2023-11-01
+  api-key: {{apiKey}}
+
+### Run a search query
+POST {{baseUrl}}/indexes/spanish-museums-idx/docs/search?api-version=2023-11-01
+  Content-Type: application/json
+  api-key: {{apiKey}}
+
+    {
+        "search": "picasso",
+        "select": "language, translated_text",
+        "count": true
+    }
+

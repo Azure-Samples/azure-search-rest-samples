@@ -1,0 +1,187 @@
+@baseUrl = https://free-demo-search-svc.search.windows.net
+@apiKey = 7LTgGbj1wNmvCQuDZNuUqvujgTD0xakFHrwcPvB1C6AzSeD0xDDs
+@storageConnectionString = DefaultEndpointsProtocol=https;AccountName=heidisteenstorage;AccountKey=KmoVKbsI1ZWVNBINFmuxjXB8sx+g2QmofDaVBHvGIGo0oE8LR+tzM6MKxupobGiZT2kwSQaJlz6Y+AStuZOJ0w==;EndpointSuffix=core.windows.net
+@blobContainer = nasa-ebooks-small
+
+
+### Create a data source
+POST {{baseUrl}}/datasources?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name" : "nasa-entity-linking-reshape-ds",
+        "description" : "First 10 PDF files out of nasa-e-book/text-only folder",
+        "type" : "azureblob",
+        "credentials" :
+        { "connectionString" :
+            "{{storageConnectionString}}"
+        },
+        "container" : { "name" : "{{blobContainer}}" }
+    }
+
+
+### Create a skillset
+POST {{baseUrl}}/skillsets?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name":"nasa-entity-linking-reshape-ss",
+        "description":"Extract entities and reshape them for the index.",
+        "skills":[
+            {
+                "@odata.type":"#Microsoft.Skills.Text.V3.EntityLinkingSkill",
+                "context":"/document",
+                "inputs":[
+                    {
+                    "name":"text",
+                    "source":"/document/content"
+                    }
+                ],
+                "outputs":[
+                    {
+                    "name":"entities",
+                    "targetName":"entities"
+                    }
+                ]
+            },
+            {
+                "@odata.type":"#Microsoft.Skills.Util.ShaperSkill",
+                "name":"LinkedEntitiesShaper",
+                "description":"Reshape 'Name' and 'Url' as myEntityName and myEntityUrl for the index.",
+                "context":"/document/entities/*",
+                "inputs":[
+                    {
+                    "name":"childEntityFields",
+                    "sourceContext":"/document/entities/*",
+                    "inputs":[
+                        {
+                            "name":"myEntityName",
+                            "source":"/document/entities/*/Name"
+                        },
+                        {
+                            "name":"myEntityUrl",
+                            "source":"/document/entities/*/Url"
+                        }
+                    ]
+                    }
+                ],
+                "outputs":[
+                    {
+                    "name":"output",
+                    "targetName":"EntityAndUrl"
+                    }
+                ]
+            }
+        ]
+    }
+
+### Create an index
+POST {{baseUrl}}/indexes?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name": "nasa-entity-linking-reshape-idx",
+        "fields": [
+            {
+            "name": "id",
+            "type": "Edm.String",
+            "key": true,
+            "searchable": true,
+            "filterable": false,
+            "facetable": false,
+            "sortable": true
+            },
+            {
+            "name": "metadata_storage_name",
+            "type": "Edm.String",
+            "searchable": false,
+            "filterable": false,
+            "facetable": false,
+            "sortable": false
+            },
+            {
+            "name": "content",
+            "type": "Edm.String",
+            "sortable": false,
+            "searchable": true,
+            "filterable": false,
+            "facetable": false
+            },
+            { 
+            "name": "EntityLink", 
+            "type": "Collection(Edm.ComplexType)", 
+            "fields": [
+                { "name": "Name", "type": "Edm.String", "filterable": true, "sortable": false, "facetable": false, "searchable": true },
+                { "name": "Url", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": false, "facetable": false }
+            ]
+            }
+        ]
+    }
+
+
+### Create and run an indexer (takes a minute)
+POST {{baseUrl}}/indexers?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {	
+        "name" : "nasa-entity-linking-reshape-idxr",
+        "dataSourceName" : "nasa-entity-linking-reshape-ds",
+        "targetIndexName" : "nasa-entity-linking-reshape-idx",
+        "skillsetName" : "nasa-entity-linking-reshape-ss",
+        "fieldMappings" : [
+            {
+            "sourceFieldName" : "metadata_storage_path",
+            "targetFieldName" : "id",
+            "mappingFunction" :
+                { "name" : "base64Encode" }
+            },
+            {
+            "sourceFieldName" : "metadata_storage_name",
+            "targetFieldName" : "metadata_storage_name",
+            "mappingFunction" :
+                { "name" : "base64Encode" }
+            },
+            {
+            "sourceFieldName" : "content",
+            "targetFieldName" : "content"
+            }
+        ],
+        "outputFieldMappings" :
+        [
+            {
+            "sourceFieldName" : "/document/entities/*/EntityAndUrl/childEntityFields",
+            "targetFieldName" : "EntityLink"
+            }
+        ],
+        "parameters":
+        {
+            "maxFailedItems":-1,
+            "maxFailedItemsPerBatch":-1,
+            "configuration":
+            {
+            "dataToExtract": "contentAndMetadata",
+            "parsingMode": "default",
+            "firstLineContainsHeaders": false,
+            "delimitedTextDelimiter": ","
+            }
+        }
+    }
+
+### Get indexer status (watch for items processed and errors)
+GET {{baseUrl}}/indexers/nasa-entity-linking-reshape-idxr/status?api-version=2023-11-01
+  api-key: {{apiKey}}
+
+### Run a search query
+POST {{baseUrl}}/indexes/nasa-entity-linking-reshape-idx/docs/search?api-version=2023-11-01
+  Content-Type: application/json
+  api-key: {{apiKey}}
+
+    {
+        "search": "*",
+        "select": "metadata_storage_name, content, EntityLink",
+        "count": true
+    }

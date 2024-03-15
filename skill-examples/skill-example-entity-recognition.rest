@@ -1,0 +1,325 @@
+@baseUrl = https://free-demo-search-svc.search.windows.net
+@apiKey = 7LTgGbj1wNmvCQuDZNuUqvujgTD0xakFHrwcPvB1C6AzSeD0xDDs
+@storageConnectionString = DefaultEndpointsProtocol=https;AccountName=heidisteenstorage;AccountKey=KmoVKbsI1ZWVNBINFmuxjXB8sx+g2QmofDaVBHvGIGo0oE8LR+tzM6MKxupobGiZT2kwSQaJlz6Y+AStuZOJ0w==;EndpointSuffix=core.windows.net
+@blobContainer = nasa-ebooks-small
+
+
+### Create a data source
+POST {{baseUrl}}/datasources?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name" : "nasa-ebooks-small-ds",
+        "description" : "First 10 PDF files out of nasa-e-book/text-only folder",
+        "type" : "azureblob",
+        "credentials" :
+        { "connectionString" :
+            "{{storageConnectionString}}"
+        },
+        "container" : { "name" : "{{blobContainer}}" }
+    }
+
+### Create a skillset
+POST {{baseUrl}}/skillsets?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name":"nasa-ebooks-small-ss",
+        "description":"Entity Recognition V3, all categories, default language",
+        "skills":[
+                {
+                "@odata.type": "#Microsoft.Skills.Text.V3.EntityRecognitionSkill",
+                "context": "/document",
+                "inputs": [
+                    {
+                        "name": "text", 
+                        "source": "/document/content"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "persons", 
+                        "targetName": "persons"
+                    },
+                    {
+                        "name": "locations", 
+                        "targetName": "locations"
+                    },
+
+                    {
+                        "name": "organizations", 
+                        "targetName": "organizations"
+                    },
+
+                    {
+                        "name": "quantities", 
+                        "targetName": "quantities"
+                    },
+
+                    {
+                        "name": "dateTimes", 
+                        "targetName": "dateTimes"
+                    },
+
+                    {
+                        "name": "urls", 
+                        "targetName": "urls"
+                    },
+
+                    {
+                        "name": "emails", 
+                        "targetName": "emails"
+                    },
+
+                    {
+                        "name": "personTypes", 
+                        "targetName": "personTypes"
+                    },
+
+                    {
+                        "name": "events", 
+                        "targetName": "events"
+                    },
+
+                    {
+                        "name": "products", 
+                        "targetName": "products"
+                    },
+
+                    {
+                        "name": "skills", 
+                        "targetName": "skills"
+                    }
+                ]
+            }
+        ]
+    }
+
+### Create an index
+POST {{baseUrl}}/indexes?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {
+        "name": "nasa-ebooks-small-idx",
+        "fields": [
+            {
+            "name": "id",
+            "type": "Edm.String",
+            "key": true,
+            "searchable": true,
+            "filterable": false,
+            "facetable": false,
+            "sortable": true
+            },
+            {
+            "name": "metadata_storage_name",
+            "type": "Edm.String",
+            "searchable": false,
+            "filterable": false,
+            "facetable": false,
+            "sortable": false
+            },
+            {
+            "name": "content",
+            "type": "Edm.String",
+            "sortable": false,
+            "searchable": true,
+            "filterable": false,
+            "facetable": false
+            },
+            {
+            "name": "persons",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "sortable": false,
+            "filterable": true,
+            "facetable": true
+            },
+            {
+            "name": "locations",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "sortable": false,
+            "filterable": true,
+            "facetable": true
+            },
+            {
+            "name": "organizations",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "sortable": false,
+            "filterable": true,
+            "facetable": true
+            },
+            {
+            "name": "quantities",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "sortable": false,
+            "filterable": true,
+            "facetable": true
+            },
+            {
+            "name": "dateTimes",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "sortable": false,
+            "filterable": true,
+            "facetable": true
+            },
+            {
+            "name": "urls",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "sortable": false,
+            "filterable": true,
+            "facetable": true
+            },
+            {
+            "name": "emails",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": false,
+            "facetable": false
+            },
+            {
+            "name": "personTypes",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "sortable": false,
+            "filterable": true,
+            "facetable": true
+            },
+            {
+            "name": "events",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "sortable": false,
+            "filterable": true,
+            "facetable": true
+            },
+            {
+            "name": "products",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "sortable": false,
+            "filterable": true,
+            "facetable": true
+            },
+                {
+            "name": "skills",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "sortable": false,
+            "filterable": true,
+            "facetable": true
+            }
+        ]
+    }
+
+### Create and run an indexer (takes a minute)
+POST {{baseUrl}}/indexers?api-version=2023-11-01
+Content-Type: application/json
+api-key: {{apiKey}}
+
+    {	
+        "name" : "nasa-ebooks-small-idxr",
+        "dataSourceName" : "nasa-ebooks-small-ds",
+        "targetIndexName" : "nasa-ebooks-small-idx",
+        "skillsetName" : "nasa-ebooks-small-ss",
+        "fieldMappings" : [
+            {
+            "sourceFieldName" : "metadata_storage_path",
+            "targetFieldName" : "id",
+            "mappingFunction" :
+                { "name" : "base64Encode" }
+            },
+            {
+            "sourceFieldName" : "metadata_storage_name",
+            "targetFieldName" : "metadata_storage_name",
+            "mappingFunction" :
+                { "name" : "base64Encode" }
+            },
+            {
+            "sourceFieldName" : "content",
+            "targetFieldName" : "content"
+            }
+        ],
+        "outputFieldMappings" :
+        [
+            {
+            "sourceFieldName" : "/document/persons",
+            "targetFieldName" : "persons"
+            },
+            {
+            "sourceFieldName" : "/document/locations",
+            "targetFieldName" : "locations"
+            },
+            {
+            "sourceFieldName" : "/document/organizations",
+            "targetFieldName" : "organizations"
+            },
+            {
+            "sourceFieldName" : "/document/quantities",
+            "targetFieldName" : "quantities"
+            },
+            {
+            "sourceFieldName" : "/document/dateTimes",
+            "targetFieldName" : "dateTimes"
+            },
+            {
+            "sourceFieldName" : "/document/urls",
+            "targetFieldName" : "urls"
+            },
+            {
+            "sourceFieldName" : "/document/emails",
+            "targetFieldName" : "emails"
+            },
+            {
+            "sourceFieldName": "/document/personTypes",
+            "targetFieldName": "personTypes"
+            },
+            {
+            "sourceFieldName": "/document/events",
+            "targetFieldName": "events"
+            },
+            {
+            "sourceFieldName": "/document/products",
+            "targetFieldName": "products"
+            },
+            {
+            "sourceFieldName": "/document/skills",
+            "targetFieldName": "skills"
+            }
+        ],
+        "parameters":
+        {
+            "maxFailedItems":-1,
+            "maxFailedItemsPerBatch":-1,
+            "configuration":
+            {
+            "dataToExtract": "contentAndMetadata",
+            "parsingMode": "default",
+            "firstLineContainsHeaders": false,
+            "delimitedTextDelimiter": ","
+            }
+        }
+    }
+
+### Get indexer status (watch for items processed and errors)
+GET {{baseUrl}}/indexers/nasa-ebooks-small-idxr/status?api-version=2023-11-01
+  api-key: {{apiKey}}
+
+### Run a search query
+POST {{baseUrl}}/indexes/nasa-ebooks-small-idx/docs/search?api-version=2023-11-01
+  Content-Type: application/json
+  api-key: {{apiKey}}
+
+    {
+        "search": "*",
+        "select": "metadata_storage_name, locations, quantities, dateTimes, personTypes, events, products, skills",
+        "count": true
+    }
