@@ -1,7 +1,8 @@
-@baseUrl = https://free-demo-search-svc.search.windows.net
-@apiKey = 7LTgGbj1wNmvCQuDZNuUqvujgTD0xakFHrwcPvB1C6AzSeD0xDDs
-@storageConnectionString = DefaultEndpointsProtocol=https;AccountName=heidisteenstorage;AccountKey=KmoVKbsI1ZWVNBINFmuxjXB8sx+g2QmofDaVBHvGIGo0oE8LR+tzM6MKxupobGiZT2kwSQaJlz6Y+AStuZOJ0w==;EndpointSuffix=core.windows.net
-@blobContainer = nasa-ebooks-small
+@baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
+@apiKey = PUT-YOUR-SEARCH-SERVICE-ADMIN-API-KEY-HERE
+@storageConnectionString = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
+@blobContainer = PUT-YOUR-CONTAINER-NAME-HERE (we used nasa-ebooks-small to test this sample)
+
 
 
 ### Create a data source
