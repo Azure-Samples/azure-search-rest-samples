@@ -4,7 +4,7 @@ This repository provides REST API examples:
 
 + custom-analyzers
 + debug-sessions
-+ index-encrypted-blobs
++ index-encrypted-blobs (currently archived)
 + knowledge-store
 + projections
 + quickstart
