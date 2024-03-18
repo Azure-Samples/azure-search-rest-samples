@@ -1,16 +1,16 @@
-@baseUrl = https://heidist-srch-northcentral.search.windows.net
-@apiKey = zWxJ6AHSBVmwf8g6SNeVk5kXFnQ2zedxwQzju5rOqOAzSeBWF5tu
-@storageConnectionString = DefaultEndpointsProtocol=https;AccountName=heidistoragedemo;AccountKey=HLRT60b5x7055Gv21sve3FNF63iscC+Sy0YW87XBCoqKUwYcXCrYWMcFBTvwzwhxLZy03ofqAQD9+AStV4KHjQ==;EndpointSuffix=core.windows.net
-@blobContainer = encrypted-blob
-@function-uri = https://psdbf-function-app-pax7k7xg7djlq.azurewebsites.net
-@function-code = 4mUq1kppq3m-5TOgcZenh6so94Aw92aBfMR_GtHTIgwkAzFupbQpHg==
+@baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
+@apiKey = PUT-YOUR-SEARCH-SERVICE-ADMIN-API-KEY-HERE
+@storageConnectionString = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
+@blobContainer = PUT-YOUR-CONTAINER-NAME-HERE
+@function-uri = PUT-YOUR-FUNCTION-URI-HERE
+@function-code = PUT-YOUR-FUNCTION-APP-KEY-HERE
 
 ### Create a data source
 POST {{baseUrl}}/datasources?api-version=2023-11-01
    Content-Type: application/json
    api-key: {{apiKey}}
 
-        {
+    {
         "name": "demo-encrypted-blob-ds",
         "description": "Encrypted documents",
         "type": "azureblob",
@@ -59,64 +59,64 @@ POST {{baseUrl}}/skillsets?api-version=2023-11-01
    Content-Type: application/json
    api-key: {{apiKey}}
 
-        {
-            "name": "demo-encrypted-blob-ss",
-            "description": "Skillset",
-            "skills": [
-                {
-                    "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
-                    "name": "decryptblobfile",
-                    "description": "Downloads and decrypts a file that was encrypted in Azure Blob Storage",
-                    "uri": "{{function-uri}}/api/decrypt-blob-file?code={{function-code}}",
-                    "httpMethod": "POST",
-                    "context": "/document",
-                    "batchSize": 1,
-                    "inputs": [
-                        {
-                            "name": "blobUrl",
-                            "source": "/document/metadata_storage_path"
-                        },
-                        {
-                            "name": "sasToken",
-                            "source": "/document/metadata_storage_sas_token"
-                        }
-                    ],
-                    "outputs": [
-                        {
-                            "name": "decrypted_file_data",
-                            "targetName": "decrypted_file_data"
-                        }
-                    ]
-                },
-                {
-                    "@odata.type": "#Microsoft.Skills.Util.DocumentExtractionSkill",
-                    "parsingMode": "default",
-                    "dataToExtract": "contentAndMetadata",
-                    "configuration": {
-                        "imageAction": "generateNormalizedImages",
-                        "normalizedImageMaxWidth": 2000,
-                        "normalizedImageMaxHeight": 2000
+    {
+        "name": "demo-encrypted-blob-ss",
+        "description": "Skillset",
+        "skills": [
+            {
+                "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
+                "name": "decryptblobfile",
+                "description": "Downloads and decrypts a file that was encrypted in Azure Blob Storage",
+                "uri": "{{function-uri}}/api/decrypt-blob-file?code={{function-code}}",
+                "httpMethod": "POST",
+                "context": "/document",
+                "batchSize": 1,
+                "inputs": [
+                    {
+                        "name": "blobUrl",
+                        "source": "/document/metadata_storage_path"
                     },
-                    "context": "/document",
-                    "inputs": [
-                        {
-                            "name": "file_data",
-                            "source": "/document/decrypted_file_data"
-                        }
-                    ],
-                    "outputs": [
-                        {
-                            "name": "content",
-                            "targetName": "extracted_content"
-                        },
-                        {
-                            "name": "normalized_images",
-                            "targetName": "extracted_normalized_images"
-                        }
-                    ]
-                }
-            ]
-        }
+                    {
+                        "name": "sasToken",
+                        "source": "/document/metadata_storage_sas_token"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "decrypted_file_data",
+                        "targetName": "decrypted_file_data"
+                    }
+                ]
+            },
+            {
+                "@odata.type": "#Microsoft.Skills.Util.DocumentExtractionSkill",
+                "parsingMode": "default",
+                "dataToExtract": "contentAndMetadata",
+                "configuration": {
+                    "imageAction": "generateNormalizedImages",
+                    "normalizedImageMaxWidth": 2000,
+                    "normalizedImageMaxHeight": 2000
+                },
+                "context": "/document",
+                "inputs": [
+                    {
+                        "name": "file_data",
+                        "source": "/document/decrypted_file_data"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "content",
+                        "targetName": "extracted_content"
+                    },
+                    {
+                        "name": "normalized_images",
+                        "targetName": "extracted_normalized_images"
+                    }
+                ]
+            }
+        ]
+    }
 
 
 ### Create an indexer
@@ -124,29 +124,29 @@ POST {{baseUrl}}/indexers?api-version=2023-11-01
    Content-Type: application/json
    api-key: {{apiKey}}
 
-        {
-            "name": "demo-encrypted-blob-idxr",
-            "targetIndexName": "demo-encrypted-blob-idx",
-            "dataSourceName": "demo-encrypted-blob-ds",
-            "skillsetName": "demo-encrypted-blob-ss",
-            "disabled": false,
-            "parameters": {
-                "batchSize": 1,
-                "maxFailedItems": -1,
-                "maxFailedItemsPerBatch": -1,
-                "configuration": {
-                    "dataToExtract": "storageMetadata"
-                }
-            },
-            "fieldMappings": [
-            ],
-            "outputFieldMappings": [
-                {
-                    "sourceFieldName": "/document/extracted_content",
-                    "targetFieldName": "content"
-                }
-            ]
-        }
+    {
+        "name": "demo-encrypted-blob-idxr",
+        "targetIndexName": "demo-encrypted-blob-idx",
+        "dataSourceName": "demo-encrypted-blob-ds",
+        "skillsetName": "demo-encrypted-blob-ss",
+        "disabled": false,
+        "parameters": {
+            "batchSize": 1,
+            "maxFailedItems": -1,
+            "maxFailedItemsPerBatch": -1,
+            "configuration": {
+                "dataToExtract": "storageMetadata"
+            }
+        },
+        "fieldMappings": [
+        ],
+        "outputFieldMappings": [
+            {
+                "sourceFieldName": "/document/extracted_content",
+                "targetFieldName": "content"
+            }
+        ]
+    }
 
 ### Get indexer status
 GET {{baseUrl}}/indexers/demo-encrypted-blob-idxr/status?api-version=2023-11-01
