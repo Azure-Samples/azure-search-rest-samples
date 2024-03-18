@@ -1,11 +1,10 @@
 @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
 @apiKey = PUT-YOUR-SEARCH-SERVICE-ADMIN-API-KEY-HERE
 @storageConnectionString = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
-@blobContainer = PUT-YOUR-CONTAINER-NAME-HERE (we used nasa-ebooks-small to test this sample)
+@blobContainer = PUT-YOUR-CONTAINER-NAME-HERE
 
 
-
-### Create a data source
+### Create a data source (we used nasa-ebooks-small and a free search service to test this example.)
 POST {{baseUrl}}/datasources?api-version=2023-11-01
 Content-Type: application/json
 api-key: {{apiKey}}
