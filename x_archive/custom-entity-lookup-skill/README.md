@@ -1,5 +1,7 @@
 # Custom Entity Lookup skill in Azure AI Search
 
+**Important**:  This sample is currently archived while we update the steps.
+
 This sample demonstrates one of the entity-related built-in skills in Azure AI Search, [Custom Entity Lookup](https://docs.microsoft.com/azure/search/cognitive-search-skill-custom-entity-lookup).
 
 In contrast with [Entity Recognition](https://docs.microsoft.com/azure/search/cognitive-search-skill-entity-recognition-v3), which finds whatever the public model tells it find, [Custom Entity Lookup](https://docs.microsoft.com/azure/search/cognitive-search-skill-custom-entity-lookup) finds whatever you tell it to find. You can provide the skill with a simple list of entities, or you can further define those entities by type and subtype. You can also assign aliases for variations of an entity name. In a search solution, custom entities are useful for filters, facets, and sorting.
