@@ -1,0 +1,486 @@
+@baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
+@apiKey = PUT-YOUR-SEARCH-SERVICE-ADMIN-API-KEY-HERE
+@storageConnectionString = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
+@blobContainer = PUT-YOUR-CONTAINER-NAME-HERE
+
+### List existing indexes by name
+GET  {{baseUrl}}/indexes?api-version=2023-11-01&$select=name  HTTP/1.1
+  Content-Type: application/json
+  api-key: {{apiKey}}
+
+### Create a data source
+POST {{baseUrl}}/datasources?api-version=2023-11-01  HTTP/1.1
+  Content-Type: application/json
+  api-key: {{apiKey}}
+
+    {
+        "name": "clinical-trials-ds",
+        "description": null,
+        "type": "azureblob",
+        "subtype": null,
+        "credentials": {
+            "connectionString": "{{storageConnectionString}}"
+        },
+        "container": {
+            "name": "{{blobContainer}}",
+            "query": null
+        },
+        "dataChangeDetectionPolicy": null,
+        "dataDeletionDetectionPolicy": null
+    }
+
+### Create an index
+POST {{baseUrl}}/indexes?api-version=2023-11-01  HTTP/1.1
+  Content-Type: application/json
+  api-key: {{apiKey}}
+
+    {
+        "name": "clinical-trials",
+        "defaultScoringProfile": null,
+        "fields": [
+            {
+                "name": "content",
+                "type": "Edm.String",
+                "searchable": true,
+                "filterable": false,
+                "retrievable": true,
+                "sortable": false,
+                "facetable": false,
+                "key": false,
+                "indexAnalyzer": null,
+                "searchAnalyzer": null,
+                "analyzer": "standard.lucene",
+                "synonymMaps": []
+            },
+            {
+                "name": "metadata_storage_content_type",
+                "type": "Edm.String",
+                "searchable": false,
+                "filterable": false,
+                "retrievable": false,
+                "sortable": false,
+                "facetable": false,
+                "key": false,
+                "indexAnalyzer": null,
+                "searchAnalyzer": null,
+                "analyzer": null,
+                "synonymMaps": []
+            },
+            {
+                "name": "metadata_storage_name",
+                "type": "Edm.String",
+                "searchable": false,
+                "filterable": false,
+                "retrievable": false,
+                "sortable": false,
+                "facetable": false,
+                "key": false,
+                "indexAnalyzer": null,
+                "searchAnalyzer": null,
+                "analyzer": null,
+                "synonymMaps": []
+            },
+            {
+                "name": "metadata_storage_path",
+                "type": "Edm.String",
+                "searchable": false,
+                "filterable": false,
+                "retrievable": true,
+                "sortable": false,
+                "facetable": false,
+                "key": true,
+                "indexAnalyzer": null,
+                "searchAnalyzer": null,
+                "analyzer": null,
+                "synonymMaps": []
+            },
+            {
+                "name": "organizations",
+                "type": "Collection(Edm.String)",
+                "searchable": true,
+                "filterable": false,
+                "retrievable": true,
+                "sortable": false,
+                "facetable": true,
+                "key": false,
+                "indexAnalyzer": null,
+                "searchAnalyzer": null,
+                "analyzer": "standard.lucene",
+                "synonymMaps": []
+            },
+            {
+                "name": "locations",
+                "type": "Collection(Edm.String)",
+                "searchable": true,
+                "filterable": false,
+                "retrievable": true,
+                "sortable": false,
+                "facetable": true,
+                "key": false,
+                "indexAnalyzer": null,
+                "searchAnalyzer": null,
+                "analyzer": "standard.lucene",
+                "synonymMaps": []
+            },
+            {
+                "name": "keyphrases",
+                "type": "Collection(Edm.String)",
+                "searchable": true,
+                "filterable": true,
+                "retrievable": true,
+                "sortable": false,
+                "facetable": true,
+                "key": false,
+                "indexAnalyzer": null,
+                "searchAnalyzer": null,
+                "analyzer": "standard.lucene",
+                "synonymMaps": []
+            },
+            {
+                "name": "language",
+                "type": "Edm.String",
+                "searchable": true,
+                "filterable": false,
+                "retrievable": true,
+                "sortable": false,
+                "facetable": true,
+                "key": false,
+                "indexAnalyzer": null,
+                "searchAnalyzer": null,
+                "analyzer": "standard.lucene",
+                "synonymMaps": []
+            },
+            {
+                "name": "translated_text",
+                "type": "Edm.String",
+                "searchable": true,
+                "filterable": false,
+                "retrievable": true,
+                "sortable": false,
+                "facetable": false,
+                "key": false,
+                "indexAnalyzer": null,
+                "searchAnalyzer": null,
+                "analyzer": "en.lucene",
+                "synonymMaps": []
+            },
+            {
+                "name": "merged_content",
+                "type": "Edm.String",
+                "searchable": true,
+                "filterable": false,
+                "retrievable": true,
+                "sortable": false,
+                "facetable": false,
+                "key": false,
+                "indexAnalyzer": null,
+                "searchAnalyzer": null,
+                "analyzer": "standard.lucene",
+                "synonymMaps": []
+            },
+            {
+                "name": "text",
+                "type": "Collection(Edm.String)",
+                "searchable": true,
+                "filterable": false,
+                "retrievable": true,
+                "sortable": false,
+                "facetable": false,
+                "key": false,
+                "indexAnalyzer": null,
+                "searchAnalyzer": null,
+                "analyzer": "standard.lucene",
+                "synonymMaps": []
+            },
+            {
+                "name": "layoutText",
+                "type": "Collection(Edm.String)",
+                "searchable": true,
+                "filterable": false,
+                "retrievable": true,
+                "sortable": false,
+                "facetable": false,
+                "key": false,
+                "indexAnalyzer": null,
+                "searchAnalyzer": null,
+                "analyzer": "standard.lucene",
+                "synonymMaps": []
+            }
+        ],
+        "scoringProfiles": [],
+        "corsOptions": null,
+        "suggesters": [
+            {
+                "name": "sg",
+                "searchMode": "analyzingInfixMatching",
+                "sourceFields": [
+                    "keyphrases"
+                ]
+            }
+        ],
+        "analyzers": [],
+        "tokenizers": [],
+        "tokenFilters": [],
+        "charFilters": [],
+        "encryptionKey": null
+    }
+
+### Create a skillset
+POST {{baseUrl}}/skillsets?api-version=2023-11-01  HTTP/1.1
+  Content-Type: application/json
+  api-key: {{apiKey}}
+
+    {
+        "name": "clinical-trials-ss",
+        "description": "Demonstrates debug sessions. Entity Recognition has intentional errors for debug purposes.",
+        "skills": [
+            {
+                "@odata.type": "#Microsoft.Skills.Text.V3.EntityRecognitionSkill",
+                "name": "#1",
+                "description": null,
+                "context": "/document",
+                "categories": [
+                    "Organization",
+                    "Location"
+                ],
+                "defaultLanguageCode": "en",
+                "minimumPrecision": null,
+                "inputs": [
+                    {
+                        "name": "text",
+                        "source": "/document/content",
+                        "sourceContext": null,
+                        "inputs": []
+                    },
+                    {
+                        "name": "languageCode",
+                        "source": "/document/languageCode",
+                        "sourceContext": null,
+                        "inputs": []
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "organizations",
+                        "targetName": "organizations"
+                    },
+                    {
+                        "name": "locations",
+                        "targetName": "locations"
+                    }
+                ]
+            },
+            {
+                "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
+                "name": "#2",
+                "description": null,
+                "context": "/document/merged_content",
+                "defaultLanguageCode": "en",
+                "maxKeyPhraseCount": null,
+                "inputs": [
+                    {
+                        "name": "text",
+                        "source": "/document/merged_content",
+                        "sourceContext": null,
+                        "inputs": []
+                    },
+                    {
+                        "name": "languageCode",
+                        "source": "/document/language",
+                        "sourceContext": null,
+                        "inputs": []
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "keyPhrases",
+                        "targetName": "keyphrases"
+                    }
+                ]
+            },
+            {
+                "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
+                "name": "#3",
+                "description": null,
+                "context": "/document",
+                "inputs": [
+                    {
+                        "name": "text",
+                        "source": "/document/merged_content",
+                        "sourceContext": null,
+                        "inputs": []
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "languageCode",
+                        "targetName": "language"
+                    }
+                ]
+            },
+            {
+                "@odata.type": "#Microsoft.Skills.Text.TranslationSkill",
+                "name": "#4",
+                "description": null,
+                "context": "/document/merged_content",
+                "defaultFromLanguageCode": null,
+                "defaultToLanguageCode": "en",
+                "suggestedFrom": "en",
+                "inputs": [
+                    {
+                        "name": "text",
+                        "source": "/document/merged_content",
+                        "sourceContext": null,
+                        "inputs": []
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "translatedText",
+                        "targetName": "translated_text"
+                    }
+                ]
+            },
+            {
+                "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
+                "name": "#5",
+                "description": null,
+                "context": "/document",
+                "insertPreTag": " ",
+                "insertPostTag": " ",
+                "inputs": [
+                    {
+                        "name": "text",
+                        "source": "/document/content",
+                        "sourceContext": null,
+                        "inputs": []
+                    },
+                    {
+                        "name": "itemsToInsert",
+                        "source": "/document/normalized_images/*/text",
+                        "sourceContext": null,
+                        "inputs": []
+                    },
+                    {
+                        "name": "offsets",
+                        "source": "/document/normalized_images/*/contentOffset",
+                        "sourceContext": null,
+                        "inputs": []
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "mergedText",
+                        "targetName": "merged_content"
+                    }
+                ]
+            },
+            {
+                "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
+                "name": "#6",
+                "description": null,
+                "context": "/document/normalized_images/*",
+                "textExtractionAlgorithm": null,
+                "lineEnding": "Space",
+                "defaultLanguageCode": "en",
+                "detectOrientation": true,
+                "inputs": [
+                    {
+                        "name": "image",
+                        "source": "/document/normalized_images/*",
+                        "sourceContext": null,
+                        "inputs": []
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "text",
+                        "targetName": "text"
+                    },
+                    {
+                        "name": "layoutText",
+                        "targetName": "layoutText"
+                    }
+                ]
+            }
+        ],
+        "cognitiveServices": null
+    }
+
+### Create an indexer
+POST {{baseUrl}}/indexers?api-version=2023-11-01  HTTP/1.1
+  Content-Type: application/json
+  api-key: {{apiKey}}  
+
+    {
+        "name": "clinical-trials-idxr",
+        "description": null,
+        "dataSourceName": "clinical-trials-ds",
+        "skillsetName": "clinical-trials-ss",
+        "targetIndexName": "clinical-trials",
+        "disabled": null,
+        "schedule": null,
+        "parameters": {
+            "batchSize": null,
+            "maxFailedItems": 0,
+            "maxFailedItemsPerBatch": 0,
+            "base64EncodeKeys": null,
+            "configuration": {
+                "imageAction": "generateNormalizedImages",
+                "dataToExtract": "contentAndMetadata",
+                "parsingMode": "default"
+            }
+        },
+        "fieldMappings": [
+            {
+                "sourceFieldName": "metadata_storage_path",
+                "targetFieldName": "metadata_storage_path",
+                "mappingFunction": {
+                    "name": "base64Encode",
+                    "parameters": null
+                }
+            }
+        ],
+        "outputFieldMappings": [
+            {
+                "sourceFieldName": "/document/merged_content/organizations",
+                "targetFieldName": "organizations",
+                "mappingFunction": null
+            },
+            {
+                "sourceFieldName": "/document/merged_content/locations",
+                "targetFieldName": "locations",
+                "mappingFunction": null
+            },
+            {
+                "sourceFieldName": "/document/merged_content/keyphrases",
+                "targetFieldName": "keyphrases",
+                "mappingFunction": null
+            },
+            {
+                "sourceFieldName": "/document/language",
+                "targetFieldName": "language",
+                "mappingFunction": null
+            },
+            {
+                "sourceFieldName": "/document/merged_content/translated_text",
+                "targetFieldName": "translated_text",
+                "mappingFunction": null
+            },
+            {
+                "sourceFieldName": "/document/merged_content",
+                "targetFieldName": "merged_content",
+                "mappingFunction": null
+            },
+            {
+                "sourceFieldName": "/document/normalized_images/*/text",
+                "targetFieldName": "text",
+                "mappingFunction": null
+            },
+            {
+                "sourceFieldName": "/document/normalized_images/*/layoutText",
+                "targetFieldName": "layoutText",
+                "mappingFunction": null
+            }
+        ]
+    }
