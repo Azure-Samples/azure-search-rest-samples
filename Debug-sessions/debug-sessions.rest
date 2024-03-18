@@ -36,7 +36,7 @@ POST {{baseUrl}}/indexes?api-version=2023-11-01  HTTP/1.1
 
     {
         "name": "clinical-trials",
-        "defaultScoringProfile": "",
+        "defaultScoringProfile": null,
         "fields": [
             {
                 "name": "content",
@@ -414,7 +414,7 @@ POST {{baseUrl}}/indexers?api-version=2023-11-01  HTTP/1.1
 
     {
         "name": "clinical-trials-idxr",
-        "description": "",
+        "description": null,
         "dataSourceName": "clinical-trials-ds",
         "skillsetName": "clinical-trials-ss",
         "targetIndexName": "clinical-trials",
