@@ -218,7 +218,7 @@ POST  {{baseUrl}}/indexes?api-version=2023-11-01  HTTP/1.1
 ### OPTIONAL: Generate embeddings using Azure OpenAI 
 @openai-endpoint = PUT-YOUR-AZURE-OPENAI-ENDPOINT-HERE
 @openai-deployment-name = text-embedding-ada-002
-@openai-api-version = 2023-05-15
+@openai-api-version = 2024-02-01
 @OpenAiKey =PUT-YOUR-AZURE-OPENAI-KEY-HERE
 
 POST  {{openai-endpoint}}/openai/deployments/{{openai-deployment-name}}/embeddings?api-version={{openai-api-version}}  HTTP/1.1
