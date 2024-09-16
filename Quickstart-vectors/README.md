@@ -15,9 +15,9 @@ urlFragment: rest-api-vector-quickstart
 
 ![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
-Demonstrates the Azure AI Search REST APIs to send requests: create an index, load it with vector, and execute a few vectorqueries. Requests are provided in an `az-search-quickstart-vectors.rest` file, which you can open and then modify for connections to your search service.
+Demonstrates the Azure AI Search REST APIs to send requests: create an index, load it with vector, and execute a few vectorqueries. Requests are provided in an `az-search-vector-quickstart.rest` file, which you can open and then modify for connections to your search service.
 
-These requests are explained in the [Quickstart: Vector search with REST](https://learn.microsoft.com/azure/search/search-get-started-vectors) article. 
+These requests are explained in the [Quickstart: Vector search with REST](https://learn.microsoft.com/azure/search/search-get-started-vector) article. 
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ These requests are explained in the [Quickstart: Vector search with REST](https:
 
 ## Run the code
 
-1. Start Visual Studio Code and open the `az-search-quickstart.rest` file.
+1. Start Visual Studio Code and open the `az-search-vector-quickstart.rest` file.
 1. Provide a valid search service name and API key in the variables.
 1. **Save** the file.
 1. Send each request to the service.
