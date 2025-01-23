@@ -15,7 +15,7 @@ urlFragment: rest-json-indexer-tutorial
 
 This sample uses the Azure AI Search REST APIs to create an indexer, data source, and index for nested JSON within a JSON array. This example demonstrates the `jsonArray` parsing model and `documentRoot` parameters. 
 
-This sample is featured in the [Tutorial: Index JSON blobs from Azure Storage using REST](https://docs.microsoft.com/azure/search/AI-search-tutorial-blob). If you have trouble with the steps in this readme, check the tutorial for more detailed instructions.
+This sample is featured in the [Tutorial: Index nested JSON blobs from Azure Storage using REST](https://learn.microsoft.com/azure/search/search-semi-structured-data). If you have trouble with the steps in this readme, check the tutorial for more detailed instructions.
 
 ## Prerequisites
 
@@ -23,13 +23,13 @@ This sample is featured in the [Tutorial: Index JSON blobs from Azure Storage us
 
 + [Azure AI Search](https://learn.microsoft.com/azure/search/). [Create](https://learn.microsoft.com//azure/search/search-create-service-portal) or [find an existing Azure AI Search resource](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription.
 
-+ [Azure Storage account](https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal)
++ [Azure Storage account](https://learn.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal)
 
 ## Set up the data
 
 1. Download the sample data file.
 
-1. In Azure portal, in Azure Storage, [create a Blob container](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-portal) and upload the sample data files.
+1. In Azure portal, in Azure Storage, [create a Blob container](https://learn.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-portal) and upload the sample data files.
 
 1. Make a note of the blob container name.
 
@@ -58,7 +58,7 @@ Gather connection information used on the requests. You can find this informatio
 
 1. Send each request to create a data source, indexer, and index used in this example.
 
-1. The last set of requests query the search index. For more information about this sample, see [Tutorial: Index JSON blobs from Azure Storage using REST](https://docs.microsoft.com/azure/search/AI-search-tutorial-blob).
+1. The last set of requests query the search index. For more information about this sample, see [Tutorial: Index JSON blobs from Azure Storage using REST](https://learn.microsoft.com/azure/search/search-semi-structured-data).
 
 ## Next steps
 
