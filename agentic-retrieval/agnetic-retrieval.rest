@@ -10,16 +10,6 @@
 @index-name=earth_at_night
 @agent-name=earth-search-agent
 
-###
-DELETE {{baseUrl}}/agents/{{agent-name}}?api-version={{api-version}}
-api-key: {{apiKey}}
-###
-
-###
-DELETE {{baseUrl}}/indexes/{{index-name}}?api-version={{api-version}}
-api-key: {{apiKey}}
-###
-
 ### 1 - Create earth at night index
 PUT {{baseUrl}}/indexes/{{index-name}}?api-version={{api-version}}
 Content-Type: application/json
@@ -166,6 +156,10 @@ api-key: {{apiKey}}
                 }
             ]
         }
-    ]
+    ],
+    "targetIndexParams": {
+        "indexName": "{{index-name}}",
+        "rerankerThreshold":2.5
+    }
 }
 ###
