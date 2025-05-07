@@ -1,0 +1,133 @@
+@endpoint=https://your-search-service.search.windows.net
+@index=acl-sample
+@search-token=search-token
+@graph-token=graph-token
+@oid=your-oid
+@group=your-group-id
+@api-version=2025-05-01-preview
+
+###
+GET {{endpoint}}/indexes/{{index}}?api-version={{api-version}}
+Authorization: Bearer {{search-token}}
+###
+
+### Create Sample Index
+PUT {{endpoint}}/indexes/{{index}}?api-version={{api-version}}
+Authorization: Bearer {{search-token}}
+Content-Type: application/json
+
+{
+    "name": "{{index}}",
+    "fields": [
+        {
+            "name": "id",
+            "type": "Edm.String",
+            "searchable": true,
+            "filterable": true,
+            "sortable": true,
+            "key": true
+        },
+        {
+            "name": "oid",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": true,
+            "permissionFilter": "userIds"
+        },
+        {
+            "name": "group",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": true,
+            "permissionFilter": "groupIds"
+        },
+        {
+            "name": "name",
+            "type": "Edm.String",
+            "searchable": true
+        }
+    ],
+    "permissionFilterOption": "enabled"
+}
+###
+
+### Get OID from Graph
+GET https://graph.microsoft.com/v1.0/me?$select=id
+Authorization: Bearer {{graph-token}}
+###
+
+### Get Group ID from Graph
+GET https://graph.microsoft.com/v1.0/me/memberOf?$select=id,displayName
+Authorization: Bearer {{graph-token}}
+###
+
+### PUT Sample Documents
+POST {{endpoint}}/indexes/{{index}}/docs/index?api-version={{api-version}}
+Authorization: Bearer {{search-token}}
+Content-Type: application/json
+
+{
+    "value": [
+        {
+            "@search.action": "upload",
+            "id": "1",
+            "oid": ["{{oid}}"],
+            "group": ["{{group}}"],
+            "name": "Document 1"
+        },
+        {
+            "@search.action": "upload",
+            "id": "2",
+            "oid": ["all"],
+            "group": ["{{group}}"],
+            "name": "Document 2"
+        },
+        {
+            "@search.action": "upload",
+            "id": "3",
+            "oid": ["{{oid}}"],
+            "group": ["all"],
+            "name": "Document 3"
+        },
+        {
+            "@search.action": "upload",
+            "id": "4",
+            "oid": ["none"],
+            "group": ["none"],
+            "name": "Document 4"
+        },
+        {
+            "@search.action": "upload",
+            "id": "5",
+            "oid": ["none"],
+            "group": ["{{group}}"],
+            "name": "Document 5"
+        }
+    ]
+}
+###
+
+### Query Sample Documents with x-ms-query-source-authorization
+POST {{endpoint}}/indexes/{{index}}/docs/search?api-version={{api-version}}
+Authorization: Bearer {{search-token}}
+x-ms-query-source-authorization: {{search-token}}
+Content-Type: application/json
+
+{
+    "search": "*",
+    "select": "id,oid,group,name",
+    "orderby": "id asc"
+}
+###
+
+### Query Sample Documents without x-ms-query-source-authorization
+POST {{endpoint}}/indexes/{{index}}/docs/search?api-version={{api-version}}
+Authorization: Bearer {{search-token}}
+Content-Type: application/json
+
+{
+    "search": "*",
+    "select": "id,oid,group,name",
+    "orderby": "id asc"
+}
+###
