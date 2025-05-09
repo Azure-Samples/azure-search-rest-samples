@@ -157,9 +157,11 @@ api-key: {{apiKey}}
             ]
         }
     ],
-    "targetIndexParams": {
+    "targetIndexParams": [
+      {
         "indexName": "{{index-name}}",
-        "rerankerThreshold":2.5
-    }
+        "rerankerThreshold": 2.5
+      }
+    ]
 }
 ###
