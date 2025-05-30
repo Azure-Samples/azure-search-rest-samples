@@ -8,6 +8,7 @@ This repository provides REST API examples:
 + knowledge-store
 + projections
 + quickstart
++ quickstart-agentic-retrieval
 + quickstart-vectors
 + skill-examples
 + skillset-tutorial
