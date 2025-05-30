@@ -25,19 +25,21 @@ These requests are explained in the [Quickstart: Vector search with REST](https:
 
 + [Azure AI Search](search-what-is-azure-search.md). [Create](search-create-service-portal.md) or [find an existing Azure AI Search resource](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) under your current subscription. You can use a free service for this quickstart. 
 
-+ (optional) [Semantic ranking](https://learn.microsoft.com/azure/search/semantic-how-to-enable-disable) if you want to run the hybrid query that invokes semantic ranking.
++ (Optional) [Semantic ranking](https://learn.microsoft.com/azure/search/semantic-how-to-enable-disable) enabled on Azure AI Search if you want to run the hybrid query that invokes semantic ranking.
 
-+ (optional) [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource) with a deployment of **text-embedding-ada-002** if you want to generate embeddings (the sample comes with vectors, so this resource is only needed if you want different vectors).
++ (Optional) [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource) with a deployment of **text-embedding-ada-002** if you want to generate your own embeddings. Otherwise, use the embedded vectors provided in the sample.
 
 ## Set up the sample
 
 1. Clone or download this sample repository.
 1. Extract contents if the download is a zip file. Make sure the files are read-write.
 
+We recommend using Microsoft Entra ID authentication and authorization through role assignments. If you prefer, you can specify API keys on the request. Instructions are provided in the [Quickstart](https://learn.microsoft.com/azure/search/search-get-started-vectors). 
+
 ## Run the code
 
-1. Start Visual Studio Code and open the `az-search-vector-quickstart.rest` file.
-1. Provide a valid search service name and API key in the variables.
+1. Start Visual Studio Code and open the `az-search-quickstart.rest` file.
+1. Provide a valid search service name and API key or Authorization bearer token in the variables.
 1. **Save** the file.
 1. Send each request to the service.
 
