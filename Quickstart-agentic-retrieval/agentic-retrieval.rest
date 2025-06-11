@@ -3,8 +3,8 @@
 @api-version=2025-05-01-Preview
 @aoaiBaseUrl=PUT-YOUR-AOAI-URL-HERE
 @aoaiKey=PUT-YOUR-AOAI-KEY-HERE
-@aoaiGptModel=gpt-4o-mini
-@aoaiGptDeployment=gpt-4o-mini
+@aoaiGptModel=gpt-4.1-mini
+@aoaiGptDeployment=gpt-4.1-mini
 @aoaiEmbeddingModel=text-embedding-3-large
 @aoaiEmbeddingDeployment=text-embedding-3-large
 @index-name=earth_at_night
