@@ -23,7 +23,7 @@ This sample is featured in the [Quickstart: Run agentic retrieval in Azure AI Se
 
 + An [Azure OpenAI resource](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource).
 
-+ A [supported model](https://learn.microsoft.com/azure/search/search-agentic-retrieval-how-to-create#supported-models) deployed to your Azure OpenAI resource. This sample uses `gpt-4o-mini`.
++ A [supported Azure OpenAI chat completion model](https://learn.microsoft.com/azure/search/search-agentic-retrieval-how-to-create#supported-models). This sample uses `gpt-4.1-mini`.
 
 ## Get connection information
 
