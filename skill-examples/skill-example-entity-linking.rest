@@ -5,7 +5,7 @@
 
 
 ### Create a data source (we used nasa-ebooks-small and a free search service to test this example.)
-POST {{baseUrl}}/datasources?api-version=2023-11-01
+POST {{baseUrl}}/datasources?api-version=2024-07-01
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -22,7 +22,7 @@ api-key: {{apiKey}}
 
 
 ### Create a skillset
-POST {{baseUrl}}/skillsets?api-version=2023-11-01
+POST {{baseUrl}}/skillsets?api-version=2024-07-01
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -50,7 +50,7 @@ api-key: {{apiKey}}
     }
 
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2023-11-01
+POST {{baseUrl}}/indexes?api-version=2024-07-01
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -94,7 +94,7 @@ api-key: {{apiKey}}
     }
 
 ### Create and run an indexer (takes a minute)
-POST {{baseUrl}}/indexers?api-version=2023-11-01
+POST {{baseUrl}}/indexers?api-version=2024-07-01
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -143,11 +143,11 @@ api-key: {{apiKey}}
     }
 
 ### Get indexer status (watch for items processed and errors)
-GET {{baseUrl}}/indexers/nasa-entity-linking-idxr/status?api-version=2023-11-01
+GET {{baseUrl}}/indexers/nasa-entity-linking-idxr/status?api-version=2024-07-01
   api-key: {{apiKey}}
 
 ### Run a search query
-POST {{baseUrl}}/indexes/nasa-entity-linking-idx/docs/search?api-version=2023-11-01
+POST {{baseUrl}}/indexes/nasa-entity-linking-idx/docs/search?api-version=2024-07-01
   Content-Type: application/json
   api-key: {{apiKey}}
 
