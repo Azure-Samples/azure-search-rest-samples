@@ -2,12 +2,12 @@
 @apiKey = PUT-YOUR-SEARCH-SERVICE-ADMIN-API-KEY-HERE
 
 ### List existing indexes by name
-GET  {{baseUrl}}/indexes?api-version=2023-11-01&$select=name  HTTP/1.1
+GET  {{baseUrl}}/indexes?api-version=2024-07-01&$select=name  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
 ### Create a new index
-POST  {{baseUrl}}/indexes?api-version=2023-11-01  HTTP/1.1
+POST  {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -230,7 +230,7 @@ POST  {{openai-endpoint}}/openai/deployments/{{openai-deployment-name}}/embeddin
 }
 
 ### Upload documents
-POST  {{baseUrl}}/indexes/hotels-vector-quickstart/docs/index?api-version=2023-11-01  HTTP/1.1
+POST  {{baseUrl}}/indexes/hotels-vector-quickstart/docs/index?api-version=2024-07-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -492,7 +492,7 @@ POST  {{baseUrl}}/indexes/hotels-vector-quickstart/docs/index?api-version=2023-1
 }
 
 ### Run a single vector query
-POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -511,7 +511,7 @@ POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-1
     }
 
 ### Run a vector query with a filter
-POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -532,7 +532,7 @@ POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-1
     }
 
 ### Run a hybrid query
-POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -553,7 +553,7 @@ POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-1
 }
 
 ### Run a hybrid query with semantic reranking (requires Basic tier or above)
-POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
+POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
 
@@ -579,6 +579,6 @@ POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-1
 }
 
 ### Delete an index
-DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2023-11-01 HTTP/1.1
+DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2024-07-01 HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
