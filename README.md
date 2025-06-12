@@ -4,10 +4,11 @@ This repository provides REST API examples:
 
 + custom-analyzers
 + debug-sessions
-+ index-encrypted-blobs (currently archived)
++ index-json-blobs
 + knowledge-store
 + projections
 + quickstart
++ quickstart-ACL (document permissions)
 + quickstart-agentic-retrieval
 + quickstart-vectors
 + skill-examples
