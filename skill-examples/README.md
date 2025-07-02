@@ -33,8 +33,12 @@ You need a REST client for these examples. We recommend [Visual Studio Code](htt
 
 ## Prerequisites
 
-- [Azure AI Search service](https://docs.microsoft.com/azure/search/search-create-service-portal)
++ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
+
++ [Azure AI Search](https://learn.microsoft.com/azure/search/search-create-service-portal), any tier.
+
 - [Azure Blob Storage](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-portal)
+
 - [Sample data (uploaded to blob containers in Blob Storage)](https://github.com/Azure-Samples/azure-search-sample-data)
 
 ## Set up the sample
