@@ -228,7 +228,7 @@ POST {{baseUrl}}/skillsets?api-version=2024-07-01  HTTP/1.1
 
     {
         "name": "projections-demo-ss",
-        "description": "Skillset that enriches blob data found in "merged_content". The enrichment granularity is a document.",
+        "description": "Skillset that enriches blob data found in the merged_content field. The enrichment granularity is a document.",
         "skills": [
             {
                 "@odata.type": "#Microsoft.Skills.Text.V3.EntityRecognitionSkill",
@@ -372,7 +372,7 @@ POST {{baseUrl}}/skillsets?api-version=2024-07-01  HTTP/1.1
             "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
             "description": "An Azure AI services resource in the same region as Search.",
             "key": ""
-        }
+        },
         "knowledgeStore": null
     }
 
