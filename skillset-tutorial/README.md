@@ -17,7 +17,7 @@ This sample uses the Azure AI Search REST APIs to create an indexer, data source
 
 Skillset steps include OCR, language detection, entity recognition, and key phrase extraction. The sample demo files consist of multiple content types ranging from image-only, text-only, and rich application files with embedded images and text. The end result is searchable index that you can query for new and enriched content.
 
-This collection is featured in the [Tutorial: Use REST and AI to generate searchable content from Azure blobs](https://docs.microsoft.com/azure/search/AI-search-tutorial-blob). If you have trouble with the steps in this readme, check the tutorial for more detailed instructions.
+This collection is featured in the [Tutorial: Skillsets in Azure AI Search](https://learn.microsoft.com/azure/search/tutorial-skillset). If you have trouble with the steps in this readme, check the tutorial for more detailed instructions.
 
 ## Prerequisites
 
