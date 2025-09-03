@@ -4,7 +4,7 @@ languages:
   - rest
 name: Agentic Retrieval Quickstart
 description: |
-  Learn how to create a knowledge agent that processes conversations, retrieves information from an Azure AI Search index, and extracts answers using an Azure OpenAI model.
+  Learn how to create a knowledge agent that retrieves content from an Azure AI Search index and uses an Azure OpenAI chat completion model to generate answers.
 products:
   - azure
   - azure-cognitive-search
@@ -13,37 +13,39 @@ urlFragment: rest-api-agentic-retrieval-quickstart
 
 # Quickstart: Agentic retrieval in Azure AI Search using REST APIs
 
-Use this REST sample to get started with [agentic retrieval](https://learn.microsoft.com/azure/search/search-agentic-retrieval-concept) in Azure AI Search, which integrates conversation history and Azure OpenAI models to plan, retrieve, and synthesize complex queries.
+Use this REST sample to get started with [agentic retrieval](https://learn.microsoft.com/azure/search/search-agentic-retrieval-concept) in Azure AI Search, which integrates an Azure OpenAI chat completion model to process queries, retrieve relevant content from indexed documents, and synthesize answers in natural language.
 
-This is the source code for the article: [Quickstart: Run agentic retrieval in Azure AI Search](https://learn.microsoft.com/azure/search/search-get-started-agentic-retrieval).
+This sample is the source code for the REST portion of [Quickstart: Use agentic retrieval in Azure AI Search](https://learn.microsoft.com/azure/search/search-get-started-agentic-retrieval).
 
 ## Prerequisites
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
-
 + An [Azure AI Search service](https://learn.microsoft.com/azure/search/search-create-service-portal) on the Basic tier or higher with [semantic ranker enabled](https://learn.microsoft.com/azure/search/semantic-how-to-enable-disable).
 
-+ An [Azure OpenAI resource](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource).
++ An [Azure AI Foundry project](https://learn.microsoft.com/azure/ai-foundry/how-to/create-projects) and Azure AI Foundry resource. When you create a project, the resource is automatically created.
 
-+ A [supported Azure OpenAI chat completion model](https://learn.microsoft.com/azure/search/search-agentic-retrieval-how-to-create#supported-models). This sample uses `gpt-4.1-mini`.
++ A [supported chat completion model](https://learn.microsoft.com/azure/search/search-agentic-retrieval-how-to-create#supported-models). This sample uses `gpt-4.1-mini`.
+
++ A text embedding model. This sample uses `text-embedding-3-large`.
+
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ## Set up the sample
 
 1. Clone or download this sample repository.
-1. Extract contents if the download is a zip file. Make sure the files are read-write.
-1. Configure access to the Azure resources and get the endpoints. 
+1. If the download is a ZIP file, extract its contents. Make sure the files are read-write.
+1. Configure access to the Azure resources and get their endpoints.
 
-For connections, we recommend using Microsoft Entra ID authentication and authorization through role assignments. If you prefer, you can specify API keys on the request.
+For connections, we recommend Microsoft Entra ID for authentication and role assignments for authorization. Alternatively, you can specify [API keys](https://learn.microsoft.com/azure/search/search-security-api-keys) in your requests.
 
-Instructions for setup are provided in the [Quickstart](https://learn.microsoft.com/azure/search/search-get-started-agentic-retrieval). 
+[Quickstart: Use agentic retrieval in Azure AI Search](https://learn.microsoft.com/azure/search/search-get-started-agentic-retrieval) provides the full setup instructions.
 
 ## Run the code
 
-1. Open the `agentic-retrieval.rest` file in Visual Studio
+1. In Visual Studio Code, open the `agentic-retrieval.rest` file.
 1. Replace the placeholder variables with valid values.
-1. **Save** the file.
-1. Send each request to the service.
+1. Save the file.
+1. Send each request to your Azure AI Search service.
 
-## Next steps
+## Next step
 
-You can learn more about Azure AI Search on the [official documentation site](https://learn.microsoft.com/azure/search).
+Learn more about Azure AI Search on the [official documentation site](https://learn.microsoft.com/azure/search).
