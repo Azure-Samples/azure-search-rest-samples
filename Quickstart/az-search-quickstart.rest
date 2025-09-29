@@ -2,12 +2,12 @@
 @apiKey = PUT-YOUR-SEARCH-SERVICE-ADMIN-API-KEY-HERE
 
 ### List existing indexes by name
-GET  {{baseUrl}}/indexes?api-version=2024-07-01&$select=name  HTTP/1.1
+GET  {{baseUrl}}/indexes?api-version=2025-09-01&$select=name  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
 ### Create a new index
-POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -35,7 +35,7 @@ POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
     }
 
 ### Upload documents
-POST {{baseUrl}}/indexes/hotels-quickstart/docs/index?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes/hotels-quickstart/docs/index?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -120,7 +120,7 @@ POST {{baseUrl}}/indexes/hotels-quickstart/docs/index?api-version=2024-07-01  HT
     }
 
 ### Run a query
-POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
     
@@ -133,11 +133,11 @@ POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=2024-07-01  H
 
 
 ### Get index statistics
-GET {{baseUrl}}/indexes/hotels-quickstart/stats?api-version=2024-07-01  HTTP/1.1
+GET {{baseUrl}}/indexes/hotels-quickstart/stats?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
 ### Delete an index
-DELETE  {{baseUrl}}/indexes/hotels-quickstart?api-version=2024-07-01 HTTP/1.1
+DELETE  {{baseUrl}}/indexes/hotels-quickstart?api-version=2025-09-01 HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}

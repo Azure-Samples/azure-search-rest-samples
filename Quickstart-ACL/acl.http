@@ -4,7 +4,7 @@
 @graph-token=graph-token
 @oid=your-oid
 @group=your-group-id
-@api-version=2025-05-01-preview
+@api-version=2025-08-01-preview
 
 ###
 GET {{endpoint}}/indexes/{{index}}?api-version={{api-version}}

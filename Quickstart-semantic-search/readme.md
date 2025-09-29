@@ -42,7 +42,7 @@ Each request is standalone and provides the endpoints and authentication informa
 @personalAccessToken
 
 ### List existing indexes by name
-GET  {{searchUrl}}/indexes?api-version=2024-07-01&$select=name  HTTP/1.1
+GET  {{searchUrl}}/indexes?api-version=2025-09-01&$select=name  HTTP/1.1
 Authorization: Bearer {{@personalAccessToken}}
 ```
 
@@ -53,7 +53,7 @@ Alternatively, you can run the code using an API key. If you switch to [key-base
 @apiKey
 
 ### List existing indexes by name
-GET  {{searchUrl}}/indexes?api-version=2024-07-01&$select=name  HTTP/1.1
+GET  {{searchUrl}}/indexes?api-version=2025-09-01&$select=name  HTTP/1.1
 api-key: {{apiKey}}
 ```
 

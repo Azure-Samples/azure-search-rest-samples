@@ -1,10 +1,11 @@
 @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
 @apiKey = PUT-YOUR-SEARCH-SERVICE-ADMIN-API-KEY-HERE
+@api-version= 2025-09-01
 @storageConnectionString = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
 @blobContainer = PUT-YOUR-CONTAINER-NAME-HERE
 
 ### Create a data source (we used unsplash-signs sample data and a free search service to test this example)
-POST {{baseUrl}}/datasources?api-version=2024-07-01
+POST {{baseUrl}}/datasources?api-version={{api-version}}
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -20,7 +21,7 @@ api-key: {{apiKey}}
 }
 
 ### Create a skillset (same as skill-example-ocr; renaming is in the indexer output field mappings)
-POST {{baseUrl}}/skillsets?api-version=2024-07-01
+POST {{baseUrl}}/skillsets?api-version={{api-version}}
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -54,7 +55,7 @@ api-key: {{apiKey}}
     }
 
 ### Create an index (same as skill-example-ocr, but with renamed fields)
-POST {{baseUrl}}/indexes?api-version=2024-07-01
+POST {{baseUrl}}/indexes?api-version={{api-version}}
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -107,7 +108,7 @@ api-key: {{apiKey}}
 
 
 ### Create and run an indexer (same as skill-example-ocr, but with output field mappings for renamed fields)
-POST {{baseUrl}}/indexers?api-version=2024-07-01
+POST {{baseUrl}}/indexers?api-version={{api-version}}
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -161,11 +162,11 @@ api-key: {{apiKey}}
     }
 
 ### Get indexer status (watch for items processed and errors)
-GET {{baseUrl}}/indexers/unsplash-signs-rename-fields-idxr/status?api-version=2024-07-01
+GET {{baseUrl}}/indexers/unsplash-signs-rename-fields-idxr/status?api-version={{api-version}}
   api-key: {{apiKey}}
 
 ### Run a search query
-POST {{baseUrl}}/indexes/unsplash-signs-rename-fields-idx/docs/search?api-version=2024-07-01
+POST {{baseUrl}}/indexes/unsplash-signs-rename-fields-idx/docs/search?api-version={{api-version}}
   Content-Type: application/json
   api-key: {{apiKey}}
 

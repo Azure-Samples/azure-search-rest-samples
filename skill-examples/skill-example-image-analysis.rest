@@ -1,10 +1,11 @@
 @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
 @apiKey = PUT-YOUR-SEARCH-SERVICE-ADMIN-API-KEY-HERE
+@api-version= 2025-09-01
 @storageConnectionString = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
 @blobContainer = PUT-YOUR-CONTAINER-NAME-HERE
 
 ### Create a data source (we used unsplash-landmarks sample data and a free search service to test this example)
-POST {{baseUrl}}/datasources?api-version=2024-07-01
+POST {{baseUrl}}/datasources?api-version={{api-version}}
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -21,7 +22,7 @@ api-key: {{apiKey}}
 
 
 ### Create a skillset
-POST {{baseUrl}}/skillsets?api-version=2024-07-01
+POST {{baseUrl}}/skillsets?api-version={{api-version}}
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -61,7 +62,7 @@ api-key: {{apiKey}}
 
 
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2024-07-01
+POST {{baseUrl}}/indexes?api-version={{api-version}}
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -196,7 +197,7 @@ api-key: {{apiKey}}
     }
 
 ### Create and run an indexer (takes a minute)
-POST {{baseUrl}}/indexers?api-version=2024-07-01
+POST {{baseUrl}}/indexers?api-version={{api-version}}
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -253,11 +254,11 @@ api-key: {{apiKey}}
     }
 
 ### Get indexer status (watch for items processed and errors)
-GET {{baseUrl}}/indexers/unsplash-landmarks-idxr/status?api-version=2024-07-01
+GET {{baseUrl}}/indexers/unsplash-landmarks-idxr/status?api-version={{api-version}}
   api-key: {{apiKey}}
 
 ### Run a search query
-POST {{baseUrl}}/indexes/unsplash-landmarks-idx/docs/search?api-version=2024-07-01
+POST {{baseUrl}}/indexes/unsplash-landmarks-idx/docs/search?api-version={{api-version}}
   Content-Type: application/json
   api-key: {{apiKey}}
 

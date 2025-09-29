@@ -1,5 +1,5 @@
 @searchUrl=PUT-YOUR-SEARCH-URL-HERE
-@api-version=2025-05-01-Preview
+@api-version=2025-09-01
 # Token for Azure AI Search
 @searchAccessToken=PUT-YOUR-SEARCH-TOKEN-HERE
 # Token for Azure OpenAI (Cognitive Services)
@@ -15,7 +15,7 @@
 
 
 ### List existing indexes by name (verify the connection)
-GET  {{searchUrl}}/indexes?api-version=2025-05-01-preview&$select=name  HTTP/1.1
+GET  {{searchUrl}}/indexes?api-version={{api-version}}&$select=name  HTTP/1.1
 Authorization: Bearer {{searchAccessToken}}
 
 ### 1 - Get search results for a term query and save results in a variable
