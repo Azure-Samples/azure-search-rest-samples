@@ -4,12 +4,12 @@
 @blobContainer = PUT-YOUR-CONTAINER-NAME-HERE
 
 ### List existing indexes by name
-GET  {{baseUrl}}/indexes?api-version=2024-07-01&$select=name  HTTP/1.1
+GET  {{baseUrl}}/indexes?api-version=2025-09-01&$select=name  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
 ### Create a data source
-POST {{baseUrl}}/datasources?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/datasources?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -30,7 +30,7 @@ POST {{baseUrl}}/datasources?api-version=2024-07-01  HTTP/1.1
     }
 
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -226,7 +226,7 @@ POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
     }
 
 ### Create a skillset
-POST {{baseUrl}}/skillsets?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/skillsets?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -408,7 +408,7 @@ POST {{baseUrl}}/skillsets?api-version=2024-07-01  HTTP/1.1
     }
 
 ### Create an indexer
-POST {{baseUrl}}/indexers?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexers?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}  
 
