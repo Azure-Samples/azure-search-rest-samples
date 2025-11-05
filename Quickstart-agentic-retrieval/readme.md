@@ -23,7 +23,7 @@ This sample is the source code for the REST portion of [Quickstart: Use agentic 
 
 + An [Azure AI Foundry project](https://learn.microsoft.com/azure/ai-foundry/how-to/create-projects) and Azure AI Foundry resource. When you create a project, the resource is automatically created.
 
-+ A [supported chat completion model](https://learn.microsoft.com/azure/search/search-agentic-retrieval-how-to-create#supported-models). This sample uses `gpt-5-mini`.
++ A [supported LLM](https://learn.microsoft.com/azure/search/search-agentic-retrieval-how-to-create#supported-models). This sample uses `gpt-5-mini`.
 
 + A text embedding model. This sample uses `text-embedding-3-large`.
 
