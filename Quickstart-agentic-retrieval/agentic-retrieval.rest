@@ -11,11 +11,6 @@
 @knowledge-base-name = earth-knowledge-base
 @api-version = 2025-11-01-preview
 
-### List existing indexes by name
-GET {{search-url}}/indexes?api-version={{api-version}}  HTTP/1.1
-    Content-Type: application/json
-    Authorization: Bearer {{token}}
-
 ### Create an index
 PUT {{search-url}}/indexes/{{index-name}}?api-version={{api-version}}  HTTP/1.1
     Content-Type: application/json
