@@ -178,9 +178,14 @@ POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=
             {
                 "knowledgeSourceName": "{{knowledge-source-name}}",
                 "kind": "searchIndex",
+                "includeReferences": true,
+                "includeReferenceSourceData": true,
+                "alwaysQuerySource": true,
                 "rerankerThreshold": 2.5
             }
-        ]
+        ],
+        "includeActivity": true,
+        "retrievalReasoningEffort": { "kind": "low" }
     }
 
 ### Delete the knowledge base
