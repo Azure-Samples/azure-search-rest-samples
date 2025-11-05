@@ -154,7 +154,8 @@ PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version={{api-vers
                 }
             }
         ],
-        "outputMode": "answerSynthesis"
+        "outputMode": "answerSynthesis",
+        "answerInstructions": "Provide a two sentence concise and informative answer based on the retrieved documents."
     }
 
 ### Run agentic retrieval
