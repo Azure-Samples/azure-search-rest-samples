@@ -4,7 +4,7 @@ languages:
   - rest
 name: Agentic Retrieval Quickstart
 description: |
-  Learn how to create a knowledge agent that retrieves content from an Azure AI Search index and uses an Azure OpenAI chat completion model to generate answers.
+  Learn how to create a knowledge base that retrieves content from an Azure AI Search index and uses an LLM from Azure OpenAI in Foundry Models to generate answers.
 products:
   - azure
   - azure-cognitive-search
@@ -13,7 +13,7 @@ urlFragment: rest-api-agentic-retrieval-quickstart
 
 # Quickstart: Agentic retrieval in Azure AI Search using REST APIs
 
-Use this REST sample to get started with [agentic retrieval](https://learn.microsoft.com/azure/search/search-agentic-retrieval-concept) in Azure AI Search, which integrates an Azure OpenAI chat completion model to process queries, retrieve relevant content from indexed documents, and synthesize answers in natural language.
+Use this REST sample to get started with [agentic retrieval](https://learn.microsoft.com/azure/search/search-agentic-retrieval-concept) in Azure AI Search, which integrates an LLM from Azure OpenAI in Foundry Models to process queries, retrieve relevant content from indexed documents, and synthesize answers in natural language.
 
 This sample is the source code for the REST portion of [Quickstart: Use agentic retrieval in Azure AI Search](https://learn.microsoft.com/azure/search/search-get-started-agentic-retrieval).
 
@@ -23,7 +23,7 @@ This sample is the source code for the REST portion of [Quickstart: Use agentic 
 
 + An [Azure AI Foundry project](https://learn.microsoft.com/azure/ai-foundry/how-to/create-projects) and Azure AI Foundry resource. When you create a project, the resource is automatically created.
 
-+ A [supported chat completion model](https://learn.microsoft.com/azure/search/search-agentic-retrieval-how-to-create#supported-models). This sample uses `gpt-5-mini`.
++ A [supported LLM](https://learn.microsoft.com/azure/search/search-agentic-retrieval-how-to-create#supported-models). This sample uses `gpt-5-mini`.
 
 + A text embedding model. This sample uses `text-embedding-3-large`.
 

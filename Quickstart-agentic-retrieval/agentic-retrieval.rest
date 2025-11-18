@@ -8,13 +8,8 @@
 @aoai-gpt-deployment = gpt-5-mini
 @index-name = earth-at-night
 @knowledge-source-name = earth-knowledge-source
-@knowledge-agent-name = earth-knowledge-agent
-@api-version = 2025-08-01-Preview
-
-### List existing indexes by name
-GET {{search-url}}/indexes?api-version={{api-version}}  HTTP/1.1
-    Content-Type: application/json
-    Authorization: Bearer {{token}}
+@knowledge-base-name = earth-knowledge-base
+@api-version = 2025-11-01-preview
 
 ### Create an index
 PUT {{search-url}}/indexes/{{index-name}}?api-version={{api-version}}  HTTP/1.1
@@ -129,21 +124,24 @@ POST {{search-url}}/knowledgesources?api-version={{api-version}}  HTTP/1.1
         "kind": "searchIndex",
         "searchIndexParameters": {
             "searchIndexName": "{{index-name}}",
-            "sourceDataSelect": "id, page_chunk, page_number"
+            "sourceDataFields": [
+                { "name": "id" },
+                { "name": "page_chunk" },
+                { "name": "page_number" }
+            ]
         }
     }
 
-### Create a knowledge agent
-PUT {{search-url}}/agents/{{knowledge-agent-name}}?api-version={{api-version}}  HTTP/1.1
+### Create a knowledge base
+PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version={{api-version}}  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 
     {
-        "name": "{{knowledge-agent-name}}",
+        "name": "{{knowledge-base-name}}",
         "knowledgeSources": [
             {
-            "name": "{{knowledge-source-name}}",
-            "rerankerThreshold": 2.5
+                "name": "{{knowledge-source-name}}"
             }
         ],
         "models": [
@@ -156,13 +154,12 @@ PUT {{search-url}}/agents/{{knowledge-agent-name}}?api-version={{api-version}}  
                 }
             }
         ],
-        "outputConfiguration": {
-            "modality": "answerSynthesis"
-        }
+        "outputMode": "answerSynthesis",
+        "answerInstructions": "Provide a two sentence concise and informative answer based on the retrieved documents."
     }
 
 ### Run agentic retrieval
-POST {{search-url}}/agents('{{knowledge-agent-name}}')/retrieve?api-version={{api-version}}  HTTP/1.1
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version={{api-version}}  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 
@@ -181,13 +178,19 @@ POST {{search-url}}/agents('{{knowledge-agent-name}}')/retrieve?api-version={{ap
         "knowledgeSourceParams": [
             {
                 "knowledgeSourceName": "{{knowledge-source-name}}",
-                "kind": "searchIndex"
+                "kind": "searchIndex",
+                "includeReferences": true,
+                "includeReferenceSourceData": true,
+                "alwaysQuerySource": true,
+                "rerankerThreshold": 2.5
             }
-        ]
+        ],
+        "includeActivity": true,
+        "retrievalReasoningEffort": { "kind": "low" }
     }
 
-### Delete the knowledge agent
-DELETE {{search-url}}/agents/{{knowledge-agent-name}}?api-version={{api-version}}  HTTP/1.1
+### Delete the knowledge base
+DELETE {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version={{api-version}}  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 
