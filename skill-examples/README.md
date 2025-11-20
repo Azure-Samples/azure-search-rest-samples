@@ -13,15 +13,13 @@ urlFragment: rest-api-skill-example
 
 # End-to-end skill examples for Azure AI Search using REST APIs
 
-Each example is standalone, providing all of the objects required to move sample data from the original data source (usually Azure Blob Storage), through an enrichment pipeline, to a searchable index on your search service.
+This sample provides examples of how to use the Azure AI Search REST APIs to create and manage skills. Each example is self-contained, providing all the necessary components to transfer sample data from the original data source (typically Azure Blob Storage) through an enrichment pipeline to a searchable index on your search service.
 
-The skillsets are simple, usually one or two skills, to make it easier to follow the parameter and node references across indexer output field mappings and the field definitions in an index.
-
-You need a REST client for these examples. We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
+The skillsets are simple, typically consisting of one or two skills, to make it easier to follow the parameter and node references across indexer output field mappings and field definitions in an index.
 
 ## Contents
 
-| File        | Description |
+| File | Description |
 |-------------|-------------|
 | `skill-examples\skill-example-entity-linking.rest` | Creates a data source, skillset, index, and indexer with output field mappings. For data, this collection assumes a blob container holding the first 10 "text-only" PDFs of the [NASA e-book](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/nasa-e-book) sample data files. |
 | `Skill example - Entity Linking with renamed fields.postman_collection.json` | This version of the previous example includes a Shaper skill that renames skill outputs to values you might want to use in an index. |
@@ -33,26 +31,30 @@ You need a REST client for these examples. We recommend [Visual Studio Code](htt
 
 ## Prerequisites
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
++ An [Azure AI Search service](https://learn.microsoft.com/azure/search/search-create-service-portal) on any pricing tier.
 
-+ [Azure AI Search](https://learn.microsoft.com/azure/search/search-create-service-portal), any tier.
++ An [Azure Blob Storage](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-portal) account.
 
-- [Azure Blob Storage](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-portal)
++ [Sample data](https://github.com/Azure-Samples/azure-search-sample-data) uploaded to a blob container.
 
-- [Sample data (uploaded to blob containers in Blob Storage)](https://github.com/Azure-Samples/azure-search-sample-data)
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ## Set up the sample
 
 1. Clone or download this sample repository.
-1. Extract contents if the download is a zip file. Make sure the files are read-write.
+
+1. If the download is a ZIP file, extract its contents. Make sure the files are read-write.
 
 ## Run the code
 
-1. Start Visual Studio Code and open a `.rest` file.
-1. Provide a valid search service name, search service admin API key, Azure Storage connection string, and the blob container name in the variables.
-1. **Save** the file.
-1. Send each request to the service.
+1. Open a `.rest` file in Visual Studio Code.
 
-## Next steps
+1. Provide a valid search service name, search service admin API key, Azure Storage connection string, and the blob container name in the variables.
+
+1. Save the file.
+
+1. Send each request to your Azure AI Search service.
+
+## Next step
 
 You can learn more about Azure AI Search on the [official documentation site](https://docs.microsoft.com/azure/search).

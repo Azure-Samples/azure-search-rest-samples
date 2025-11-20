@@ -13,37 +13,39 @@ urlFragment: custom-analyzer-tutorial
 
 # Create a custom analyzer in Azure AI Search using REST APIs
 
-This sample creates a search index and builds a custom analyzer designed for handling phone numbers. Phone numbers are a good candidate for custom analyzers due to the multiple formats and special characters that exist for this type of content. The HTTP requests step through the process of testing sample searches, testing lexical analysis, and building an analyzer to intuitively search phone numbers.
+This sample creates a search index and builds a custom analyzer designed to handle phone numbers. Phone numbers are ideal candidates for custom analyzers because of the variety of formats and special characters associated with them. The HTTP requests demonstrate the process of testing sample searches and lexical analysis and building an analyzer for intuitively searching phone numbers.
 
-This sample is featured in the [Tutorial: Create a custom analyzer using REST APIs](https://learn.microsoft.com/azure/search/tutorial-create-custom-analyzer).
+This sample is featured in [Tutorial: Create a custom analyzer using REST APIs](https://learn.microsoft.com/azure/search/tutorial-create-custom-analyzer).
 
 ## Prerequisites
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
++ An [Azure AI Search service](https://learn.microsoft.com/azure/search/search-create-service-portal) on any pricing tier.
 
-+ [Azure AI Search](https://learn.microsoft.com/azure/search/search-create-service-portal), any tier.
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ## Get connection information
 
 Gather connection information used on the requests. You can find this information in the Azure portal. Save it in Notepad or another temporary location.
 
-1. In Azure portal, get the search service endpoint (for example, `https://demo-svc.search.windows.net`). 
+1. In the Azure portal, select **Overview** from the left pane and copy the endpoint. It should be in this format: `https://demo-svc.search.windows.net`.
 
-1. Next, select **Keys** on the left and copy one of admin keys.
+1. Select **Settings** > **Keys** from the left pane and copy an admin key.
 
 ## Set up variables
 
 1. Clone or download this sample repository.
 
-1. Open `custom-analyzers.rest` in Visual Studio Code. If you need help with Visual Studio Code setup, see [Quickstart: Text search using REST](https://learn.microsoft.com/azure/search/search-get-started-rest).
+1. Open `custom-analyzers.rest` in Visual Studio Code. For help with setting up Visual Studio Code, see [Quickstart: Full-text search using REST](https://learn.microsoft.com/azure/search/search-get-started-text?tabs=keyless%2Cwindows&pivots=rest).
 
-1. Paste in the variables you collected earlier:
+1. Paste the variables you collected earlier:
 
    + In `@baseUrl`, enter the search endpoint.
    + In `@apiKey`, enter the admin API key of your search service.
 
 ## Run the code
 
-1. For each request, select **Send request**. 
+For each request, select **Send Request**.
 
-1. For an explanation of the code, see [Tutorial: Create a custom analyzer using REST APIs](https://learn.microsoft.com/azure/search/tutorial-create-custom-analyzer).
+## Next step
+
+You can learn more about Azure AI Search on the [official documentation site](https://learn.microsoft.com/azure/search/).

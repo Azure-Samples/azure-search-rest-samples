@@ -13,27 +13,25 @@ urlFragment: rest-api-tutorial
 
 # Create a skillset in Azure AI Search using REST APIs
 
-This sample uses the Azure AI Search REST APIs to create an indexer, data source, index, and skillset that applies AI processing to Azure blobs during indexing. 
+This sample uses the Azure AI Search REST APIs to create an indexer, data source, index, and skillset that applies AI processing to Azure blobs during indexing.
 
-Skillset steps include OCR, language detection, entity recognition, and key phrase extraction. The sample demo files consist of multiple content types ranging from image-only, text-only, and rich application files with embedded images and text. The end result is searchable index that you can query for new and enriched content.
+Skillset steps include optical character recognition (OCR), language detection, entity recognition, and key phrase extraction. The sample demo files consist of multiple content types ranging from image-only, text-only, and rich application files with embedded images and text. The end result is a searchable index that you can query for new and enriched content.
 
-This collection is featured in the [Tutorial: Skillsets in Azure AI Search](https://learn.microsoft.com/azure/search/tutorial-skillset). If you have trouble with the steps in this readme, check the tutorial for more detailed instructions.
+This sample is featured in [Tutorial: Skillsets in Azure AI Search](https://learn.microsoft.com/azure/search/tutorial-skillset?pivots=rest).
 
 ## Prerequisites
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
++ An [Azure AI Search service](https://learn.microsoft.com/azure/search/search-create-service-portal) on any pricing tier.
 
-+ [Azure AI Search](https://learn.microsoft.com/azure/search/search-create-service-portal), any tier.
++ An [Azure Storage account](https://learn.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal).
 
-+ [Azure Storage account](https://kearn.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal)
-
-+ [Sample data files (mixed media)](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/ai-enrichment-mixed-media)
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ## Set up the data
 
-1. Download the sample data files.
+1. Download the [sample data](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/ai-enrichment-mixed-media).
 
-1. In Azure portal, in Azure Storage, [create a Blob container](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-portal) and upload the sample data files.
+1. In the Azure portal, [create a blob container](https://learn.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-portal) and upload the sample data files.
 
 1. Make a note of the blob container name.
 
@@ -41,9 +39,9 @@ This collection is featured in the [Tutorial: Skillsets in Azure AI Search](http
 
 Gather connection information used on the requests. You can find this information in the Azure portal. Save it in Notepad or another temporary location.
 
-1. In Azure Storage, select **Access keys** on the left. Copy one of the connection strings. It should be in this format: `DefaultEndpointsProtocol=https;AccountName=<YOUR-STORAGE-ACCOUNT>;AccountKey=<YOUR-ACCESS-KEY>;`
+1. In Azure Storage, select **Security + networking** > **Access keys** from the left pane and copy a connection string. It should be in this format: `DefaultEndpointsProtocol=https;AccountName=<YOUR-STORAGE-ACCOUNT>;AccountKey=<YOUR-ACCESS-KEY>;`
 
-1. In Azure AI Search, get the endpoint (for example, `https://demo-svc.search.windows.net`). Next, select **Keys** on the left and copy one of admin keys.
+1. In Azure AI Search, select **Overview** from the left pane and copy the endpoint. It should be in this format: `https://demo-svc.search.windows.net`. You can then select **Settings** > **Keys** from the left pane and copy an admin key.
 
 ## Set up variables
 
@@ -51,19 +49,19 @@ Gather connection information used on the requests. You can find this informatio
 
 1. Open `skillset-tutorial.rest` in Visual Studio Code.
 
-1. Paste in the variables you collected earlier:
+1. Paste the variables you collected earlier:
 
-   + In `@baseUrl`, enter the search endpoint.
-   + In `@apiKey`, enter the admin API key of your search service.
-   + In `@storageConnectionString`, enter the full access connection string for your Azure Storage account.
-   + In `@blobContainer`, enter the name of the blob container that stores the clinical trials documents.
+   + Set `@baseUrl` to the endpoint of your search service.
+   + Set `@apiKey` to the admin API key of your search service.
+   + Set `@storageConnectionString` to the full-access connection string for your Azure Storage account.
+   + Set `@blobContainer` to the name of the blob container that stores the sample data.
 
-## Create objects and queryu the index
+## Create objects and query the index
 
-1. Send each request to create a data source, indexer, skillset, and index used in this example.
+1. Send each request to create a data source, indexer, skillset, and index.
 
-1. The last set of requests query the search index. For more information about this sample, see [Tutorial: Use skillsets to generate searchable content in Azure AI Search](https://learn.microsoft.com/azure/search/cognitive-search-tutorial-blob).
+1. Send the last set of requests to query the search index.
 
-## Next steps
+## Next step
 
 You can learn more about Azure AI Search on the [official documentation site](https://learn.microsoft.com/azure/search/).

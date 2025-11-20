@@ -11,25 +11,23 @@ products:
 urlFragment: rest-api-debug-sessions
 ---
 
-# Fix skillset issues using Debug Sessions in Azure AI Search 
+# Fix skillset issues using Debug Sessions in Azure AI Search
 
-This sample uses the Azure AI Search REST APIs to create a "buggy" enrichment pipeline with warnings you can fix in the Debug Sessions visual editor in the Azure portal.
+This sample uses the Azure AI Search REST APIs to create a "buggy" enrichment pipeline. You can use the Debug Sessions visual editor in the Azure portal to fix the warnings.
 
 ## Prerequisites
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
++ An [Azure AI Search service](https://learn.microsoft.com/azure/search/search-create-service-portal) on any pricing tier.
 
-+ [Azure AI Search](https://learn.microsoft.com/azure/search/search-create-service-portal), any tier.
++ An [Azure Storage account](https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal).
 
-+ [Azure Storage account](https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal)
-
-+ [Clinical Trials Data (19 documents)](https://github.com/Azure-Samples/azure-search-sample-data/tree/master/clinical-trials-pdf-19)
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ## Set up the data
 
-1. Download the clinical trials data set.
+1. [Download the sample data files](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/_ARCHIVE/clinical-trials/clinical-trials-pdf-19). Sample data consists of 19 clinical trial PDFs.
 
-1. In Azure portal, in Azure Storage, [create a Blob container](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-portal) and upload the 19 documents.
+1. In the Azure portal, [create a blob container](https://learn.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-portal) and upload the 19 documents.
 
 1. Make a note of the blob container name.
 
@@ -37,27 +35,31 @@ This sample uses the Azure AI Search REST APIs to create a "buggy" enrichment pi
 
 Gather connection information used on the requests. You can find this information in the Azure portal. Save it in Notepad or another temporary location.
 
-1. In Azure Storage, select **Access keys** on the left. Copy one of the connection strings. It should be in this format: `DefaultEndpointsProtocol=https;AccountName=<YOUR-STORAGE-ACCOUNT>;AccountKey=<YOUR-ACCESS-KEY>;`
+1. In Azure Storage, select **Security + networking** > **Access keys** from the left pane and copy a connection string. It should be in this format: `DefaultEndpointsProtocol=https;AccountName=<YOUR-STORAGE-ACCOUNT>;AccountKey=<YOUR-ACCESS-KEY>;`
 
-1. In Azure AI Search, get the endpoint (for example, `https://demo-svc.search.windows.net`). Next, select **Keys** on the left and copy one of admin keys.
+1. In Azure AI Search, select **Overview** from the left pane and copy the endpoint. It should be in this format: `https://demo-svc.search.windows.net`. You can then select **Settings** > **Keys** from the left pane and copy an admin key.
 
 ## Set up variables
 
 1. Clone or download this sample repository.
 
-1. Open `debug-sessions-tutorial.rest` in Visual Studio Code. If you need help with Visual Studio Code setup, see [Quickstart: Text search using REST](https://learn.microsoft.com/azure/search/search-get-started-rest).
+1. Open `debug-sessions-tutorial.rest` in Visual Studio Code. For help with setting up Visual Studio Code, see [Quickstart: Full-text search using REST](https://learn.microsoft.com/azure/search/search-get-started-text?tabs=keyless%2Cwindows&pivots=rest).
 
-1. Paste in the variables you collected earlier:
+1. Paste the variables you collected earlier:
 
-   + In `@baseUrl`, enter the search endpoint.
-   + In `@apiKey`, enter the admin API key of your search service.
-   + In `@storageConnectionString`, enter the connection string for your Azure Storage account.
-   + In `@blobContainer`, enter the name of the blob container that stores the clinical trials documents.
+   + Set `@baseUrl` to the search endpoint.
+   + Set `@apiKey` to the admin API key of your search service.
+   + Set `@storageConnectionString` to the connection string for your Azure Storage account.
+   + Set `@blobContainer` to the name of the blob container that stores the sample data.
 
 ## Create objects and debug the skillset
 
-1. Send each request to create a data source, indexer, skillset, and index used in this example.
+1. Send each request to create a data source, indexer, skillset, and index.
 
-1. Open Azure portal, find your search service, select the skillset, and start a debug session. 
+1. In the Azure portal, find your search service, select the skillset, and start a debug session.
 
 1. For the remaining steps, continue with [Tutorial: Debug a skillset using Debug Sessions](https://learn.microsoft.com/azure/search/cognitive-search-tutorial-debug-sessions).
+
+## Next step
+
+You can learn more about Azure AI Search on the [official documentation site](https://learn.microsoft.com/azure/search/).
