@@ -3,7 +3,7 @@
 @storageConnectionString = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
 @blobContainer = PUT-YOUR-BLOB-CONTAINER-NAME-HERE
 @kstore-storage-connection-string = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
-@cognitive-services-key= PUT-YOUR-AZURE-AI-SERVCICES-KEY-HERE
+@cognitive-services-key= PUT-YOUR-FOUNDRY-RESOURCE-KEY-HERE
 
 ### Create data source (use https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media)
 POST {{baseUrl}}/datasources?api-version=2025-09-01  HTTP/1.1
@@ -370,7 +370,7 @@ POST {{baseUrl}}/skillsets?api-version=2025-09-01  HTTP/1.1
         ],
         "cognitiveServices": {
             "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
-            "description": "An Azure AI services resource in the same region as Search.",
+            "description": "A Microsoft Foundry resource in the same region as Azure AI Search.",
             "key": ""
         },
         "knowledgeStore": null

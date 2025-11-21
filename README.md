@@ -1,6 +1,6 @@
-# REST examples for Azure AI Search
+# REST samples for Azure AI Search
 
-This repository provides REST API examples:
+This repository provides the following REST API samples:
 
 + custom-analyzers
 + debug-sessions
@@ -10,8 +10,10 @@ This repository provides REST API examples:
 + quickstart
 + quickstart-ACL (document permissions)
 + quickstart-agentic-retrieval
++ quickstart-RAG
++ quickstart-semantic-search
 + quickstart-vectors
 + skill-examples
 + skillset-tutorial
 
-To use these samples, open a `.rest` file in Visual Studio Code with the REST client, and then update the variables to use your own search service and admin API key.
+To use these samples, open a `.rest` or `.http` file in Visual Studio Code with the REST Client extension, and then update the variables to use your own search service and authentication method.
