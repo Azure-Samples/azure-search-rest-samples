@@ -22,7 +22,7 @@ POST  {{openai-endpoint}}/openai/deployments/{{openai-deployment-name}}/embeddin
 }
 
 ### Create a new index with a vector field for descriptions and a semantic configuration
-### Semantic configuration is optional and requires a Basic or higher pricing tier.
+### Semantic configuration is optional.
 POST  {{baseUrl}}/indexes?api-version={{api-version}}  HTTP/1.1
     Content-Type: application/json
     api-key: {{apiKey}}
@@ -525,7 +525,7 @@ POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version={{api-
     ]
 }
 
-### Run a hybrid query with semantic reranking (requires Basic tier or above)
+### Run a hybrid query with semantic reranking
 ### This query is the same as the hybrid query, but with semantic reranking that reevaluates results based on semantic relevance.
 ### The @search.reranker score is used to rank the results.
 POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version={{api-version}}  HTTP/1.1

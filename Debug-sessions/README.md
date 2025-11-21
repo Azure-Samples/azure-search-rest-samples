@@ -33,7 +33,7 @@ This sample uses the Azure AI Search REST APIs to create a "buggy" enrichment pi
 
 ## Get connection information
 
-Gather connection information used on the requests. You can find this information in the Azure portal. Save it in Notepad or another temporary location.
+Gather connection information used in the requests. You can find this information in the Azure portal. Save it in a temporary location, such as Notepad.
 
 1. In Azure Storage, select **Security + networking** > **Access keys** from the left pane and copy a connection string. It should be in this format: `DefaultEndpointsProtocol=https;AccountName=<YOUR-STORAGE-ACCOUNT>;AccountKey=<YOUR-ACCESS-KEY>;`
 
@@ -47,9 +47,9 @@ Gather connection information used on the requests. You can find this informatio
 
 1. Paste the variables you collected earlier:
 
-   + Set `@baseUrl` to the search endpoint.
+   + Set `@baseUrl` to the endpoint of your search service.
    + Set `@apiKey` to the admin API key of your search service.
-   + Set `@storageConnectionString` to the connection string for your Azure Storage account.
+   + Set `@storageConnectionString` to the full-access connection string for your Azure Storage account.
    + Set `@blobContainer` to the name of the blob container that stores the sample data.
 
 ## Create objects and debug the skillset

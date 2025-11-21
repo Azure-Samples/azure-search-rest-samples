@@ -25,7 +25,7 @@ This sample is featured in [Tutorial: Create a custom analyzer using REST APIs](
 
 ## Get connection information
 
-Gather connection information used on the requests. You can find this information in the Azure portal. Save it in Notepad or another temporary location.
+Gather connection information used in the requests. You can find this information in the Azure portal. Save it in a temporary location, such as Notepad.
 
 1. In the Azure portal, select **Overview** from the left pane and copy the endpoint. It should be in this format: `https://demo-svc.search.windows.net`.
 
@@ -39,8 +39,8 @@ Gather connection information used on the requests. You can find this informatio
 
 1. Paste the variables you collected earlier:
 
-   + In `@baseUrl`, enter the search endpoint.
-   + In `@apiKey`, enter the admin API key of your search service.
+   + Set `@baseUrl` to the endpoint of your search service.
+   + Set `@apiKey` to the admin API key of your search service.
 
 ## Run the code
 

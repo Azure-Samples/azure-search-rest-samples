@@ -19,7 +19,7 @@ This sample is the source code for the REST portion of [Quickstart: Use agentic 
 
 ## Prerequisites
 
-+ An [Azure AI Search service](https://learn.microsoft.com/azure/search/search-create-service-portal) on the Basic tier or higher with [semantic ranker enabled](https://learn.microsoft.com/azure/search/semantic-how-to-enable-disable).
++ An [Azure AI Search service](https://learn.microsoft.com/azure/search/search-create-service-portal) in any [region that provides agentic retrieval](https://learn.microsoft.com/azure/search/search-region-support).
 
 + A [Microsoft Foundry project](https://learn.microsoft.com/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 

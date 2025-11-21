@@ -13,7 +13,6 @@ Authorization: Bearer {{personalAccessToken}}
 
 ### Update the hotels-sample-index to include a semantic configuration. 
 ### This is the full schema, plus a semantic configuration.
-### Semantic configuration is a premium feature and requires a Basic or higher pricing tier.
 POST  {{searchUrl}}/indexes?api-version={{api-version}}  HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{personalAccessToken}}

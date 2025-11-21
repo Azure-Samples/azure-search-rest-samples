@@ -35,7 +35,7 @@ This example is featured in the [Create a knowledge store using REST](https://le
 
 ## Get connection information
 
-Gather connection information used on the requests. You can find this information in the Azure portal. Save it in Notepad or another temporary location.
+Gather connection information used in the requests. You can find this information in the Azure portal. Save it in a temporary location, such as Notepad.
 
 1. In Azure Storage, select **Security + networking** > **Access keys** from the left pane and copy a connection string. It should be in this format: `DefaultEndpointsProtocol=https;AccountName=<YOUR-STORAGE-ACCOUNT>;AccountKey=<YOUR-ACCESS-KEY>;`
 

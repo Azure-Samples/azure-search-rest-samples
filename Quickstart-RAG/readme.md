@@ -19,7 +19,7 @@ This sample is the source code for [Quickstart: Classic generative search (RAG) 
 
 ## Prerequisites
 
-+ An [Azure AI Search service](https://learn.microsoft.com/azure/search/search-create-service-portal) on the Basic tier or higher with [semantic ranker enabled](https://learn.microsoft.com/azure/search/semantic-how-to-enable-disable).
++ An [Azure AI Search service](https://learn.microsoft.com/azure/search/search-create-service-portal) with [semantic ranker enabled](https://learn.microsoft.com/azure/search/semantic-how-to-enable-disable).
 
 + An [Azure OpenAI resource](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource).
 
