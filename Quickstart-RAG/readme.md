@@ -33,7 +33,7 @@ This sample is the source code for [Quickstart: Classic generative search (RAG) 
 
 1. If the download is a ZIP file, extract its contents. Make sure the files are read-write.
 
-1. Configure access to the Azure resources and get their endpoints.
+1. Configure access to the Azure resources and get their connection information.
 
 For connections, we recommend Microsoft Entra ID for authentication and role assignments for authorization. Alternatively, you can specify [API keys](https://learn.microsoft.com/azure/search/search-security-api-keys) in your requests. [Quickstart: Classic generative search (RAG) using grounding data from Azure AI Search](https://learn.microsoft.com/azure/search/search-get-started-rag?pivots=rest) provides the full setup instructions.
 

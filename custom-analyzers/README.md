@@ -44,7 +44,7 @@ Gather connection information used in the requests. You can find this informatio
 
 ## Run the code
 
-For each request, select **Send Request**.
+Send each request to your Azure AI Search service.
 
 ## Next step
 

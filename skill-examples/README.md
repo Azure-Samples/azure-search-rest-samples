@@ -45,6 +45,8 @@ The skillsets are simple, typically consisting of one or two skills, to make it 
 
 1. If the download is a ZIP file, extract its contents. Make sure the files are read-write.
 
+1. Configure access to the Azure resources and get their connection information.
+
 ## Run the code
 
 1. Open a `.rest` file in Visual Studio Code.
