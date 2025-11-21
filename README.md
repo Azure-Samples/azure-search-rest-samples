@@ -13,7 +13,6 @@ This repository provides the following REST API samples:
 + quickstart-RAG
 + quickstart-semantic-search
 + quickstart-vectors
-+ skill-examples
 + skillset-tutorial
 
 To use these samples, open a `.rest` or `.http` file in Visual Studio Code with the REST Client extension, and then update the variables to use your own search service and authentication method.
