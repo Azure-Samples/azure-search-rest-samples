@@ -27,7 +27,7 @@ This sample is featured in [Tutorial: Create a custom analyzer using REST APIs](
 
 Gather connection information used in the requests. You can find this information in the Azure portal. Save it in a temporary location, such as Notepad.
 
-1. In the Azure portal, select **Overview** from the left pane and copy the endpoint. It should be in this format: `https://demo-svc.search.windows.net`.
+1. Select **Overview** from the left pane and copy the endpoint. It should be in this format: `https://my-service.search.windows.net`.
 
 1. Select **Settings** > **Keys** from the left pane and copy an admin key.
 

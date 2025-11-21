@@ -11,7 +11,7 @@ products:
 urlFragment: rest-api-quickstart
 ---
 
-# Quickstart for Azure AI Search using REST APIs
+# Quickstart: Azure AI Search using REST APIs
 
 This sample demonstrates how to use the Azure AI Search REST APIs to create an index, load it with documents, and execute queries. Requests are provided in an `az-search-quickstart.rest` file, which you can open and modify to connect to your search service.
 

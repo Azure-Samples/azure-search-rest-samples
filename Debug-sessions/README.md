@@ -37,7 +37,7 @@ Gather connection information used in the requests. You can find this informatio
 
 1. In Azure Storage, select **Security + networking** > **Access keys** from the left pane and copy a connection string. It should be in this format: `DefaultEndpointsProtocol=https;AccountName=<YOUR-STORAGE-ACCOUNT>;AccountKey=<YOUR-ACCESS-KEY>;`
 
-1. In Azure AI Search, select **Overview** from the left pane and copy the endpoint. It should be in this format: `https://demo-svc.search.windows.net`. You can then select **Settings** > **Keys** from the left pane and copy an admin key.
+1. In Azure AI Search, select **Overview** from the left pane and copy the endpoint. It should be in this format: `https://my-service.search.windows.net`. You should then select **Settings** > **Keys** from the left pane and copy an admin key.
 
 ## Set up variables
 
