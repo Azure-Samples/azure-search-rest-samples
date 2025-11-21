@@ -3,255 +3,258 @@
 
 ### 1 - Create phone-numbers-index
 POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
-  
-      {
-        "name": "phone-numbers-index",  
-        "fields": [
-          {
-            "name": "id",
-            "type": "Edm.String",
-            "key": true,
-            "searchable": true,
-            "filterable": false,
-            "facetable": false,
-            "sortable": true
-          },
-          {
-            "name": "phone_number",
-            "type": "Edm.String",
-            "sortable": false,
-            "searchable": true,
-            "filterable": false,
-            "facetable": false
-          }
-        ]
-      }
+Content-Type: application/json
+api-key: {{apiKey}}
+
+{
+  "name": "phone-numbers-index",  
+  "fields": [
+    {
+      "name": "id",
+      "type": "Edm.String",
+      "key": true,
+      "searchable": true,
+      "filterable": false,
+      "facetable": false,
+      "sortable": true
+    },
+    {
+      "name": "phone_number",
+      "type": "Edm.String",
+      "sortable": false,
+      "searchable": true,
+      "filterable": false,
+      "facetable": false
+    }
+  ]
+}
 
 ### 2 - Load documents
 POST {{baseUrl}}/indexes/phone-numbers-index/docs/index?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+Content-Type: application/json
+api-key: {{apiKey}}
 
+{
+  "value": [
     {
-    "value": [
-        {
-            "@search.action": "upload",  
-            "id": "1",
-            "phone_number": "425-555-0100"
-        },
-        {
-            "@search.action": "upload",  
-            "id": "2",
-            "phone_number": "(321) 555-0199"
-        },
-        {  
-            "@search.action": "upload",  
-            "id": "3",
-            "phone_number": "+1 425-555-0100"
-        },
-        {  
-            "@search.action": "upload",  
-            "id": "4",  
-            "phone_number": "+1 (321) 555-0199"
-        },
-        {
-            "@search.action": "upload",  
-            "id": "5",
-            "phone_number": "4255550100"
-        },
-        {
-            "@search.action": "upload",  
-            "id": "6",
-            "phone_number": "13215550199"
-        },
-        {
-            "@search.action": "upload",  
-            "id": "7",
-            "phone_number": "425 555 0100"
-        },
-        {
-            "@search.action": "upload",  
-            "id": "8",
-            "phone_number": "321.555.0199"
-        }
-    ]  
+      "@search.action": "upload",
+      "id": "1",
+      "phone_number": "425-555-0100"
+    },
+    {
+      "@search.action": "upload",
+      "id": "2",
+      "phone_number": "(321) 555-0199"
+    },
+    {
+      "@search.action": "upload",
+      "id": "3",
+      "phone_number": "+1 425-555-0100"
+    },
+    {
+      "@search.action": "upload",
+      "id": "4",
+      "phone_number": "+1 (321) 555-0199"
+    },
+    {
+      "@search.action": "upload",
+      "id": "5",
+      "phone_number": "4255550100"
+    },
+    {
+      "@search.action": "upload",
+      "id": "6",
+      "phone_number": "13215550199"
+    },
+    {
+      "@search.action": "upload",
+      "id": "7",
+      "phone_number": "425 555 0100"
+    },
+    {
+      "@search.action": "upload",
+      "id": "8",
+      "phone_number": "321.555.0199"
     }
-
+  ]
+}
 
 ### 3 - Run first query : (425) 555-0100
-GET {{baseUrl}}/indexes/phone-numbers-index/docs?api-version=2025-09-01&search=(425) 555-0100&$select=phone_number  HTTP/1.1
-    Content-Type: application/json
-    api-key: {{apiKey}}
+POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2025-09-01  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
+{
+  "search": "(425) 555-0100"
+}
 
 ### 4 - Run second query : 4255550100
-GET {{baseUrl}}/indexes/phone-numbers-index/docs?api-version=2025-09-01&search=4255550100&$select=phone_number  HTTP/1.1
-    Content-Type: application/json
-    api-key: {{apiKey}}
+POST {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2025-09-01  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
+{
+  "search": "4255550100"
+}
 
 ### 5 - Test analyzer
 POST {{baseUrl}}/indexes/phone-numbers-index/analyze?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+Content-Type: application/json
+api-key: {{apiKey}}
 
-  {
-    "text": "(425) 555-0100",
-    "analyzer": "standard.lucene"
-  }
-
+{
+  "text": "(425) 555-0100",
+  "analyzer": "standard.lucene"
+}
 
 ### 6 - Delete index
 DELETE {{baseUrl}}/indexes/phone-numbers-index?api-version=2025-09-01 HTTP/1.1
-    api-key: {{apiKey}}
-
+api-key: {{apiKey}}
 
 ### 7 - Recreate index + custom analyzer
 POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
-    Content-Type: application/json
-    api-key: {{apiKey}}
+Content-Type: application/json
+api-key: {{apiKey}}
 
-    {
-        "name": "phone-numbers-index-2",  
-        "fields": [
-            {
-                "name": "id",
-                "type": "Edm.String",
-                "key": true,
-                "searchable": true,
-                "filterable": false,
-                "facetable": false,
-                "sortable": true
-            },
-            {
-                "name": "phone_number",
-                "type": "Edm.String",
-                "sortable": false,
-                "searchable": true,
-                "filterable": false,
-                "facetable": false,
-                "analyzer": "phone_analyzer"
-            }
+{
+    "name": "phone-numbers-index-2",  
+    "fields": [
+      {
+          "name": "id",
+          "type": "Edm.String",
+          "key": true,
+          "searchable": true,
+          "filterable": false,
+          "facetable": false,
+          "sortable": true
+      },
+      {
+          "name": "phone_number",
+          "type": "Edm.String",
+          "sortable": false,
+          "searchable": true,
+          "filterable": false,
+          "facetable": false,
+          "analyzer": "phone_analyzer"
+      }
+    ],
+    "analyzers": [
+        {
+          "@odata.type": "#Microsoft.Azure.Search.CustomAnalyzer",
+          "name": "phone_analyzer",
+          "tokenizer": "keyword_v2",
+          "tokenFilters": [
+          "custom_ngram_filter"
         ],
-        "analyzers": [
-            {
-                "@odata.type": "#Microsoft.Azure.Search.CustomAnalyzer",
-                "name": "phone_analyzer",
-                "tokenizer": "keyword_v2",
-                "tokenFilters": [
-                "custom_ngram_filter"
-            ],
-            "charFilters": [
-                "phone_char_mapping"
-                ]
-            }
-            ],
-            "charFilters": [
-            {
-                "@odata.type": "#Microsoft.Azure.Search.MappingCharFilter",
-                "name": "phone_char_mapping",
-                "mappings": [
-                "-=>",
-                "(=>",
-                ")=>",
-                "+=>",
-                ".=>",
-                "\\u0020=>"
-                ]
-            }
-            ],
-            "tokenFilters": [
-            {
-                "@odata.type": "#Microsoft.Azure.Search.NGramTokenFilterV2",
-                "name": "custom_ngram_filter",
-                "minGram": 3,
-                "maxGram": 20
-            }
-        ]
-    }
-
+        "charFilters": [
+          "phone_char_mapping"
+          ]
+        }
+    ],
+    "charFilters": [
+        {
+          "@odata.type": "#Microsoft.Azure.Search.MappingCharFilter",
+          "name": "phone_char_mapping",
+          "mappings": [
+            "-=>",
+            "(=>",
+            ")=>",
+            "+=>",
+            ".=>",
+            "\\u0020=>"
+          ]
+        }
+      ],
+      "tokenFilters": [
+        {
+          "@odata.type": "#Microsoft.Azure.Search.NGramTokenFilterV2",
+          "name": "custom_ngram_filter",
+          "minGram": 3,
+          "maxGram": 20
+      }
+    ]
+}
 
 ### 8 - Test analyzer
 POST {{baseUrl}}/indexes/phone-numbers-index-2/analyze?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}} 
+Content-Type: application/json
+api-key: {{apiKey}} 
 
-  {
-    "text": "+1 (321) 555-0199",
-    "analyzer": "phone_analyzer"
-  }
-
+{
+  "text": "+1 (321) 555-0199",
+  "analyzer": "phone_analyzer"
+}
 
 ### 9 - Load documents
 POST {{baseUrl}}/indexes/phone-numbers-index-2/docs/index?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}} 
+Content-Type: application/json
+api-key: {{apiKey}}
 
-    {
+{
     "value": [
         {
-            "@search.action": "upload",  
+            "@search.action": "upload",
             "id": "1",
             "phone_number": "425-555-0100"
         },
         {
-            "@search.action": "upload",  
+            "@search.action": "upload",
             "id": "2",
             "phone_number": "(321) 555-0199"
         },
-        {  
-            "@search.action": "upload",  
+        {
+            "@search.action": "upload",
             "id": "3",
             "phone_number": "+1 425-555-0100"
         },
-        {  
-            "@search.action": "upload",  
-            "id": "4",  
+        {
+            "@search.action": "upload",
+            "id": "4",
             "phone_number": "+1 (321) 555-0199"
         },
         {
-            "@search.action": "upload",  
+            "@search.action": "upload",
             "id": "5",
             "phone_number": "4255550100"
         },
         {
-            "@search.action": "upload",  
+            "@search.action": "upload",
             "id": "6",
             "phone_number": "13215550199"
         },
         {
-            "@search.action": "upload",  
+            "@search.action": "upload",
             "id": "7",
             "phone_number": "425 555 0100"
         },
         {
-            "@search.action": "upload",  
+            "@search.action": "upload",
             "id": "8",
             "phone_number": "321.555.0199"
         }
-      ]
-    }
-
+    ]
+}
 
 ### 10 - Run queries
-GET {{baseUrl}}/indexes/phone-numbers-index-2/docs?api-version=2025-09-01&search=(425) 555-0100&$select=phone_number  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+POST {{baseUrl}}/indexes/phone-numbers-index-2/docs/search?api-version=2025-09-01  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
+{
+    "search": "(425) 555-0100",
+    "select": "phone_number"
+}
 
 ### 11 - Delete index
 DELETE {{baseUrl}}/indexes/phone-numbers-index-2?api-version=2025-09-01 HTTP/1.1
-    api-key: {{apiKey}}
-
+api-key: {{apiKey}}
 
 ### 12 - Recreate index + second custom analyzer for searchAnalyzer
 POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+Content-Type: application/json
+api-key: {{apiKey}}
 
-    {
+{
     "name": "phone-numbers-index-3",
     "fields": [
         {
@@ -279,7 +282,7 @@ POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
             "@odata.type": "#Microsoft.Azure.Search.CustomAnalyzer",
             "name": "phone_analyzer",
             "tokenizer": "keyword_v2",
-            "tokenFilters": [ 
+            "tokenFilters": [
                 "custom_ngram_filter"
             ],
             "charFilters": [
@@ -312,89 +315,90 @@ POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
     ],
     "tokenFilters": [
         {
-        "@odata.type": "#Microsoft.Azure.Search.NGramTokenFilterV2",
-        "name": "custom_ngram_filter",
-        "minGram": 3,
-        "maxGram": 20
+            "@odata.type": "#Microsoft.Azure.Search.NGramTokenFilterV2",
+            "name": "custom_ngram_filter",
+            "minGram": 3,
+            "maxGram": 20
         }
-      ]
-    }
-
+    ]
+}
 
 ### 13 - Test analyzer
 POST {{baseUrl}}/indexes/phone-numbers-index-3/analyze?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+Content-Type: application/json
+api-key: {{apiKey}}
 
-  {
-	"text": "(425) 555-0100",
-	"analyzer": "phone_analyzer_search"
-  }
-
+{
+    "text": "(425) 555-0100",
+    "analyzer": "phone_analyzer_search"
+}
 
 ### 14 - Load documents
 POST {{baseUrl}}/indexes/phone-numbers-index-3/docs/index?api-version=2025-09-01  HTTP/1.1
 Content-Type: application/json
 api-key: {{apiKey}}
 
-    {
+{
     "value": [
         {
-            "@search.action": "upload",  
+            "@search.action": "upload",
             "id": "1",
             "phone_number": "425-555-0100"
         },
         {
-            "@search.action": "upload",  
+            "@search.action": "upload",
             "id": "2",
             "phone_number": "(321) 555-0199"
         },
-        {  
-            "@search.action": "upload",  
+        {
+            "@search.action": "upload",
             "id": "3",
             "phone_number": "+1 425-555-0100"
         },
-        {  
-            "@search.action": "upload",  
-            "id": "4",  
+        {
+            "@search.action": "upload",
+            "id": "4",
             "phone_number": "+1 (321) 555-0199"
         },
         {
-            "@search.action": "upload",  
+            "@search.action": "upload",
             "id": "5",
             "phone_number": "4255550100"
         },
         {
-            "@search.action": "upload",  
+            "@search.action": "upload",
             "id": "6",
             "phone_number": "13215550199"
         },
         {
-            "@search.action": "upload",  
+            "@search.action": "upload",
             "id": "7",
             "phone_number": "425 555 0100"
         },
         {
-            "@search.action": "upload",  
+            "@search.action": "upload",
             "id": "8",
             "phone_number": "321.555.0199"
         }
-      ]  
-    }
-
+    ]
+}
 
 ### 15 - Run queries
-GET {{baseUrl}}/indexes/phone-numbers-index-3/docs?api-version=2025-09-01&search=(425) 555-0100&$select=phone_number  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+POST {{baseUrl}}/indexes/phone-numbers-index-3/docs/search?api-version=2025-09-01  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
+{
+    "search": "(425) 555-0100",
+    "select": "phone_number"
+}
 
 ### Create index (alternate approach)
 POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+Content-Type: application/json
+api-key: {{apiKey}}
 
-    {
+{
     "name": "phone-numbers-index-4",
     "fields": [
         {
@@ -423,7 +427,7 @@ POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
             "tokenizer": "custom_tokenizer_phone",
             "tokenFilters": [
                 "custom_shingle_filter"
-          ]
+            ]
         }
     ],
     "tokenizers": [
@@ -431,7 +435,7 @@ POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
             "@odata.type": "#Microsoft.Azure.Search.StandardTokenizerV2",
             "name": "custom_tokenizer_phone",
             "maxTokenLength": 4
-        } 
+        }
     ],
     "tokenFilters": [
         {
@@ -441,5 +445,5 @@ POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
             "maxShingleSize": 6,
             "tokenSeparator": ""
         }
-      ]
-    }
+    ]
+}
