@@ -1,15 +1,14 @@
-@endpoint=https://your-search-service.search.windows.net
-@index=acl-sample
-@search-token=search-token
-@graph-token=graph-token
-@oid=your-oid
-@group=your-group-id
-@api-version=2025-11-01-preview
+@endpoint = https://your-search-service.search.windows.net
+@index = acl-sample
+@search-token = search-token
+@graph-token = graph-token
+@oid = your-oid
+@group = your-group-id
+@api-version = 2025-11-01-preview
 
-###
+### Check for existing index
 GET {{endpoint}}/indexes/{{index}}?api-version={{api-version}}
 Authorization: Bearer {{search-token}}
-###
 
 ### Create a sample index
 PUT {{endpoint}}/indexes/{{index}}?api-version={{api-version}}
@@ -49,17 +48,14 @@ Content-Type: application/json
     ],
     "permissionFilterOption": "enabled"
 }
-###
 
 ### Get OID from Graph
 GET https://graph.microsoft.com/v1.0/me?$select=id
 Authorization: Bearer {{graph-token}}
-###
 
 ### Get group ID from Graph
 GET https://graph.microsoft.com/v1.0/me/memberOf?$select=id,displayName
 Authorization: Bearer {{graph-token}}
-###
 
 ### PUT sample documents
 POST {{endpoint}}/indexes/{{index}}/docs/index?api-version={{api-version}}
@@ -105,7 +101,6 @@ Content-Type: application/json
         }
     ]
 }
-###
 
 ### Query sample documents with x-ms-query-source-authorization
 POST {{endpoint}}/indexes/{{index}}/docs/search?api-version={{api-version}}
@@ -118,7 +113,6 @@ Content-Type: application/json
     "select": "id,oid,group,name",
     "orderby": "id asc"
 }
-###
 
 ### Query sample documents without x-ms-query-source-authorization
 POST {{endpoint}}/indexes/{{index}}/docs/search?api-version={{api-version}}
@@ -130,4 +124,3 @@ Content-Type: application/json
     "select": "id,oid,group,name",
     "orderby": "id asc"
 }
-###

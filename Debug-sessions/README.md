@@ -43,7 +43,7 @@ Gather connection information used in the requests. You can find this informatio
 
 1. Clone or download this sample repository.
 
-1. Open `debug-sessions-tutorial.rest` in Visual Studio Code. For help with setting up Visual Studio Code, see [Quickstart: Full-text search using REST](https://learn.microsoft.com/azure/search/search-get-started-text?tabs=keyless%2Cwindows&pivots=rest).
+1. Open `debug-sessions.rest` in Visual Studio Code. For help with setting up Visual Studio Code, see [Quickstart: Full-text search using REST](https://learn.microsoft.com/azure/search/search-get-started-text?tabs=keyless%2Cwindows&pivots=rest).
 
 1. Paste the variables you collected earlier:
 

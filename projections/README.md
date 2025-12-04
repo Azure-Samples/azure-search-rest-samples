@@ -15,7 +15,7 @@ urlFragment: rest-api-projection-examples
 
 This sample applies to [knowledge stores](https://learn.microsoft.com/azure/search/knowledge-store-concept-intro) in Azure AI Search. It uses the Azure AI Search REST APIs to create an indexer, data source, index, and skillset that applies AI processing. It includes an initial skillset, plus four additional skillsets that focus on projection definitions variants.
 
-This example is featured in the [Example of shapes and projections in a knowledge store](https://learn.microsoft.com/azure/search/knowledge-store-projection-example-long).
+This example is featured in [Example of shapes and projections in a knowledge store](https://learn.microsoft.com/azure/search/knowledge-store-projection-example-long).
 
 ## Prerequisites
 

@@ -1,19 +1,19 @@
 @searchUrl=PUT-YOUR-SEARCH-SERVICE-URL-HERE
 @personalAccessToken=PUT-YOUR-PERSONAL-ACCESS-TOKEN-HERE
-@api-version=2025-09-01
+@api-version = 2025-09-01
 
 ### List all existing indexes by name (you should see the hotels-sample-index).
-GET  {{searchUrl}}/indexes?api-version={{api-version}}&$select=name  HTTP/1.1
+GET {{searchUrl}}/indexes?api-version={{api-version}}&$select=name  HTTP/1.1
 Authorization: Bearer {{personalAccessToken}}
 
 ### Get the schema of the index. A full index schema is required for any index update. 
 ### You can skip this step for the hotels-sample-index because the next request already has it.
-GET  {{searchUrl}}/indexes/hotels-sample-index?api-version={{api-version}}  HTTP/1.1
+GET {{searchUrl}}/indexes/hotels-sample-index?api-version={{api-version}}  HTTP/1.1
 Authorization: Bearer {{personalAccessToken}}
 
 ### Update the hotels-sample-index to include a semantic configuration. 
 ### This is the full schema, plus a semantic configuration.
-POST  {{searchUrl}}/indexes?api-version={{api-version}}  HTTP/1.1
+PUT {{searchUrl}}/indexes/hotels-sample-index?api-version={{api-version}}  HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{personalAccessToken}}
 
@@ -319,7 +319,6 @@ Authorization: Bearer {{personalAccessToken}}
     "configurations": [
       {
         "name": "semantic-config",
-        "flightingOptIn": false,
         "rankingOrder": "BoostedRerankerScore",
         "prioritizedFields": {
           "titleField": {
@@ -340,4 +339,3 @@ Authorization: Bearer {{personalAccessToken}}
     ]
   }
 }
-

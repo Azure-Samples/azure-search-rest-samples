@@ -3,1325 +3,1316 @@
 @storageConnectionString = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
 @blobContainer = PUT-YOUR-BLOB-CONTAINER-NAME-HERE
 @kstore-storage-connection-string = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
-@cognitive-services-key= PUT-YOUR-FOUNDRY-RESOURCE-KEY-HERE
+@cognitive-services-key = PUT-YOUR-FOUNDRY-RESOURCE-KEY-HERE
+@api-version = 2025-09-01
 
 ### Create data source (use https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media)
-POST {{baseUrl}}/datasources?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+POST {{baseUrl}}/datasources?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
-    {
-        "name": "projections-demo-ds",
-        "description": null,
-        "type": "azureblob",
-        "subtype": null,
-        "credentials": {
-            "connectionString": "{{storageConnectionString}}"
-        },
-        "container": {
-            "name": "{{blobContainer}}",
-            "query": null
-        },
-        "dataChangeDetectionPolicy": null,
-        "dataDeletionDetectionPolicy": null
-    }
-
+{
+    "name": "projections-demo-ds",
+    "description": null,
+    "type": "azureblob",
+    "subtype": null,
+    "credentials": {
+        "connectionString": "{{storageConnectionString}}"
+    },
+    "container": {
+        "name": "{{blobContainer}}",
+        "query": null
+    },
+    "dataChangeDetectionPolicy": null,
+    "dataDeletionDetectionPolicy": null
+}
 
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+POST {{baseUrl}}/indexes?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
-    {
-        "name": "projections-demo-idx",
-        "defaultScoringProfile": "",
-        "fields": [
-            {
-                "name": "content",
-                "type": "Edm.String",
-                "searchable": true,
-                "filterable": false,
-                "retrievable": true,
-                "sortable": false,
-                "facetable": false,
-                "key": false,
-                "indexAnalyzer": null,
-                "searchAnalyzer": null,
-                "analyzer": "standard.lucene",
-                "synonymMaps": []
-            },
-            {
-                "name": "metadata_storage_size",
-                "type": "Edm.Int64",
-                "searchable": false,
-                "filterable": false,
-                "retrievable": false,
-                "sortable": false,
-                "facetable": false,
-                "key": false,
-                "indexAnalyzer": null,
-                "searchAnalyzer": null,
-                "analyzer": null,
-                "synonymMaps": []
-            },
-            {
-                "name": "metadata_storage_name",
-                "type": "Edm.String",
-                "searchable": false,
-                "filterable": false,
-                "retrievable": false,
-                "sortable": false,
-                "facetable": false,
-                "key": false,
-                "indexAnalyzer": null,
-                "searchAnalyzer": null,
-                "analyzer": null,
-                "synonymMaps": []
-            },
-            {
-                "name": "metadata_storage_path",
-                "type": "Edm.String",
-                "searchable": false,
-                "filterable": false,
-                "retrievable": true,
-                "sortable": false,
-                "facetable": false,
-                "key": true,
-                "indexAnalyzer": null,
-                "searchAnalyzer": null,
-                "analyzer": null,
-                "synonymMaps": []
-            },
-            {
-                "name": "metadata_content_type",
-                "type": "Edm.String",
-                "searchable": false,
-                "filterable": false,
-                "retrievable": false,
-                "sortable": false,
-                "facetable": false,
-                "key": false,
-                "indexAnalyzer": null,
-                "searchAnalyzer": null,
-                "analyzer": null,
-                "synonymMaps": []
-            },
-            {
-                "name": "people",
-                "type": "Collection(Edm.String)",
-                "searchable": true,
-                "filterable": false,
-                "retrievable": true,
-                "sortable": false,
-                "facetable": false,
-                "key": false,
-                "indexAnalyzer": null,
-                "searchAnalyzer": null,
-                "analyzer": "standard.lucene",
-                "synonymMaps": []
-            },
-            {
-                "name": "organizations",
-                "type": "Collection(Edm.String)",
-                "searchable": true,
-                "filterable": false,
-                "retrievable": true,
-                "sortable": false,
-                "facetable": false,
-                "key": false,
-                "indexAnalyzer": null,
-                "searchAnalyzer": null,
-                "analyzer": "standard.lucene",
-                "synonymMaps": []
-            },
-            {
-                "name": "locations",
-                "type": "Collection(Edm.String)",
-                "searchable": true,
-                "filterable": false,
-                "retrievable": true,
-                "sortable": false,
-                "facetable": false,
-                "key": false,
-                "indexAnalyzer": null,
-                "searchAnalyzer": null,
-                "analyzer": "standard.lucene",
-                "synonymMaps": []
-            },
-            {
-                "name": "keyphrases",
-                "type": "Collection(Edm.String)",
-                "searchable": true,
-                "filterable": false,
-                "retrievable": true,
-                "sortable": false,
-                "facetable": false,
-                "key": false,
-                "indexAnalyzer": null,
-                "searchAnalyzer": null,
-                "analyzer": "standard.lucene",
-                "synonymMaps": []
-            },
-            {
-                "name": "language",
-                "type": "Edm.String",
-                "searchable": true,
-                "filterable": false,
-                "retrievable": true,
-                "sortable": false,
-                "facetable": false,
-                "key": false,
-                "indexAnalyzer": null,
-                "searchAnalyzer": null,
-                "analyzer": "standard.lucene",
-                "synonymMaps": []
-            },
-            {
-                "name": "merged_content",
-                "type": "Edm.String",
-                "searchable": true,
-                "filterable": false,
-                "retrievable": true,
-                "sortable": false,
-                "facetable": false,
-                "key": false,
-                "indexAnalyzer": null,
-                "searchAnalyzer": null,
-                "analyzer": "standard.lucene",
-                "synonymMaps": []
-            },
-            {
-                "name": "text",
-                "type": "Collection(Edm.String)",
-                "searchable": true,
-                "filterable": false,
-                "retrievable": true,
-                "sortable": false,
-                "facetable": false,
-                "key": false,
-                "indexAnalyzer": null,
-                "searchAnalyzer": null,
-                "analyzer": "standard.lucene",
-                "synonymMaps": []
-            },
-            {
-                "name": "layoutText",
-                "type": "Collection(Edm.String)",
-                "searchable": true,
-                "filterable": false,
-                "retrievable": true,
-                "sortable": false,
-                "facetable": false,
-                "key": false,
-                "indexAnalyzer": null,
-                "searchAnalyzer": null,
-                "analyzer": "standard.lucene",
-                "synonymMaps": []
-            }
-        ]
-    }
+{
+    "name": "projections-demo-idx",
+    "defaultScoringProfile": "",
+    "fields": [
+        {
+            "name": "content",
+            "type": "Edm.String",
+            "searchable": true,
+            "filterable": false,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": "standard.lucene",
+            "synonymMaps": []
+        },
+        {
+            "name": "metadata_storage_size",
+            "type": "Edm.Int64",
+            "searchable": false,
+            "filterable": false,
+            "retrievable": false,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "synonymMaps": []
+        },
+        {
+            "name": "metadata_storage_name",
+            "type": "Edm.String",
+            "searchable": false,
+            "filterable": false,
+            "retrievable": false,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "synonymMaps": []
+        },
+        {
+            "name": "metadata_storage_path",
+            "type": "Edm.String",
+            "searchable": false,
+            "filterable": false,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": false,
+            "key": true,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "synonymMaps": []
+        },
+        {
+            "name": "metadata_content_type",
+            "type": "Edm.String",
+            "searchable": false,
+            "filterable": false,
+            "retrievable": false,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "synonymMaps": []
+        },
+        {
+            "name": "people",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": false,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": "standard.lucene",
+            "synonymMaps": []
+        },
+        {
+            "name": "organizations",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": false,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": "standard.lucene",
+            "synonymMaps": []
+        },
+        {
+            "name": "locations",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": false,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": "standard.lucene",
+            "synonymMaps": []
+        },
+        {
+            "name": "keyphrases",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": false,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": "standard.lucene",
+            "synonymMaps": []
+        },
+        {
+            "name": "language",
+            "type": "Edm.String",
+            "searchable": true,
+            "filterable": false,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": "standard.lucene",
+            "synonymMaps": []
+        },
+        {
+            "name": "merged_content",
+            "type": "Edm.String",
+            "searchable": true,
+            "filterable": false,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": "standard.lucene",
+            "synonymMaps": []
+        },
+        {
+            "name": "text",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": false,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": "standard.lucene",
+            "synonymMaps": []
+        },
+        {
+            "name": "layoutText",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": false,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": "standard.lucene",
+            "synonymMaps": []
+        },
+        {
+            "name": "sentiment",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": false,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": false,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": "standard.lucene",
+            "synonymMaps": []
+        }
+    ]
+}
 
 ### Create a skillset
-POST {{baseUrl}}/skillsets?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+POST {{baseUrl}}/skillsets?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
-    {
-        "name": "projections-demo-ss",
-        "description": "Skillset that enriches blob data found in the merged_content field. The enrichment granularity is a document.",
-        "skills": [
-            {
-                "@odata.type": "#Microsoft.Skills.Text.V3.EntityRecognitionSkill",
-                "name": "#1",
-                "description": null,
-                "context": "/document/merged_content",
-                "categories": [
-                    "Person",
-                    "Quantity",
-                    "Organization",
-                    "URL",
-                    "Email",
-                    "Location",
-                    "DateTime"
-                ],
-                "defaultLanguageCode": "en",
-                "minimumPrecision": null,
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    },
-                    {
-                        "name": "languageCode",
-                        "source": "/document/language"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "persons",
-                        "targetName": "people"
-                    },
-                    {
-                        "name": "organizations",
-                        "targetName": "organizations"
-                    },
-                    {
-                        "name": "locations",
-                        "targetName": "locations"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
-                "name": "#2",
-                "description": null,
-                "context": "/document/merged_content",
-                "defaultLanguageCode": "en",
-                "maxKeyPhraseCount": null,
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    },
-                    {
-                        "name": "languageCode",
-                        "source": "/document/language"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "keyPhrases",
-                        "targetName": "keyphrases"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
-                "name": "#3",
-                "description": null,
-                "context": "/document",
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "languageCode",
-                        "targetName": "language"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
-                "name": "#4",
-                "description": null,
-                "context": "/document",
-                "insertPreTag": " ",
-                "insertPostTag": " ",
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/content"
-                    },
-                    {
-                        "name": "itemsToInsert",
-                        "source": "/document/normalized_images/*/text"
-                    },
-                    {
-                        "name": "offsets",
-                        "source": "/document/normalized_images/*/contentOffset"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "mergedText",
-                        "targetName": "merged_content"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
-                "name": "#5",
-                "description": null,
-                "context": "/document/normalized_images/*",
-                "textExtractionAlgorithm": "printed",
-                "lineEnding": "Space",
-                "defaultLanguageCode": "en",
-                "detectOrientation": true,
-                "inputs": [
-                    {
-                        "name": "image",
-                        "source": "/document/normalized_images/*"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "text",
-                        "targetName": "text"
-                    },
-                    {
-                        "name": "layoutText",
-                        "targetName": "layoutText"
-                    }
-                ]
-            }
-        ],
-        "cognitiveServices": {
-            "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
-            "description": "A Microsoft Foundry resource in the same region as Azure AI Search.",
-            "key": ""
+{
+    "name": "projections-demo-ss",
+    "description": "Skillset that enriches blob data found in the merged_content field. The enrichment granularity is a document.",
+    "skills": [
+        {
+            "@odata.type": "#Microsoft.Skills.Text.V3.EntityRecognitionSkill",
+            "name": "#1",
+            "description": null,
+            "context": "/document/merged_content",
+            "categories": [
+                "Person",
+                "Quantity",
+                "Organization",
+                "URL",
+                "Email",
+                "Location",
+                "DateTime"
+            ],
+            "defaultLanguageCode": "en",
+            "minimumPrecision": null,
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                },
+                {
+                    "name": "languageCode",
+                    "source": "/document/language"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "persons",
+                    "targetName": "people"
+                },
+                {
+                    "name": "organizations",
+                    "targetName": "organizations"
+                },
+                {
+                    "name": "locations",
+                    "targetName": "locations"
+                }
+            ]
         },
-        "knowledgeStore": null
-    }
+        {
+            "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
+            "name": "#2",
+            "description": null,
+            "context": "/document/merged_content",
+            "defaultLanguageCode": "en",
+            "maxKeyPhraseCount": null,
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                },
+                {
+                    "name": "languageCode",
+                    "source": "/document/language"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "keyPhrases",
+                    "targetName": "keyphrases"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
+            "name": "#3",
+            "description": null,
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "languageCode",
+                    "targetName": "language"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
+            "name": "#4",
+            "description": null,
+            "context": "/document",
+            "insertPreTag": " ",
+            "insertPostTag": " ",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/content"
+                },
+                {
+                    "name": "itemsToInsert",
+                    "source": "/document/normalized_images/*/text"
+                },
+                {
+                    "name": "offsets",
+                    "source": "/document/normalized_images/*/contentOffset"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "mergedText",
+                    "targetName": "merged_content"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
+            "name": "#5",
+            "description": null,
+            "context": "/document/normalized_images/*",
+            "textExtractionAlgorithm": "printed",
+            "lineEnding": "Space",
+            "defaultLanguageCode": "en",
+            "detectOrientation": true,
+            "inputs": [
+                {
+                    "name": "image",
+                    "source": "/document/normalized_images/*"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "text",
+                    "targetName": "text"
+                },
+                {
+                    "name": "layoutText",
+                    "targetName": "layoutText"
+                }
+            ]
+        }
+    ],
+    "cognitiveServices": {
+        "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
+        "description": "A Microsoft Foundry resource in the same region as Azure AI Search.",
+        "key": "{{cognitive-services-key}}"
+    },
+    "knowledgeStore": null
+}
 
 ### Create and run indexer
-POST {{baseUrl}}/indexers?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+POST {{baseUrl}}/indexers?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
-    {
-        "name": "projections-demo-idxr",
-        "dataSourceName": "projections-demo-ds",
-        "skillsetName": "projections-demo-ss",
-        "targetIndexName": "projections-demo-idx",
-        "parameters": {
-            "configuration": {
-                "dataToExtract": "contentAndMetadata",
-                "parsingMode": "delimitedText",
-                "firstLineContainsHeaders": true,
-                "delimitedTextDelimiter": ","
-            }
-        },
-        "fieldMappings": [
-            {
-                "sourceFieldName": "AzureSearch_DocumentKey",
-                "targetFieldName": "AzureSearch_DocumentKey",
-                "mappingFunction": { "name": "base64Encode" }
-            }
-        ],
-        "outputFieldMappings": [
-            { "sourceFieldName": "/document/reviews_text/pages/*/Keyphrases/*", "targetFieldName": "Keyphrases" },
-            { "sourceFieldName": "/document/Language", "targetFieldName": "Language" },
-            { "sourceFieldName": "/document/reviews_text/pages/*/Sentiment", "targetFieldName": "Sentiment" }
-        ]
-    }
-
+{
+    "name": "projections-demo-idxr",
+    "dataSourceName": "projections-demo-ds",
+    "skillsetName": "projections-demo-ss",
+    "targetIndexName": "projections-demo-idx",
+    "parameters": {
+        "configuration": {
+            "dataToExtract": "contentAndMetadata",
+            "imageAction": "generateNormalizedImages",
+            "parsingMode": "default",
+            "firstLineContainsHeaders": true
+        }
+    },
+    "fieldMappings": [
+        {
+            "sourceFieldName": "metadata_storage_path",
+            "targetFieldName": "metadata_storage_path",
+            "mappingFunction": { "name": "base64Encode" }
+        }
+    ],
+    "outputFieldMappings": [
+        { "sourceFieldName": "/document/reviews_text/pages/*/Keyphrases/*", "targetFieldName": "Keyphrases" },
+        { "sourceFieldName": "/document/Language", "targetFieldName": "Language" },
+        { "sourceFieldName": "/document/reviews_text/pages/*/Sentiment", "targetFieldName": "Sentiment" }
+    ]
+}
 
 ### Reset indexer (send this request before running the indexer)
-POST {{baseUrl}}//indexers/projections-demo-idxr/rset?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
-
+POST {{baseUrl}}//indexers/projections-demo-idxr/rset?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
 ### Run indexer (send this request after updating a skillset and resetting the indexer)
-POST {{baseUrl}}//indexers/projections-demo-idxr/run?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
-
-
+POST {{baseUrl}}//indexers/projections-demo-idxr/run?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
 ### Update skillset > 1 - Table projection
-PUT {{baseUrl}}/skillsets?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+PUT {{baseUrl}}/skillsets('projections-demo-ss')?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
-    {
-        "name": "projections-demo-ss",
-        "description": "A sample skillset to demonstrate the use of projections to the knowledge store",
-        "skills": [
-            {
-                "@odata.type": "#Microsoft.Skills.Text.V3.EntityRecognitionSkill",
-                "name": "#1",
-                "description": null,
-                "context": "/document/merged_content",
-                "categories": [
-                    "Person",
-                    "Quantity",
-                    "Organization",
-                    "URL",
-                    "Email",
-                    "Location",
-                    "DateTime"
-                ],
-                "defaultLanguageCode": "en",
-                "minimumPrecision": null,
-                "modelVersion": null,
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "persons", 
-                        "targetName": "people"
-                    },
-                    {
-                        "name": "locations", 
-                        "targetName": "locations"
-                    },
-
-                    {
-                        "name": "organizations", 
-                        "targetName": "organizations"
-                    }
-                    ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
-                "name": "#2",
-                "description": null,
-                "context": "/document/merged_content",
-                "defaultLanguageCode": "en",
-                "maxKeyPhraseCount": null,
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    },
-                    {
-                        "name": "languageCode",
-                        "source": "/document/language"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "keyPhrases",
-                        "targetName": "keyphrases"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
-                "name": "#3",
-                "description": null,
-                "context": "/document",
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "languageCode",
-                        "targetName": "language"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
-                "name": "#4",
-                "description": null,
-                "context": "/document",
-                "insertPreTag": " ",
-                "insertPostTag": " ",
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/content"
-                    },
-                    {
-                        "name": "itemsToInsert",
-                        "source": "/document/normalized_images/*/text"
-                    },
-                    {
-                        "name": "offsets",
-                        "source": "/document/normalized_images/*/contentOffset"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "mergedText",
-                        "targetName": "merged_content"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
-                "name": "#5",
-                "description": null,
-                "context": "/document/normalized_images/*",
-                "textExtractionAlgorithm": "printed",
-                "lineEnding": "Space",
-                "defaultLanguageCode": "en",
-                "detectOrientation": true,
-                "inputs": [
-                    {
-                        "name": "image",
-                        "source": "/document/normalized_images/*"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "text",
-                        "targetName": "text"
-                    },
-                    {
-                        "name": "layoutText",
-                        "targetName": "layoutText"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
-                "name": "ShaperForTables",
-                "description": null,
-                "context": "/document",
-                "inputs": [
-                    {
-                        "name": "metadata_storage_content_type",
-                        "source": "/document/metadata_storage_content_type",
-                        "sourceContext": null,
-                        "inputs": []
-                    },
-                    {
-                        "name": "metadata_storage_name",
-                        "source": "/document/metadata_storage_name",
-                        "sourceContext": null,
-                        "inputs": []
-                    },
-                    {
-                        "name": "metadata_storage_path",
-                        "source": "/document/metadata_storage_path",
-                        "sourceContext": null,
-                        "inputs": []
-                    },
-                    {
-                        "name": "metadata_content_type",
-                        "source": "/document/metadata_content_type",
-                        "sourceContext": null,
-                        "inputs": []
-                    },
-                    {
-                        "name": "keyPhrases",
-                        "source": null,
-                        "sourceContext": "/document/merged_content/keyphrases/*",
-                        "inputs": [
-                            {
-                                "name": "KeyPhrases",
-                                "source": "/document/merged_content/keyphrases/*"
-                            }
-                        ]
-                    },
-                    {
-                        "name": "Entities",
-                        "sourceContext": "/document/merged_content/entities/*",
-                        "inputs": [
-                            {
-                                "name": "people",
-                                "source": "/document/merged_content/entities/*/Person"
-                            },
-                            {
-                                "name": "locations",
-                                "source": "/document/merged_content/entities/*/Location"
-                            },
-                            {
-                                "name": "organizations",
-                                "source": "/document/merged_content/entities/*/Organization"
-                            }
-                        ]
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "output",
-                        "targetName": "pbiShape"
-                    }
-                ]
-            }
-        ],
-        "cognitiveServices": {
-            "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
-            "description": "DemosCS",
-            "key": "{{cognitive-services-key}}"
+{
+    "name": "projections-demo-ss",
+    "description": "A sample skillset to demonstrate the use of projections to the knowledge store",
+    "skills": [
+        {
+            "@odata.type": "#Microsoft.Skills.Text.V3.EntityRecognitionSkill",
+            "name": "#1",
+            "description": null,
+            "context": "/document/merged_content",
+            "categories": [
+                "Person",
+                "Quantity",
+                "Organization",
+                "URL",
+                "Email",
+                "Location",
+                "DateTime"
+            ],
+            "defaultLanguageCode": "en",
+            "minimumPrecision": null,
+            "modelVersion": null,
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "persons", 
+                    "targetName": "people"
+                },
+                {
+                    "name": "locations", 
+                    "targetName": "locations"
+                },
+                {
+                    "name": "organizations", 
+                    "targetName": "organizations"
+                }
+            ]
         },
-        "knowledgeStore" : {
-        "storageConnectionString": "{{kstore-storage-connection-string}}",
-        "projections": [
-            {
-                "tables": [
-                    {
-                        "tableName": "kstoreProjectionDemoDocument",
-                        "generatedKeyName": "Documentid",
-                        "source": "/document/pbiShape"
-                    },
-                    {
-                        "tableName": "kstoreProjectionDemoKeyPhrases",
-                        "generatedKeyName": "KeyPhraseid",
-                        "source": "/document/pbiShape/keyPhrases/*"
-                    },
-                    {
-                        "tableName": "kstoreProjectionDemoEntities",
-                        "generatedKeyName": "Entityid",
-                        "source": "/document/pbiShape/Entities/*"
-                    }
-                ],
-                "objects": [],
-                "files": []
-            }
-        ]
-      }
-    }
-
+        {
+            "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
+            "name": "#2",
+            "description": null,
+            "context": "/document/merged_content",
+            "defaultLanguageCode": "en",
+            "maxKeyPhraseCount": null,
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                },
+                {
+                    "name": "languageCode",
+                    "source": "/document/language"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "keyPhrases",
+                    "targetName": "keyphrases"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
+            "name": "#3",
+            "description": null,
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "languageCode",
+                    "targetName": "language"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
+            "name": "#4",
+            "description": null,
+            "context": "/document",
+            "insertPreTag": " ",
+            "insertPostTag": " ",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/content"
+                },
+                {
+                    "name": "itemsToInsert",
+                    "source": "/document/normalized_images/*/text"
+                },
+                {
+                    "name": "offsets",
+                    "source": "/document/normalized_images/*/contentOffset"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "mergedText",
+                    "targetName": "merged_content"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
+            "name": "#5",
+            "description": null,
+            "context": "/document/normalized_images/*",
+            "textExtractionAlgorithm": "printed",
+            "lineEnding": "Space",
+            "defaultLanguageCode": "en",
+            "detectOrientation": true,
+            "inputs": [
+                {
+                    "name": "image",
+                    "source": "/document/normalized_images/*"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "text",
+                    "targetName": "text"
+                },
+                {
+                    "name": "layoutText",
+                    "targetName": "layoutText"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
+            "name": "ShaperForTables",
+            "description": null,
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "metadata_storage_content_type",
+                    "source": "/document/metadata_storage_content_type",
+                    "sourceContext": null,
+                    "inputs": []
+                },
+                {
+                    "name": "metadata_storage_name",
+                    "source": "/document/metadata_storage_name",
+                    "sourceContext": null,
+                    "inputs": []
+                },
+                {
+                    "name": "metadata_storage_path",
+                    "source": "/document/metadata_storage_path",
+                    "sourceContext": null,
+                    "inputs": []
+                },
+                {
+                    "name": "metadata_content_type",
+                    "source": "/document/metadata_content_type",
+                    "sourceContext": null,
+                    "inputs": []
+                },
+                {
+                    "name": "keyPhrases",
+                    "source": null,
+                    "sourceContext": "/document/merged_content/keyphrases/*",
+                    "inputs": [
+                        {
+                            "name": "KeyPhrases",
+                            "source": "/document/merged_content/keyphrases/*"
+                        }
+                    ]
+                },
+                {
+                    "name": "Entities",
+                    "sourceContext": "/document/merged_content/entities/*",
+                    "inputs": [
+                        {
+                            "name": "people",
+                            "source": "/document/merged_content/entities/*/Person"
+                        },
+                        {
+                            "name": "locations",
+                            "source": "/document/merged_content/entities/*/Location"
+                        },
+                        {
+                            "name": "organizations",
+                            "source": "/document/merged_content/entities/*/Organization"
+                        }
+                    ]
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "targetName": "pbiShape"
+                }
+            ]
+        }
+    ],
+    "cognitiveServices": {
+        "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
+        "description": "DemosCS",
+        "key": "{{cognitive-services-key}}"
+    },
+    "knowledgeStore" : {
+    "storageConnectionString": "{{kstore-storage-connection-string}}",
+    "projections": [
+        {
+            "tables": [
+                {
+                    "tableName": "kstoreProjectionDemoDocument",
+                    "generatedKeyName": "Documentid",
+                    "source": "/document/pbiShape"
+                },
+                {
+                    "tableName": "kstoreProjectionDemoKeyPhrases",
+                    "generatedKeyName": "KeyPhraseid",
+                    "source": "/document/pbiShape/keyPhrases/*"
+                },
+                {
+                    "tableName": "kstoreProjectionDemoEntities",
+                    "generatedKeyName": "Entityid",
+                    "source": "/document/pbiShape/Entities/*"
+                }
+            ],
+            "objects": [],
+            "files": []
+        }
+    ]
+  }
+}
 
 ### Update skillset > 2 - Object projection
-PUT {{baseUrl}}/skillsets?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
+PUT {{baseUrl}}/skillsets('projections-demo-ss')?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
 
-    {
-        "name": "projections-demo-ss",
-        "description": "A sample skillset to demonstrate the use of projections to the knowledge store",
-        "skills": [
-            {
-                "@odata.type": "#Microsoft.Skills.Text.EntityRecognitionSkill",
-                "name": "#1",
-                "description": null,
-                "context": "/document/merged_content",
-                "categories": [
-                    "Person",
-                    "Quantity",
-                    "Organization",
-                    "URL",
-                    "Email",
-                    "Location",
-                    "DateTime"
-                ],
-                "defaultLanguageCode": "en",
-                "minimumPrecision": null,
-                "includeTypelessEntities": null,
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    },
-                    {
-                        "name": "languageCode",
-                        "source": "/document/language"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "persons",
-                        "targetName": "people"
-                    },
-                    {
-                        "name": "organizations",
-                        "targetName": "organizations"
-                    },
-                    {
-                        "name": "locations",
-                        "targetName": "locations"
-                    },
-                    {
-                        "name": "entities",
-                        "targetName": "entities"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
-                "name": "#2",
-                "description": null,
-                "context": "/document/merged_content",
-                "defaultLanguageCode": "en",
-                "maxKeyPhraseCount": null,
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    },
-                    {
-                        "name": "languageCode",
-                        "source": "/document/language"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "keyPhrases",
-                        "targetName": "keyphrases"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
-                "name": "#3",
-                "description": null,
-                "context": "/document",
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "languageCode",
-                        "targetName": "language"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
-                "name": "#4",
-                "description": null,
-                "context": "/document",
-                "insertPreTag": " ",
-                "insertPostTag": " ",
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/content"
-                    },
-                    {
-                        "name": "itemsToInsert",
-                        "source": "/document/normalized_images/*/text"
-                    },
-                    {
-                        "name": "offsets",
-                        "source": "/document/normalized_images/*/contentOffset"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "mergedText",
-                        "targetName": "merged_content"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
-                "name": "#5",
-                "description": null,
-                "context": "/document/normalized_images/*",
-                "textExtractionAlgorithm": "printed",
-                "lineEnding": "Space",
-                "defaultLanguageCode": "en",
-                "detectOrientation": true,
-                "inputs": [
-                    {
-                        "name": "image",
-                        "source": "/document/normalized_images/*"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "text",
-                        "targetName": "text"
-                    },
-                    {
-                        "name": "layoutText",
-                        "targetName": "layoutText"
-                    }
-                ]
-            }
-        ],
-        "cognitiveServices": {
-            "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
-            "description": "DemosCS",
-            "key": "{{cognitive-services-key}}"
-        },
-        "knowledgeStore" : {
-        "storageConnectionString": "{{kstore-storage-connection-string}}",
-        "projections": [
+{
+    "name": "projections-demo-ss",
+    "description": "A sample skillset to demonstrate the use of projections to the knowledge store",
+    "skills": [
+        {
+            "@odata.type": "#Microsoft.Skills.Text.V3.EntityRecognitionSkill",
+            "name": "#1",
+            "description": null,
+            "context": "/document/merged_content",
+            "categories": [
+                "Person",
+                "Quantity",
+                "Organization",
+                "URL",
+                "Email",
+                "Location",
+                "DateTime"
+            ],
+            "defaultLanguageCode": "en",
+            "minimumPrecision": null,
+            "inputs": [
                 {
-                    "tables": [ ],
-                    "objects": [
-                        {
-                            "storageContainer": "kstore-projectionDemo-Objects",
-                            "source": null,
-                            "generatedKeyName": "myobject",
-                            "sourceContext": "/document",
-                            "inputs": [
-                                {
-                                    "name": "metadata_storage_name",
-                                    "source": "/document/metadata_storage_name"
-                                },
-                                {
-                                    "name": "metadata_storage_path",
-                                    "source": "/document/metadata_storage_path"
-                                },
-                                {
-                                    "name": "content",
-                                    "source": "/document/content"
-                                },
-                                {
-                                    "name": "keyPhrases",
-                                    "source": "/document/merged_content/keyphrases/*"
-                                },
-                                {
-                                    "name": "entities",
-                                    "source": "/document/merged_content/entities/*/name"
-                                },
-                                {
-                                    "name": "ocrText",
-                                    "source": "/document/normalized_images/*/text"
-                                },
-                                {
-                                    "name": "ocrLayoutText",
-                                    "source": "/document/normalized_images/*/layoutText"
-                                }
-                            ]
-
-                        }
-                    ],
-                    "files": []
+                    "name": "text",
+                    "source": "/document/merged_content"
+                },
+                {
+                    "name": "languageCode",
+                    "source": "/document/language"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "persons",
+                    "targetName": "people"
+                },
+                {
+                    "name": "organizations",
+                    "targetName": "organizations"
+                },
+                {
+                    "name": "locations",
+                    "targetName": "locations"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
+            "name": "#2",
+            "description": null,
+            "context": "/document/merged_content",
+            "defaultLanguageCode": "en",
+            "maxKeyPhraseCount": null,
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                },
+                {
+                    "name": "languageCode",
+                    "source": "/document/language"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "keyPhrases",
+                    "targetName": "keyphrases"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
+            "name": "#3",
+            "description": null,
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "languageCode",
+                    "targetName": "language"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
+            "name": "#4",
+            "description": null,
+            "context": "/document",
+            "insertPreTag": " ",
+            "insertPostTag": " ",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/content"
+                },
+                {
+                    "name": "itemsToInsert",
+                    "source": "/document/normalized_images/*/text"
+                },
+                {
+                    "name": "offsets",
+                    "source": "/document/normalized_images/*/contentOffset"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "mergedText",
+                    "targetName": "merged_content"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
+            "name": "#5",
+            "description": null,
+            "context": "/document/normalized_images/*",
+            "textExtractionAlgorithm": "printed",
+            "lineEnding": "Space",
+            "defaultLanguageCode": "en",
+            "detectOrientation": true,
+            "inputs": [
+                {
+                    "name": "image",
+                    "source": "/document/normalized_images/*"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "text",
+                    "targetName": "text"
+                },
+                {
+                    "name": "layoutText",
+                    "targetName": "layoutText"
                 }
             ]
         }
-    }
-
-
-
-### Update skillset > 3 - File projection
-PUT {{baseUrl}}/skillsets?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
-
-    {
-        "name": "projections-demo-ss",
-        "description": "A sample skillset to demonstrate the use of projections to the knowledge store",
-        "skills": [
+    ],
+    "cognitiveServices": {
+        "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
+        "description": "DemosCS",
+        "key": "{{cognitive-services-key}}"
+    },
+    "knowledgeStore" : {
+    "storageConnectionString": "{{kstore-storage-connection-string}}",
+    "projections": [
             {
-                "@odata.type": "#Microsoft.Skills.Text.EntityRecognitionSkill",
-                "name": "#1",
-                "description": null,
-                "context": "/document/merged_content",
-                "categories": [
-                    "Person",
-                    "Quantity",
-                    "Organization",
-                    "URL",
-                    "Email",
-                    "Location",
-                    "DateTime"
-                ],
-                "defaultLanguageCode": "en",
-                "minimumPrecision": null,
-                "includeTypelessEntities": null,
-                "inputs": [
+                "tables": [ ],
+                "objects": [
                     {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    },
-                    {
-                        "name": "languageCode",
-                        "source": "/document/language"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "persons",
-                        "targetName": "people"
-                    },
-                    {
-                        "name": "organizations",
-                        "targetName": "organizations"
-                    },
-                    {
-                        "name": "locations",
-                        "targetName": "locations"
-                    },
-                    {
-                        "name": "entities",
-                        "targetName": "entities"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
-                "name": "#2",
-                "description": null,
-                "context": "/document/merged_content",
-                "defaultLanguageCode": "en",
-                "maxKeyPhraseCount": null,
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    },
-                    {
-                        "name": "languageCode",
-                        "source": "/document/language"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "keyPhrases",
-                        "targetName": "keyphrases"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
-                "name": "#3",
-                "description": null,
-                "context": "/document",
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "languageCode",
-                        "targetName": "language"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
-                "name": "#4",
-                "description": null,
-                "context": "/document",
-                "insertPreTag": " ",
-                "insertPostTag": " ",
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/content"
-                    },
-                    {
-                        "name": "itemsToInsert",
-                        "source": "/document/normalized_images/*/text"
-                    },
-                    {
-                        "name": "offsets",
-                        "source": "/document/normalized_images/*/contentOffset"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "mergedText",
-                        "targetName": "merged_content"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
-                "name": "#5",
-                "description": null,
-                "context": "/document/normalized_images/*",
-                "textExtractionAlgorithm": "printed",
-                "lineEnding": "Space",
-                "defaultLanguageCode": "en",
-                "detectOrientation": true,
-                "inputs": [
-                    {
-                        "name": "image",
-                        "source": "/document/normalized_images/*"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "text",
-                        "targetName": "text"
-                    },
-                    {
-                        "name": "layoutText",
-                        "targetName": "layoutText"
-                    }
-                ]
-            }
-        ],
-        "cognitiveServices": {
-            "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
-            "description": "DemosCS",
-            "key": "{{cognitive-services-key}}"
-        },
-        "knowledgeStore" : {
-        "storageConnectionString": "{{kstore-storage-connection-string}}",
-        "projections": [
-                {
-                    "tables": [ ],
-                    "objects": [ ],
-                    "files": [
-                        {
-                            "storageContainer": "kstore-projectionDemo-Images",
-                            "source": "/document/normalized_images/*"
-                        }
-                    ]
-                }
-            ]
-        }
-    }
-
-### Update skillset > 4 - Crossover projection
-PUT {{baseUrl}}/skillsets?api-version=2025-09-01  HTTP/1.1
-  Content-Type: application/json
-  api-key: {{apiKey}}
-
-    {
-        "name": "projections-demo-ss",
-        "description": "A sample skillset to demonstrate the use of projections to the knowledge store",
-        "skills": [
-            {
-                "@odata.type": "#Microsoft.Skills.Text.EntityRecognitionSkill",
-                "name": "#1",
-                "description": null,
-                "context": "/document/merged_content",
-                "categories": [
-                    "Person",
-                    "Quantity",
-                    "Organization",
-                    "URL",
-                    "Email",
-                    "Location",
-                    "DateTime"
-                ],
-                "defaultLanguageCode": "en",
-                "minimumPrecision": null,
-                "includeTypelessEntities": null,
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    },
-                    {
-                        "name": "languageCode",
-                        "source": "/document/language"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "persons",
-                        "targetName": "people"
-                    },
-                    {
-                        "name": "organizations",
-                        "targetName": "organizations"
-                    },
-                    {
-                        "name": "locations",
-                        "targetName": "locations"
-                    },
-                    {
-                        "name": "entities",
-                        "targetName": "entities"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
-                "name": "#2",
-                "description": null,
-                "context": "/document/merged_content",
-                "defaultLanguageCode": "en",
-                "maxKeyPhraseCount": null,
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    },
-                    {
-                        "name": "languageCode",
-                        "source": "/document/language"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "keyPhrases",
-                        "targetName": "keyphrases"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
-                "name": "#3",
-                "description": null,
-                "context": "/document",
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/merged_content"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "languageCode",
-                        "targetName": "language"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
-                "name": "#4",
-                "description": null,
-                "context": "/document",
-                "insertPreTag": " ",
-                "insertPostTag": " ",
-                "inputs": [
-                    {
-                        "name": "text",
-                        "source": "/document/content"
-                    },
-                    {
-                        "name": "itemsToInsert",
-                        "source": "/document/normalized_images/*/text"
-                    },
-                    {
-                        "name": "offsets",
-                        "source": "/document/normalized_images/*/contentOffset"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "mergedText",
-                        "targetName": "merged_content"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
-                "name": "#5",
-                "description": null,
-                "context": "/document/normalized_images/*",
-                "textExtractionAlgorithm": "printed",
-                "lineEnding": "Space",
-                "defaultLanguageCode": "en",
-                "detectOrientation": true,
-                "inputs": [
-                    {
-                        "name": "image",
-                        "source": "/document/normalized_images/*"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "text",
-                        "targetName": "text"
-                    },
-                    {
-                        "name": "layoutText",
-                        "targetName": "layoutText"
-                    }
-                ]
-            },
-            {
-                "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
-                "name": "ShaperForCross",
-                "description": null,
-                "context": "/document",
-                "inputs": [
-                    {
-                        "name": "metadata_storage_name",
-                        "source": "/document/metadata_storage_name",
-                        "sourceContext": null,
-                        "inputs": []
-                    },
-                    {
-                        "name": "keyPhrases",
+                        "storageContainer": "kstore-projection-demo-objects",
                         "source": null,
-                        "sourceContext": "/document/merged_content/keyphrases/*",
+                        "generatedKeyName": "myobject",
+                        "sourceContext": "/document",
                         "inputs": [
                             {
-                                "name": "KeyPhrases",
-                                "source": "/document/merged_content/keyphrases/*"
-                            }
-
-                        ]
-                    },
-                    {
-                        "name": "entities",
-                        "source": null,
-                        "sourceContext": "/document/merged_content/entities/*",
-                        "inputs": [
-                            {
-                                "name": "Entities",
-                                "source": "/document/merged_content/entities/*/name"
-                            }
-
-                        ]
-                    },
-                    {
-                        "name": "images",
-                        "source": null,
-                        "sourceContext": "/document/normalized_images/*",
-                        "inputs": [
-                            {
-                                "name": "image",
-                                "source": "/document/normalized_images/*"
+                                "name": "metadata_storage_name",
+                                "source": "/document/metadata_storage_name"
                             },
                             {
-                                "name": "layoutText",
-                                "source": "/document/normalized_images/*/layoutText"
+                                "name": "metadata_storage_path",
+                                "source": "/document/metadata_storage_path"
+                            },
+                            {
+                                "name": "content",
+                                "source": "/document/content"
+                            },
+                            {
+                                "name": "keyPhrases",
+                                "source": "/document/merged_content/keyphrases/*"
+                            },
+                            {
+                                "name": "entities",
+                                "source": "/document/merged_content/entities/*/name"
                             },
                             {
                                 "name": "ocrText",
                                 "source": "/document/normalized_images/*/text"
+                            },
+                            {
+                                "name": "ocrLayoutText",
+                                "source": "/document/normalized_images/*/layoutText"
                             }
-                            ]
-                    }
-                    
-                ],
-                "outputs": [
-                    {
-                        "name": "output",
-                        "targetName": "crossProjection"
-                    }
-                ]
-            }
-        ],
-        "cognitiveServices": {
-            "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
-            "description": "DemosCS",
-            "key": "{{cognitive-services-key}}"
-        },
-        "knowledgeStore" : {
-        "storageConnectionString": "{{kstore-storage-connection-string}}",
-        "projections": [
-                {
-                    "tables": [
-                        {
-                            "tableName": "kstoreProjectionDemoCrossDocument",
-                            "generatedKeyName": "Id",
-                            "source": "/document/crossProjection"
-                        },
-                        {
-                            "tableName": "kstoreProjectionDemoCrossEntities",
-                            "generatedKeyName": "EntityId",
-                            "source": "/document/crossProjection/entities/*"
-                        },
-                        {
-                            "tableName": "kstoreProjectionDemoCrossKeyPhrases",
-                            "generatedKeyName": "KeyPhraseId",
-                            "source": "/document/crossProjection/keyPhrases/*"
-                        },
-                        {
-                            "tableName": "kstore-projectionDemo-crossReference",
-                            "generatedKeyName": "CrossId",
-                            "source": "/document/crossProjection/images/*"
-                        }
-                        
-                    ],
-                    "objects": [
-                        {
-                            "storageContainer": "kstoreProjectionDemoCrossobject",
-                            "generatedKeyName": "crosslayout",
-                            "source": null,
-                            "sourceContext": "/document/crossProjection/images/*/layoutText",
-                            "inputs": [
-                                {
-                                    "name": "OcrLayoutText",
-                                    "source": "/document/crossProjection/images/*/layoutText"
-                                }
-                            ]
-                        }
-                    ],
-                    "files": [
-                        {
-                            "storageContainer": "kstoreProjectionDemoCrossimages",
-                            "generatedKeyName": "crossimages",
-                            "source": "/document/crossProjection/images/*/image"
-                        }
                         ]
-                    
+
+                    }
+                ],
+                "files": []
+            }
+        ]
+    }
+}
+
+### Update skillset > 3 - File projection
+PUT {{baseUrl}}/skillsets('projections-demo-ss')?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
+
+{
+    "name": "projections-demo-ss",
+    "description": "A sample skillset to demonstrate the use of projections to the knowledge store",
+    "skills": [
+        {
+            "@odata.type": "#Microsoft.Skills.Text.V3.EntityRecognitionSkill",
+            "name": "#1",
+            "description": null,
+            "context": "/document/merged_content",
+            "categories": [
+                "Person",
+                "Quantity",
+                "Organization",
+                "URL",
+                "Email",
+                "Location",
+                "DateTime"
+            ],
+            "defaultLanguageCode": "en",
+            "minimumPrecision": null,
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                },
+                {
+                    "name": "languageCode",
+                    "source": "/document/language"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "persons",
+                    "targetName": "people"
+                },
+                {
+                    "name": "organizations",
+                    "targetName": "organizations"
+                },
+                {
+                    "name": "locations",
+                    "targetName": "locations"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
+            "name": "#2",
+            "description": null,
+            "context": "/document/merged_content",
+            "defaultLanguageCode": "en",
+            "maxKeyPhraseCount": null,
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                },
+                {
+                    "name": "languageCode",
+                    "source": "/document/language"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "keyPhrases",
+                    "targetName": "keyphrases"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
+            "name": "#3",
+            "description": null,
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "languageCode",
+                    "targetName": "language"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
+            "name": "#4",
+            "description": null,
+            "context": "/document",
+            "insertPreTag": " ",
+            "insertPostTag": " ",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/content"
+                },
+                {
+                    "name": "itemsToInsert",
+                    "source": "/document/normalized_images/*/text"
+                },
+                {
+                    "name": "offsets",
+                    "source": "/document/normalized_images/*/contentOffset"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "mergedText",
+                    "targetName": "merged_content"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
+            "name": "#5",
+            "description": null,
+            "context": "/document/normalized_images/*",
+            "textExtractionAlgorithm": "printed",
+            "lineEnding": "Space",
+            "defaultLanguageCode": "en",
+            "detectOrientation": true,
+            "inputs": [
+                {
+                    "name": "image",
+                    "source": "/document/normalized_images/*"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "text",
+                    "targetName": "text"
+                },
+                {
+                    "name": "layoutText",
+                    "targetName": "layoutText"
                 }
             ]
         }
+    ],
+    "cognitiveServices": {
+        "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
+        "description": "DemosCS",
+        "key": "{{cognitive-services-key}}"
+    },
+    "knowledgeStore" : {
+    "storageConnectionString": "{{kstore-storage-connection-string}}",
+    "projections": [
+            {
+                "tables": [ ],
+                "objects": [ ],
+                "files": [
+                    {
+                        "storageContainer": "kstore-projection-demo-images",
+                        "source": "/document/normalized_images/*"
+                    }
+                ]
+            }
+        ]
     }
+}
+
+### Update skillset > 4 - Crossover projection
+PUT {{baseUrl}}/skillsets('projections-demo-ss')?api-version={{api-version}}  HTTP/1.1
+Content-Type: application/json
+api-key: {{apiKey}}
+
+{
+    "name": "projections-demo-ss",
+    "description": "A sample skillset to demonstrate the use of projections to the knowledge store",
+    "skills": [
+        {
+            "@odata.type": "#Microsoft.Skills.Text.V3.EntityRecognitionSkill",
+            "name": "#1",
+            "description": null,
+            "context": "/document/merged_content",
+            "categories": [
+                "Person",
+                "Quantity",
+                "Organization",
+                "URL",
+                "Email",
+                "Location",
+                "DateTime"
+            ],
+            "defaultLanguageCode": "en",
+            "minimumPrecision": null,
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                },
+                {
+                    "name": "languageCode",
+                    "source": "/document/language"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "persons",
+                    "targetName": "people"
+                },
+                {
+                    "name": "organizations",
+                    "targetName": "organizations"
+                },
+                {
+                    "name": "locations",
+                    "targetName": "locations"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
+            "name": "#2",
+            "description": null,
+            "context": "/document/merged_content",
+            "defaultLanguageCode": "en",
+            "maxKeyPhraseCount": null,
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                },
+                {
+                    "name": "languageCode",
+                    "source": "/document/language"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "keyPhrases",
+                    "targetName": "keyphrases"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
+            "name": "#3",
+            "description": null,
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "languageCode",
+                    "targetName": "language"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.MergeSkill",
+            "name": "#4",
+            "description": null,
+            "context": "/document",
+            "insertPreTag": " ",
+            "insertPostTag": " ",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/content"
+                },
+                {
+                    "name": "itemsToInsert",
+                    "source": "/document/normalized_images/*/text"
+                },
+                {
+                    "name": "offsets",
+                    "source": "/document/normalized_images/*/contentOffset"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "mergedText",
+                    "targetName": "merged_content"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Vision.OcrSkill",
+            "name": "#5",
+            "description": null,
+            "context": "/document/normalized_images/*",
+            "textExtractionAlgorithm": "printed",
+            "lineEnding": "Space",
+            "defaultLanguageCode": "en",
+            "detectOrientation": true,
+            "inputs": [
+                {
+                    "name": "image",
+                    "source": "/document/normalized_images/*"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "text",
+                    "targetName": "text"
+                },
+                {
+                    "name": "layoutText",
+                    "targetName": "layoutText"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
+            "name": "ShaperForCross",
+            "description": null,
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "metadata_storage_name",
+                    "source": "/document/metadata_storage_name",
+                    "sourceContext": null,
+                    "inputs": []
+                },
+                {
+                    "name": "keyPhrases",
+                    "source": null,
+                    "sourceContext": "/document/merged_content/keyphrases/*",
+                    "inputs": [
+                        {
+                            "name": "KeyPhrases",
+                            "source": "/document/merged_content/keyphrases/*"
+                        }
+
+                    ]
+                },
+                {
+                    "name": "entities",
+                    "source": null,
+                    "sourceContext": "/document/merged_content/entities/*",
+                    "inputs": [
+                        {
+                            "name": "Entities",
+                            "source": "/document/merged_content/entities/*/name"
+                        }
+
+                    ]
+                },
+                {
+                    "name": "images",
+                    "source": null,
+                    "sourceContext": "/document/normalized_images/*",
+                    "inputs": [
+                        {
+                            "name": "image",
+                            "source": "/document/normalized_images/*"
+                        },
+                        {
+                            "name": "layoutText",
+                            "source": "/document/normalized_images/*/layoutText"
+                        },
+                        {
+                            "name": "ocrText",
+                            "source": "/document/normalized_images/*/text"
+                        }
+                    ]
+                }
+
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "targetName": "crossProjection"
+                }
+            ]
+        }
+    ],
+    "cognitiveServices": {
+        "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
+        "description": "DemosCS",
+        "key": "{{cognitive-services-key}}"
+    },
+    "knowledgeStore" : {
+    "storageConnectionString": "{{kstore-storage-connection-string}}",
+    "projections": [
+            {
+                "tables": [
+                    {
+                        "tableName": "kstoreProjectionDemoCrossDocument",
+                        "generatedKeyName": "Id",
+                        "source": "/document/crossProjection"
+                    },
+                    {
+                        "tableName": "kstoreProjectionDemoCrossEntities",
+                        "generatedKeyName": "EntityId",
+                        "source": "/document/crossProjection/entities/*"
+                    },
+                    {
+                        "tableName": "kstoreProjectionDemoCrossKeyPhrases",
+                        "generatedKeyName": "KeyPhraseId",
+                        "source": "/document/crossProjection/keyPhrases/*"
+                    },
+                    {
+                        "tableName": "kstoreProjectionDemoCrossReference",
+                        "generatedKeyName": "CrossId",
+                        "source": "/document/crossProjection/images/*"
+                    }
+
+                ],
+                "objects": [
+                    {
+                        "storageContainer": "kstore-projection-demo-cross-object",
+                        "generatedKeyName": "crosslayout",
+                        "source": null,
+                        "sourceContext": "/document/crossProjection/images/*/layoutText",
+                        "inputs": [
+                            {
+                                "name": "OcrLayoutText",
+                                "source": "/document/crossProjection/images/*/layoutText"
+                            }
+                        ]
+                    }
+                ],
+                "files": [
+                    {
+                        "storageContainer": "kstore-projection-demo-cross-images",
+                        "generatedKeyName": "crossimages",
+                        "source": "/document/crossProjection/images/*/image"
+                    }
+                ]
+
+            }
+        ]
+    }
+}
