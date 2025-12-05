@@ -2,13 +2,13 @@
 
 This repository provides the following REST API samples:
 
++ acl (document permissions)
 + custom-analyzers
 + debug-sessions
 + index-json-blobs
 + knowledge-store
 + projections
 + quickstart
-+ quickstart-ACL (document permissions)
 + quickstart-agentic-retrieval
 + quickstart-RAG
 + quickstart-semantic-search

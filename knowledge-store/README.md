@@ -15,7 +15,7 @@ urlFragment: rest-api-knowledge-store
 
 This sample applies to [knowledge stores](https://learn.microsoft.com/azure/search/knowledge-store-concept-intro) in Azure AI Search. It uses the Azure AI Search REST APIs to create an indexer, data source, index, and skillset that applies AI processing. It uses Azure Storage for durable storage of a knowledge store.
 
-This example is featured in the [Create a knowledge store using REST](https://learn.microsoft.com/azure/search/knowledge-store-create-rest).
+This example is featured in [Create a knowledge store using REST](https://learn.microsoft.com/azure/search/knowledge-store-create-rest).
 
 ## Prerequisites
 
