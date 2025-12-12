@@ -4,7 +4,6 @@ This repository provides the following REST API samples:
 
 + quickstart
 + quickstart-agentic-retrieval
-+ quickstart-RAG
 + quickstart-semantic-search
 + quickstart-vectors
 + acl (document permissions)
