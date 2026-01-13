@@ -2,7 +2,7 @@
 page_type: sample
 languages:
   - rest
-name: "Vector quickstart in REST"
+name: "Quickstart: Vector search in Azure AI Search using REST APIs"
 description: |
   Learn how to create, load, and query vectors in Azure AI Search using REST APIs.
 products:
@@ -11,7 +11,7 @@ products:
 urlFragment: rest-api-vector-quickstart
 ---
 
-# Quickstart: Vectors in Azure AI Search using REST APIs
+# Quickstart: Vector search in Azure AI Search using REST APIs
 
 This sample demonstrates how to use the Azure AI Search REST APIs to create an index, load it with vectors, and execute vector queries. Requests are provided in an `az-search-vector-quickstart.rest` file, which you can open and modify to connect to your search service.
 

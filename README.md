@@ -4,7 +4,7 @@ This repository provides the following REST API samples:
 
 + quickstart-agentic-retrieval
 + quickstart-keyword-search
-+ quickstart-semantic-search
++ quickstart-semantic-ranking
 + quickstart-vectors
 + acl (document permissions)
 + custom-analyzers

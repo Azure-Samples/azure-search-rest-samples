@@ -2,7 +2,7 @@
 page_type: sample
 languages:
   - rest
-name: Skillset Tutorial in REST
+name: "Tutorial: Create a skillset in Azure AI Search using REST APIs"
 description: |
   Create a skillset in Azure AI Search to extract searchable information and structure from Azure blobs.
 products:
@@ -11,7 +11,7 @@ products:
 urlFragment: rest-api-tutorial
 ---
 
-# Create a skillset in Azure AI Search using REST APIs
+# Tutorial: Create a skillset in Azure AI Search using REST APIs
 
 This sample uses the Azure AI Search REST APIs to create an indexer, data source, index, and skillset that applies AI processing to Azure blobs during indexing.
 

@@ -2,13 +2,13 @@
 page_type: sample
 languages:
   - rest
-name: Semantic ranker Quickstart
+name: "Quickstart: Semantic ranking in Azure AI Search using REST APIs"
 description: |
   Learn how to add a semantic configuration to an Azure AI Search index, and add semantic parameters that invoke semantic ranking on queries.
 products:
   - azure
   - azure-cognitive-search
-urlFragment: rest-api-semantic-search-quickstart
+urlFragment: rest-api-semantic-quickstart
 ---
 
 # Quickstart: Semantic ranking in Azure AI Search using REST APIs
@@ -35,7 +35,7 @@ For connections, we recommend Microsoft Entra ID for authentication and role ass
 
 ## Run the code
 
-1. Open the `semantic-search-index-update.rest` file in Visual Studio Code.
+1. Open the `semantic-index-update.rest` file in Visual Studio Code.
 
 1. Replace the placeholder variables with valid values.
 
@@ -43,7 +43,7 @@ For connections, we recommend Microsoft Entra ID for authentication and role ass
 
 1. Send each request to your Azure AI Search service.
 
-1. Repeat the previous steps for the `semantic-search-query.rest` file.
+1. Repeat the previous steps for the `semantic-query.rest` file.
 
 ## Next step
 
