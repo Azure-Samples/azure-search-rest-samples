@@ -2,16 +2,16 @@
 page_type: sample
 languages:
   - rest
-name: "Quickstart in REST"
+name: "Keyword search quickstart in REST"
 description: |
   Learn how to create, load, and query an Azure AI Search index using the REST APIs.
 products:
   - azure
   - azure-cognitive-search
-urlFragment: rest-api-quickstart
+urlFragment: rest-api-quickstart-keyword
 ---
 
-# Quickstart: Azure AI Search using REST APIs
+# Quickstart: Keyword search using Azure AI Search REST APIs
 
 This sample demonstrates how to use the Azure AI Search REST APIs to create an index, load it with documents, and execute queries. Requests are provided in an `az-search-quickstart.rest` file, which you can open and modify to connect to your search service.
 
