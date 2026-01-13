@@ -2,7 +2,7 @@
 page_type: sample
 languages:
   - rest
-name: ACL quickstart
+name: "Quickstart: ACL in Azure AI Search using REST APIs"
 description: |
   Learn how to configure basic access-control examples for Azure AI Search using REST.
 products:

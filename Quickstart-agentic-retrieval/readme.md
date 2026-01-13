@@ -2,7 +2,7 @@
 page_type: sample
 languages:
   - rest
-name: Agentic Retrieval Quickstart
+name: "Quickstart: Agentic retrieval in Azure AI Search using REST APIs"
 description: |
   Learn how to create a knowledge base that retrieves content from an Azure AI Search index and uses an LLM from Azure OpenAI in Foundry Models to generate answers.
 products:

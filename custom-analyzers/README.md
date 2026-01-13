@@ -2,7 +2,7 @@
 page_type: sample
 languages:
   - rest
-name: Custom Analyzer Tutorial
+name: "Tutorial: Create a custom analyzer in Azure AI Search using REST APIs"
 description: |
   Learn how to create a custom analyzer in Azure AI Search to intuitively search across phone numbers or other content.
 products:
@@ -11,7 +11,7 @@ products:
 urlFragment: custom-analyzer-tutorial
 ---
 
-# Create a custom analyzer in Azure AI Search using REST APIs
+# Tutorial: Create a custom analyzer in Azure AI Search using REST APIs
 
 This sample creates a search index and builds a custom analyzer designed to handle phone numbers. Phone numbers are ideal candidates for custom analyzers because of the variety of formats and special characters associated with them. The HTTP requests demonstrate the process of testing sample searches and lexical analysis and building an analyzer for intuitively searching phone numbers.
 
