@@ -1,5 +1,5 @@
 @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
-@token = PUT-YOUR-TOKEN-HERE
+@token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
 @api-version = 2025-09-01
 
 ### List existing indexes by name
