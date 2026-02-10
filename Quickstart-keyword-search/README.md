@@ -13,33 +13,19 @@ urlFragment: rest-api-quickstart-keyword
 
 # Quickstart: Keyword search in Azure AI Search using REST APIs
 
-This sample demonstrates how to use the Azure AI Search REST APIs to create an index, load it with documents, and execute queries. Requests are provided in an `az-search-quickstart.rest` file, which you can open and modify to connect to your search service.
+![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
 
-This sample is the source code for [Quickstart: Full-text search using REST](https://learn.microsoft.com/azure/search/search-get-started-text?tabs=keyless%2Cwindows&pivots=rest).
+This sample demonstrates the fundamentals of creating, loading, and querying a search index for full-text search, also known as keyword search. The index is modeled on a subset of the hotels dataset, which has been reduced for readability and comprehension.
 
-## Prerequisites
+## What's in this sample
 
-+ An [Azure AI Search service](https://learn.microsoft.com/azure/search/search-create-service-portal) on any pricing tier.
+| File | Description |
+|------|-------------|
+| `az-search-quickstart.rest` | REST file containing requests to create an index, load documents, and run queries |
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
+## Documentation
 
-## Set up the sample
-
-1. Clone or download this sample repository.
-
-1. If the download is a ZIP file, extract its contents. Make sure the files are read-write.
-
-For connections, we recommend Microsoft Entra ID for authentication and role assignments for authorization. Alternatively, you can specify [API keys](https://learn.microsoft.com/azure/search/search-security-api-keys) in your requests. [Quickstart: Full-text search using REST](https://learn.microsoft.com/azure/search/search-get-started-text?tabs=keyless%2Cwindows&pivots=rest) provides the full setup instructions.
-
-## Run the code
-
-1. Open the `az-search-quickstart.rest` file in Visual Studio Code.
-
-1. Replace the placeholder variables with valid values.
-
-1. Save the file.
-
-1. Send each request to your Azure AI Search service.
+This sample accompanies [Quickstart: Full-text search using REST](https://learn.microsoft.com/azure/search/search-get-started-text?pivots=rest). Follow the documentation for prerequisites, setup instructions, and detailed explanations.
 
 ## Next step
 
