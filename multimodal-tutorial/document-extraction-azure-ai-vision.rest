@@ -14,7 +14,7 @@ POST {{searchUrl}}/datasources?api-version=2025-11-01-preview   HTTP/1.1
   Authorization: Bearer {{token}}
 
 {
-  "name":"demo-multimodal-ds",
+  "name":"demo-multimodal-1-ds",
   "description":null,
   "type":"azureblob",
   "subtype":null,
@@ -39,7 +39,7 @@ POST {{searchUrl}}/indexes?api-version=2025-11-01-preview   HTTP/1.1
   Authorization: Bearer {{token}}
 
 {
-   "name":"demo-multimodal-index",
+   "name":"demo-multimodal-1-index",
    "fields":[
       {
          "name":"content_id",
@@ -85,12 +85,6 @@ POST {{searchUrl}}/indexes?api-version=2025-11-01-preview   HTTP/1.1
       },
       {
          "name":"content_path",
-         "type":"Edm.String",
-         "searchable":false,
-         "retrievable":true
-      },
-      {
-         "name":"offset",
          "type":"Edm.String",
          "searchable":false,
          "retrievable":true
@@ -178,7 +172,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
   Authorization: Bearer {{token}}
 
 {
-   "name":"demo-multimodal-skillset",
+   "name":"demo-multimodal-1-skillset",
    "description":"A test skillset",
    "skills":[
       {
@@ -307,11 +301,11 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
                "inputs":[
                   {
                      "name":"page_number",
-                     "source":"/document/normalized_images/*/pageNumber"
+                     "source":"/document/normalized_images/*/page_number"
                   },
                   {
                      "name":"bounding_polygons",
-                     "source":"/document/normalized_images/*/boundingPolygon"
+                     "source":"/document/normalized_images/*/bounding_polygon"
                   }
                ]
             }
@@ -332,7 +326,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
    "indexProjections":{
       "selectors":[
          {
-            "targetIndexName":"demo-multimodal-index",
+            "targetIndexName":"demo-multimodal-1-index",
             "parentKeyFieldName":"text_document_id",
             "sourceContext":"/document/pages/*",
             "mappings":[
@@ -351,7 +345,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-11-01-preview   HTTP/1.1
             ]
          },
          {
-            "targetIndexName":"demo-multimodal-index",
+            "targetIndexName":"demo-multimodal-1-index",
             "parentKeyFieldName":"image_document_id",
             "sourceContext":"/document/normalized_images/*",
             "mappings":[
@@ -400,10 +394,10 @@ POST {{searchUrl}}/indexers?api-version=2025-11-01-preview   HTTP/1.1
   Authorization: Bearer {{token}}
 
 {
-   "name":"demo-multimodal-indexer",
-   "dataSourceName":"demo-multimodal-ds",
-   "targetIndexName":"demo-multimodal-index",
-   "skillsetName":"demo-multimodal-skillset",
+   "name":"demo-multimodal-1-indexer",
+   "dataSourceName":"demo-multimodal-1-ds",
+   "targetIndexName":"demo-multimodal-1-index",
+   "skillsetName":"demo-multimodal-1-skillset",
    "parameters":{
       "maxFailedItems":-1,
       "maxFailedItemsPerBatch":0,
@@ -422,7 +416,7 @@ POST {{searchUrl}}/indexers?api-version=2025-11-01-preview   HTTP/1.1
 }
 
 ### Query the index
-POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/demo-multimodal-1-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
   
@@ -433,7 +427,7 @@ POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11
 
 
 ### Query for only images
-POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/demo-multimodal-1-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
   
@@ -444,7 +438,7 @@ POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11
 }
 
 ### Query for text or images with content related to energy, returning the id, parent document, and text (only populated for text chunks), and the content path where the image is saved in the knowledge store (only populated for images)
-POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/demo-multimodal-1-index/docs/search?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
   
@@ -456,16 +450,16 @@ POST {{searchUrl}}/indexes/demo-multimodal-index/docs/search?api-version=2025-11
 }
 
 ### Reset the indexer
-POST {{searchUrl}}/indexers/demo-multimodal-indexer/reset?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers/demo-multimodal-1-indexer/reset?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
 
 ### Rerun the indexer
-POST {{searchUrl}}/indexers/demo-multimodal-indexer/run?api-version=2025-11-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers/demo-multimodal-1-indexer/run?api-version=2025-11-01-preview   HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 ### Check indexer status 
-GET {{searchUrl}}/indexers/demo-multimodal-indexer/status?api-version=2025-11-01-preview   HTTP/1.1
+GET {{searchUrl}}/indexers/demo-multimodal-1-indexer/status?api-version=2025-11-01-preview   HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{token}}
