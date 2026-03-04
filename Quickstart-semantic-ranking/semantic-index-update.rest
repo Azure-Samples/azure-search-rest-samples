@@ -1,38 +1,27 @@
-@searchUrl=PUT-YOUR-SEARCH-SERVICE-URL-HERE
-@personalAccessToken=PUT-YOUR-PERSONAL-ACCESS-TOKEN-HERE
+@searchUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
+@personalAccessToken = PUT-YOUR-PERSONAL-ACCESS-TOKEN-HERE
 @api-version = 2025-09-01
 
-### List all existing indexes by name (you should see the hotels-sample-index).
+### List all existing indexes by name. You should see the hotels-sample index.
 GET {{searchUrl}}/indexes?api-version={{api-version}}&$select=name  HTTP/1.1
 Authorization: Bearer {{personalAccessToken}}
 
 ### Get the schema of the index. A full index schema is required for any index update. 
-### You can skip this step for the hotels-sample-index because the next request already has it.
-GET {{searchUrl}}/indexes/hotels-sample-index?api-version={{api-version}}  HTTP/1.1
+### Skip this step for the hotels-sample index because the next request already contains the schema.
+GET {{searchUrl}}/indexes/hotels-sample?api-version={{api-version}}  HTTP/1.1
 Authorization: Bearer {{personalAccessToken}}
 
-### Update the hotels-sample-index to include a semantic configuration. 
+### Update the hotels-sample index to include a semantic configuration. 
 ### This is the full schema, plus a semantic configuration.
-PUT {{searchUrl}}/indexes/hotels-sample-index?api-version={{api-version}}  HTTP/1.1
+PUT {{searchUrl}}/indexes/hotels-sample?api-version={{api-version}}  HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{personalAccessToken}}
 
 {
-  "name": "hotels-sample-index",
+  "name": "hotels-sample",
   "fields": [
     {
-      "name": "HotelId",
-      "type": "Edm.String",
-      "searchable": false,
-      "filterable": true,
-      "retrievable": true,
-      "stored": true,
-      "sortable": false,
-      "facetable": true,
-      "key": true
-    },
-    {
-      "name": "HotelName",
+      "name": "title",
       "type": "Edm.String",
       "searchable": true,
       "filterable": false,
@@ -40,7 +29,46 @@ Authorization: Bearer {{personalAccessToken}}
       "stored": true,
       "sortable": false,
       "facetable": false,
-      "analyzer": "en.microsoft"
+      "key": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "id",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": true,
+      "retrievable": true,
+      "stored": true,
+      "sortable": true,
+      "facetable": true,
+      "key": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "HotelId",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": true,
+      "retrievable": true,
+      "stored": true,
+      "sortable": true,
+      "facetable": false,
+      "key": true,
+      "analyzer": "standard.lucene",
+      "synonymMaps": []
+    },
+    {
+      "name": "HotelName",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": true,
+      "retrievable": true,
+      "stored": true,
+      "sortable": true,
+      "facetable": false,
+      "key": false,
+      "analyzer": "standard.lucene",
+      "synonymMaps": []
     },
     {
       "name": "Description",
@@ -51,7 +79,9 @@ Authorization: Bearer {{personalAccessToken}}
       "stored": true,
       "sortable": false,
       "facetable": false,
-      "analyzer": "en.microsoft"
+      "key": false,
+      "analyzer": "standard.lucene",
+      "synonymMaps": []
     },
     {
       "name": "Description_fr",
@@ -62,7 +92,9 @@ Authorization: Bearer {{personalAccessToken}}
       "stored": true,
       "sortable": false,
       "facetable": false,
-      "analyzer": "fr.microsoft"
+      "key": false,
+      "analyzer": "standard.lucene",
+      "synonymMaps": []
     },
     {
       "name": "Category",
@@ -71,9 +103,11 @@ Authorization: Bearer {{personalAccessToken}}
       "filterable": true,
       "retrievable": true,
       "stored": true,
-      "sortable": false,
-      "facetable": true,
-      "analyzer": "en.microsoft"
+      "sortable": true,
+      "facetable": false,
+      "key": false,
+      "analyzer": "standard.lucene",
+      "synonymMaps": []
     },
     {
       "name": "Tags",
@@ -83,8 +117,10 @@ Authorization: Bearer {{personalAccessToken}}
       "retrievable": true,
       "stored": true,
       "sortable": false,
-      "facetable": true,
-      "analyzer": "en.microsoft"
+      "facetable": false,
+      "key": false,
+      "analyzer": "standard.lucene",
+      "synonymMaps": []
     },
     {
       "name": "ParkingIncluded",
@@ -94,17 +130,33 @@ Authorization: Bearer {{personalAccessToken}}
       "retrievable": true,
       "stored": true,
       "sortable": false,
-      "facetable": true
+      "facetable": true,
+      "key": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "IsDeleted",
+      "type": "Edm.Boolean",
+      "searchable": false,
+      "filterable": true,
+      "retrievable": true,
+      "stored": true,
+      "sortable": false,
+      "facetable": true,
+      "key": false,
+      "synonymMaps": []
     },
     {
       "name": "LastRenovationDate",
       "type": "Edm.DateTimeOffset",
       "searchable": false,
-      "filterable": false,
+      "filterable": true,
       "retrievable": true,
       "stored": true,
       "sortable": true,
-      "facetable": false
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
     },
     {
       "name": "Rating",
@@ -114,7 +166,9 @@ Authorization: Bearer {{personalAccessToken}}
       "retrievable": true,
       "stored": true,
       "sortable": true,
-      "facetable": true
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
     },
     {
       "name": "Address",
@@ -129,7 +183,9 @@ Authorization: Bearer {{personalAccessToken}}
           "stored": true,
           "sortable": false,
           "facetable": false,
-          "analyzer": "en.microsoft"
+          "key": false,
+          "analyzer": "standard.lucene",
+          "synonymMaps": []
         },
         {
           "name": "City",
@@ -138,9 +194,11 @@ Authorization: Bearer {{personalAccessToken}}
           "filterable": true,
           "retrievable": true,
           "stored": true,
-          "sortable": false,
+          "sortable": true,
           "facetable": true,
-          "analyzer": "en.microsoft"
+          "key": false,
+          "analyzer": "standard.lucene",
+          "synonymMaps": []
         },
         {
           "name": "StateProvince",
@@ -149,9 +207,11 @@ Authorization: Bearer {{personalAccessToken}}
           "filterable": true,
           "retrievable": true,
           "stored": true,
-          "sortable": false,
+          "sortable": true,
           "facetable": true,
-          "analyzer": "en.microsoft"
+          "key": false,
+          "analyzer": "standard.lucene",
+          "synonymMaps": []
         },
         {
           "name": "PostalCode",
@@ -160,9 +220,11 @@ Authorization: Bearer {{personalAccessToken}}
           "filterable": true,
           "retrievable": true,
           "stored": true,
-          "sortable": false,
+          "sortable": true,
           "facetable": true,
-          "analyzer": "en.microsoft"
+          "key": false,
+          "analyzer": "standard.lucene",
+          "synonymMaps": []
         },
         {
           "name": "Country",
@@ -171,9 +233,11 @@ Authorization: Bearer {{personalAccessToken}}
           "filterable": true,
           "retrievable": true,
           "stored": true,
-          "sortable": false,
+          "sortable": true,
           "facetable": true,
-          "analyzer": "en.microsoft"
+          "key": false,
+          "analyzer": "standard.lucene",
+          "synonymMaps": []
         }
       ]
     },
@@ -185,7 +249,9 @@ Authorization: Bearer {{personalAccessToken}}
       "retrievable": true,
       "stored": true,
       "sortable": true,
-      "facetable": false
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
     },
     {
       "name": "Rooms",
@@ -200,7 +266,9 @@ Authorization: Bearer {{personalAccessToken}}
           "stored": true,
           "sortable": false,
           "facetable": false,
-          "analyzer": "en.microsoft"
+          "key": false,
+          "analyzer": "standard.lucene",
+          "synonymMaps": []
         },
         {
           "name": "Description_fr",
@@ -211,7 +279,9 @@ Authorization: Bearer {{personalAccessToken}}
           "stored": true,
           "sortable": false,
           "facetable": false,
-          "analyzer": "fr.microsoft"
+          "key": false,
+          "analyzer": "standard.lucene",
+          "synonymMaps": []
         },
         {
           "name": "Type",
@@ -222,7 +292,9 @@ Authorization: Bearer {{personalAccessToken}}
           "stored": true,
           "sortable": false,
           "facetable": true,
-          "analyzer": "en.microsoft"
+          "key": false,
+          "analyzer": "standard.lucene",
+          "synonymMaps": []
         },
         {
           "name": "BaseRate",
@@ -232,7 +304,9 @@ Authorization: Bearer {{personalAccessToken}}
           "retrievable": true,
           "stored": true,
           "sortable": false,
-          "facetable": true
+          "facetable": true,
+          "key": false,
+          "synonymMaps": []
         },
         {
           "name": "BedOptions",
@@ -243,7 +317,9 @@ Authorization: Bearer {{personalAccessToken}}
           "stored": true,
           "sortable": false,
           "facetable": true,
-          "analyzer": "en.microsoft"
+          "key": false,
+          "analyzer": "standard.lucene",
+          "synonymMaps": []
         },
         {
           "name": "SleepsCount",
@@ -253,7 +329,9 @@ Authorization: Bearer {{personalAccessToken}}
           "retrievable": true,
           "stored": true,
           "sortable": false,
-          "facetable": true
+          "facetable": true,
+          "key": false,
+          "synonymMaps": []
         },
         {
           "name": "SmokingAllowed",
@@ -263,7 +341,9 @@ Authorization: Bearer {{personalAccessToken}}
           "retrievable": true,
           "stored": true,
           "sortable": false,
-          "facetable": true
+          "facetable": true,
+          "key": false,
+          "synonymMaps": []
         },
         {
           "name": "Tags",
@@ -274,39 +354,111 @@ Authorization: Bearer {{personalAccessToken}}
           "stored": true,
           "sortable": false,
           "facetable": true,
-          "analyzer": "en.microsoft"
+          "key": false,
+          "analyzer": "standard.lucene",
+          "synonymMaps": []
         }
       ]
     },
     {
-      "name": "id",
+      "name": "AzureSearch_DocumentKey",
       "type": "Edm.String",
       "searchable": false,
       "filterable": false,
-      "retrievable": false,
+      "retrievable": true,
       "stored": true,
       "sortable": false,
-      "facetable": false
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
     },
     {
-      "name": "rid",
+      "name": "metadata_storage_content_type",
       "type": "Edm.String",
       "searchable": false,
       "filterable": false,
       "retrievable": false,
       "stored": true,
       "sortable": false,
-      "facetable": false
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "metadata_storage_size",
+      "type": "Edm.Int64",
+      "searchable": false,
+      "filterable": false,
+      "retrievable": false,
+      "stored": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "metadata_storage_last_modified",
+      "type": "Edm.DateTimeOffset",
+      "searchable": false,
+      "filterable": false,
+      "retrievable": false,
+      "stored": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "metadata_storage_content_md5",
+      "type": "Edm.String",
+      "searchable": false,
+      "filterable": false,
+      "retrievable": false,
+      "stored": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "metadata_storage_name",
+      "type": "Edm.String",
+      "searchable": false,
+      "filterable": false,
+      "retrievable": false,
+      "stored": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "metadata_storage_path",
+      "type": "Edm.String",
+      "searchable": false,
+      "filterable": false,
+      "retrievable": false,
+      "stored": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "metadata_storage_file_extension",
+      "type": "Edm.String",
+      "searchable": false,
+      "filterable": false,
+      "retrievable": false,
+      "stored": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
     }
   ],
   "scoringProfiles": [],
-  "suggesters": [
-    {
-      "name": "sg",
-      "searchMode": "analyzingInfixMatching",
-      "sourceFields": ["Address/City", "Address/Country", "Rooms/Type", "Rooms/Tags"]
-    }
-  ],
+  "suggesters": [],
   "analyzers": [],
   "normalizers": [],
   "tokenizers": [],
