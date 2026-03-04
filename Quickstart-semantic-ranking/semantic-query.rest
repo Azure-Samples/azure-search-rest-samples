@@ -22,7 +22,7 @@ Authorization: Bearer {{personalAccessToken}}
 
 ### Send a search query to the hotels-sample index with semantic ranking.
 ### This query also searches for "walking distance to live music".
-### For this particular query and index, the effects of semantic ranking are more pronounced in the second half of the results
+### For this particular query and index, the effects of semantic ranking are more pronounced in the second half of the results.
 POST {{searchUrl}}/indexes/hotels-sample/docs/search?api-version={{api-version}}  HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{personalAccessToken}}
@@ -35,9 +35,9 @@ Authorization: Bearer {{personalAccessToken}}
   "semanticConfiguration": "semantic-config"
 }
 
-### Return captions in the query
-### Captions are relevant passages from each result
-### Captions can include hit highlighting
+### Return captions in the query.
+### Captions are relevant passages from each result.
+### Captions can include hit highlighting.
 POST {{searchUrl}}/indexes/hotels-sample/docs/search?api-version={{api-version}}  HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{personalAccessToken}}
@@ -51,11 +51,11 @@ Authorization: Bearer {{personalAccessToken}}
   "captions": "extractive|highlight-true"
 }
 
-### Return semantic answers in the query
-### Semantic answers can be returned if the query is phrased as question
-### Semantic answers are verbatim snippets from the results
-### This experience works best on content provides answers to questions
-### We changed the query to a question to demonstrate this feature
+### Return semantic answers in the query.
+### Semantic answers can be returned if the query is phrased as question.
+### Semantic answers are verbatim snippets from the results.
+### This experience works best on content that provides answers to questions.
+### We changed the query to a question to demonstrate this feature.
 POST {{searchUrl}}/indexes/hotels-sample/docs/search?api-version={{api-version}}  HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{personalAccessToken}}
