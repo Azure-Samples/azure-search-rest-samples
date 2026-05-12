@@ -1,6 +1,6 @@
 @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
 @token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
-@api-version = 2025-09-01
+@api-version = 2026-04-01
 
 ### List existing indexes by name (verify connection)
 GET {{baseUrl}}/indexes?api-version={{api-version}}&$select=name  HTTP/1.1

@@ -2,7 +2,7 @@
 @apiKey = PUT-YOUR-SEARCH-SERVICE-ADMIN-API-KEY-HERE
 @storageConnectionString = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
 @blobContainer = PUT-YOUR-BLOB-CONTAINER-NAME-HERE
-@api-version = 2025-09-01
+@api-version = 2026-04-01
 
 ### Create a data source
 POST {{baseUrl}}/datasources?api-version={{api-version}} HTTP/1.1
