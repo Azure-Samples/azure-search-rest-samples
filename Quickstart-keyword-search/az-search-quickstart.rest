@@ -84,7 +84,7 @@ Authorization: Bearer {{token}}
             "@search.action": "upload",
             "HotelId": "3",
             "HotelName": "Gastronomic Landscape Hotel",
-            "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotelâs restaurant services.",
+            "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel's restaurant services.",
             "Category": "Suite",
             "Tags": [ "restaurant", "bar", "continental breakfast" ],
             "ParkingIncluded": true,
