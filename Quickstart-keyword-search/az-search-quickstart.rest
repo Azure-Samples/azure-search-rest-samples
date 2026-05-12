@@ -1,6 +1,6 @@
 @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
 @token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
-@api-version = 2025-09-01
+@api-version = 2026-04-01
 
 ### List existing indexes by name
 GET {{baseUrl}}/indexes?api-version={{api-version}}&$select=name  HTTP/1.1
@@ -84,7 +84,7 @@ Authorization: Bearer {{token}}
             "@search.action": "upload",
             "HotelId": "3",
             "HotelName": "Gastronomic Landscape Hotel",
-            "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
+            "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotelâs restaurant services.",
             "Category": "Suite",
             "Tags": [ "restaurant", "bar", "continental breakfast" ],
             "ParkingIncluded": true,
