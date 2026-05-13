@@ -4,7 +4,7 @@
 @blobContainer = PUT-YOUR-BLOB-CONTAINER-NAME-HERE
 @kstore-storage-connection-string = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
 @cognitive-services-key = PUT-YOUR-FOUNDRY-RESOURCE-KEY-HERE
-@api-version = 2025-09-01
+@api-version = 2026-04-01
 
 ### Create data source (use https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media)
 POST {{baseUrl}}/datasources?api-version={{api-version}}  HTTP/1.1
