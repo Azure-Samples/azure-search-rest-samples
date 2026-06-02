@@ -155,6 +155,7 @@ Authorization: Bearer {{token}}
         }
     ],
     "outputMode": "answerSynthesis",
+    "retrievalReasoningEffort": { "kind": "low" },
     "answerInstructions": "Provide a two sentence concise and informative answer based on the retrieved documents."
 }
 
