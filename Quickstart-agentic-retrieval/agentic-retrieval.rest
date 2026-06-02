@@ -185,8 +185,7 @@ Authorization: Bearer {{token}}
             "rerankerThreshold": 2.5
         }
     ],
-    "includeActivity": true,
-    "retrievalReasoningEffort": { "kind": "low" }
+    "includeActivity": true
 }
 
 ### Delete the knowledge base
