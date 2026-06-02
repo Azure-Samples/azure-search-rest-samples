@@ -9,7 +9,7 @@
 @index-name = earth-at-night
 @knowledge-source-name = earth-knowledge-source
 @knowledge-base-name = earth-knowledge-base
-@api-version = 2025-11-01-preview
+@api-version = 2026-05-01-preview
 
 ### Create an index
 PUT {{search-url}}/indexes/{{index-name}}?api-version={{api-version}}  HTTP/1.1
@@ -155,6 +155,7 @@ Authorization: Bearer {{token}}
         }
     ],
     "outputMode": "answerSynthesis",
+    "retrievalReasoningEffort": { "kind": "low" },
     "answerInstructions": "Provide a two sentence concise and informative answer based on the retrieved documents."
 }
 
@@ -185,8 +186,7 @@ Authorization: Bearer {{token}}
             "rerankerThreshold": 2.5
         }
     ],
-    "includeActivity": true,
-    "retrievalReasoningEffort": { "kind": "low" }
+    "includeActivity": true
 }
 
 ### Delete the knowledge base
