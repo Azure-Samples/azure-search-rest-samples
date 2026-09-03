@@ -9,7 +9,7 @@
 @index-name = earth-at-night
 @knowledge-source-name = earth-knowledge-source
 @knowledge-base-name = earth-knowledge-base
-@api-version = 2026-05-01-preview
+@api-version = 2026-08-01-preview
 
 ### Create an index
 PUT {{search-url}}/indexes/{{index-name}}?api-version={{api-version}}  HTTP/1.1
